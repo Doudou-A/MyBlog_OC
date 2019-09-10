@@ -8,46 +8,29 @@ class Administrator
 	private $_password;
 
 
-	public function hydrate(array $data)
-	{
-		foreach ($data as $key => $value)
-		{
-			$method = 'set' . ucfirst($key);
-
-			if (method_exists($this, $method))
-			{
-				//Appel du setter
-				$this->$method($value);
-			}
-		}
-	}
-
+	public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+ 
+    public function hydrate(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set' . ucfirst($key);
+ 
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
 
 	//Getters
-	public function id()
-	{
-		return $this->_id;
-	}
 
-	public function email()
-	{
-		return $this->_email;
-	}
-
-	public function name()
-	{
-		return $this->_name;
-	}
-
-	public function firstName()
-	{
-		return $this->_firstName;
-	}
-
-	public function password()
-	{
-		return $this->_password;
-	}
+	public function id() { return $this->_id; }
+	public function email()	{ return $this->_email;	}
+	public function name() { return $this->_name; }
+	public function firstName() { return $this->_firstName;	}
+	public function password() { return $this->_password; }
 
 	//Setters
 

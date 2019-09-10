@@ -10,11 +10,8 @@ $db = new PDO('mysql:host=localhost;dbname=poo;charset=utf8', 'root', 'root');
 
 $manager = new AdministratorManager($db);
 
-$admin = new Administrator([
-	'email' => 'phil@gmail.com',
-	'name' => 'phil',
-	'firstName' => 'Me',
-	'password' => 'yoyoyoyo'
-]);
+$id = 2;
 
-$manager->add($admin);
+$manager->get($id);
+
+echo data();

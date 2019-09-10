@@ -12,7 +12,7 @@ class Administrator
 	{
 		foreach ($data as $key => $value)
 		{
-			$method = 'set'.ucfirst($key);
+			$method = 'set' . ucfirst($key);
 
 			if (method_exists($this, $method))
 			{
@@ -63,7 +63,7 @@ class Administrator
 
 	public function setEmail($email)
 	{
-		if (filter_var($email, FILETR_VALIDATE_EMAIL) === true)
+		if (is_string($email))
 		{
 			$this->_email = $email;
 		}

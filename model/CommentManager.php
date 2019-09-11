@@ -1,5 +1,5 @@
 <?php
-class CommentManagger
+class CommentManager
 {
 	private $_db;
 

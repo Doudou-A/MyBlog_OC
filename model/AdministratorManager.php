@@ -37,16 +37,16 @@ class AdministratorManager
 
 	public function getList()
 	{
-		$admins = [];
+		$admin = [];
 
 		$q = $this->_db->query('SELECT id, email, name, firstName From administrator Order BY name');
 
 		while ($data = $q->fetch(PDO::FETCH_ASSOC))
 		{
-			$admins[] = new Administrator($data);
+			$admin[] = new Administrator($data);
 		}
 
-		return $admins;
+		return $admin;
 	}
 
 	public function setDb(PDO $db)

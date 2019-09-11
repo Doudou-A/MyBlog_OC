@@ -14,7 +14,7 @@ class BlogPostManager
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':châpo', $blogp->châpo(), PDO::PARAM_STR);
-		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR;)
+		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
 
 		$q->execute();
 	}
@@ -37,7 +37,7 @@ class BlogPostManager
 	{
 		$blogp = [];
 
-		$q = $this->_db)->query('SELECT id, title, châpo, content, dateLastUpdate, dateCreated FROM blogPost ORDER BY title');
+		$q = $this->_db->query('SELECT id, title, châpo, content, dateLastUpdate, dateCreated FROM blogpost ORDER BY title');
 		
 		while ($data = $q->fetch(PDO::FETCH_ASSOC))
 		{
@@ -54,22 +54,14 @@ class BlogPostManager
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':châpo', $blogp->châpo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
+		$q->bindValue(':dateLastUpdate', $blogp->dateLastupdate());
+		$q->bindValue(':id', $blogp->id(), PDO::PARAM_INT);
+
+		$q->execute();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public function setDb(PDO $db)
+	{
+		$this->_db = $db;
+	}
 }

@@ -3,7 +3,7 @@ class BlogPost
 {
 	private $_id;
 	private $_title;
-	private $_châpo;
+	private $_chapo;
 	private $_content;
 	private $_dateLastUpdate;
 	private $_dateCreated;
@@ -30,7 +30,7 @@ class BlogPost
 
 	public function id() { return $this->_id; }
 	public function title() { return $this->_title; }
-	public function châpo() { return $this->_châpo; }
+	public function chapo() { return $this->_chapo; }
 	public function content() { return $this->_content; }
 	public function dateLastUpdate() { return $this->_dateLastUpdate; }
 	public function dateCreated() { return $this->_dateCreated; }
@@ -55,11 +55,11 @@ class BlogPost
 		}
 	}
 
-	public function setChâpo($châpo)
+	public function setChapo($chapo)
 	{
-		if(is_string($châpo))
+		if(is_string($chapo))
 		{
-			$this->_châpo = $châpo;
+			$this->_chapo = $chapo;
 		}
 	}
 

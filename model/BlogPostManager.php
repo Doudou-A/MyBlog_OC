@@ -10,13 +10,14 @@ class BlogPostManager
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO blogpost(title, châpo, content, dateCreated) VALUES (:title, :châpo, :content, NOW())');
+		$q = $this->_db->prepare('INSERT INTO blogpost(title, chapo, content, dateCreated) VALUES (:title, :chapo, :content, NOW())');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
-		$q->bindValue(':châpo', $blogp->châpo(), PDO::PARAM_STR);
+		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
 
 		$q->execute();
+
 	}
 
 	public function delete(BlogPost $blogp)
@@ -27,7 +28,7 @@ class BlogPostManager
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT id, title, châpo, content, dateLastUpdate, dateCreated FROM blogPost WHERE id='.$id);
+		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogPost WHERE id='.$id);
 		$data = $q->detch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);
@@ -37,7 +38,7 @@ class BlogPostManager
 	{
 		$blogp = [];
 
-		$q = $this->_db->query('SELECT id, title, châpo, content, dateLastUpdate, dateCreated FROM blogpost ORDER BY title');
+		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogpost ORDER BY title');
 		
 		while ($data = $q->fetch(PDO::FETCH_ASSOC))
 		{
@@ -49,10 +50,10 @@ class BlogPostManager
 
 	public function update(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('UPDATE blogp SET title = :title, châpo = :châpo, content = :content, dateLastUpdate = :dateLastUpdate WHERE id = :id');
+		$q = $this->_db->prepare('UPDATE blogp SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = :dateLastUpdate WHERE id = :id');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
-		$q->bindValue(':châpo', $blogp->châpo(), PDO::PARAM_STR);
+		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
 		$q->bindValue(':dateLastUpdate', $blogp->dateLastupdate());
 		$q->bindValue(':id', $blogp->id(), PDO::PARAM_INT);

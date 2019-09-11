@@ -14,22 +14,24 @@ class Comment
 
 	public function hydrate(array $data)
 	{
-		foreach ($data as $key => $value) {
+		foreach ($data as $key => $value) 
+		{
 			$method = 'set' . ucfirst($key);
 
-			if (method_exists($this, $method)) {
-				$this->method($value);
+			if (method_exists($this, $method)) 
+			{
+				$this->$method($value);
 			}
 		}
 	}
 
 	//Getters
 
-	public function id() { return $this->_id; };
-	public function pseudo() { return $this->_pseudo };
-	public function date() { return $this->_date };
-	public function content() { return $this->_content };
-	public function valid() { return $this->_valid };
+	public function id() { return $this->_id; }
+	public function pseudo() { return $this->_pseudo; }
+	public function date() { return $this->_date; }
+	public function content() { return $this->_content; }
+	public function valid() { return $this->_valid; }
 
 	//Setters
 
@@ -51,5 +53,32 @@ class Comment
 		}
 	}
 
+	public function setDate($date)
+	{
+		$date = DateTime::createFromFormat('d/m/Y', $string);
+		if ($date === true) {
+    		// on vérifie que la date existe
+    		$validString = $date->format('d/m/Y');
+    		if ($string = $validString) 
+    		{
+        		$this->_date = $date;
+    		}
+		}
+	}
 
+	public function setContent($content)
+	{
+		if(is_string($content))
+		{
+			$this->_content = $content;
+		}
+	}
+
+	public function setValid($valid)
+	{
+		if(is_bool($valid) === true)
+		{
+			$this->_valid = $valid;
+		}
+	}
 }

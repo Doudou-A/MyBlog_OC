@@ -8,7 +8,7 @@ spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload
 
 $blogp = new BlogPost([
 'title' => 'yehhhh',
-'châpo' => 'blobloblob',
+'chapo' => 'blobloblob',
 'content' => 'fhuzeihezuezhhufezui'
 ]);
 

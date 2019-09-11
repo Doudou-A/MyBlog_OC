@@ -6,12 +6,14 @@ function chargerClasse($class)
 
 spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
 
+$com = new Comment([
+'pseudo' => 'yehhhh',
+'content' => 'fhuzeihezuezhhufezui'
+]);
+
 $db = new PDO('mysql:host=localhost;dbname=poo;charset=utf8', 'root', 'root');
 
-$manager = new AdministratorManager($db);
+$manager = new CommentManager($db);
 
-$id = 2;
+$manager->add($com);
 
-$manager->get($id);
-
-echo data();

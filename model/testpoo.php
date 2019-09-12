@@ -6,10 +6,10 @@ function chargerClasse($class)
 
 spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
 
-$db = new PDO('mysql:host=localhost;dbname=poo;charset=utf8', 'root', 'root');
+require "Config.php";
 
 $admin = new Administrator([
-'email' => 'MjIJIJIjifezofjez',
+'email' => 'Me',
 'name' => 'nfeznjfe',
 'firstName' => 'fbebfezyefzby',
 'password' => 'dzuiuheifuz'

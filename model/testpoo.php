@@ -8,8 +8,16 @@ spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload
 
 $db = new PDO('mysql:host=localhost;dbname=poo;charset=utf8', 'root', 'root');
 
+$admin = new Administrator([
+'email' => 'MjIJIJIjifezofjez',
+'name' => 'nfeznjfe',
+'firstName' => 'fbebfezyefzby',
+'password' => 'dzuiuheifuz'
+]);
+
 $manager = new AdministratorManager($db);
 
-$admin = $manager->get(2);
+//$admin = $manager->getList();
 
-var_dump($admin);
+//var_dump($admin);
+$manager->add($admin);

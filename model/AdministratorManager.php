@@ -1,12 +1,7 @@
 <?php
 class AdministratorManager
 {
-	private $_db;
-
-	public function __construct($db)
-	{
-		$this->setDb($db);
-	}
+	private $_db = dbConnect();
 
 	public function add(Administrator $admin)
 	{
@@ -47,10 +42,5 @@ class AdministratorManager
 		}
 
 		return $admin;
-	}
-
-	public function setDb(PDO $db)
-	{
-		$this->_db = $db;
 	}
 }

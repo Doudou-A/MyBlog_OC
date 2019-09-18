@@ -10,7 +10,7 @@ class AdministratorManager
 
 	public function add(Administrator $admin)
 	{
-		$q = $this->_db->prepare('INSERT INTO Administrator(email, name, firstName, password) VALUES(:email, :name, :firstName, :password)');
+		$q = $this->_db->prepare('INSERT INTO Administrator(Email, Name, First Name, Password) VALUES(:email, :name, :firstName, :password)');
 
 		$q->bindValue(':email', $admin->email(), PDO::PARAM_STR);
 		$q->bindValue(':name', $admin->name(), PDO::PARAM_STR);

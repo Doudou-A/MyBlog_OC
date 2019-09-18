@@ -12,6 +12,11 @@ class Controller
 		require('view/registrationView.php');
 	}
 
+	public function loginView()
+	{
+		require('view/loginView.php');
+	}
+
 	function formRegistration()
 	{
 		require('model/Config.php');
@@ -26,6 +31,15 @@ class Controller
 		]);
 
 		$manager->add($admin);
+	}
+
+	function login()
+	{
+		require('model/Config.php');
+
+		$login = new AdministratorManager($db);
+
+		$login->connect();
 	}
 }
 /*

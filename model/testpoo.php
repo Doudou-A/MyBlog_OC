@@ -6,10 +6,9 @@ function chargerClasse($class)
 
 spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
 
-require "Config.php";
 
 $admin = new Administrator([
-'email' => 'Me',
+'email' => 'Meeeee',
 'name' => 'nfeznjfe',
 'firstName' => 'fbebfezyefzby',
 'password' => 'dzuiuheifuz'

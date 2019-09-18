@@ -5,7 +5,7 @@ try
 	{
 		function chargerClasse($class)
 	{
-	  require $class . '.php'; 
+	  require 'model/' . $class . '.php'; 
 	}
 
 	spl_autoload_register('chargerClasse'); 

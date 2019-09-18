@@ -10,14 +10,65 @@ class AdministratorManager
 
 	public function add(Administrator $admin)
 	{
-		$q = $this->_db->prepare('INSERT INTO Administrator(Email, Name, First Name, Password) VALUES(:email, :name, :firstName, :password)');
+		$q = $this->_db->prepare('INSERT INTO Administrator(email, name, firstName, password) VALUES(:email, :name, :firstName, :password)');
+
+		$pass_hash = password_hash($admin->password(), PASSWORD_DEFAULT);
 
 		$q->bindValue(':email', $admin->email(), PDO::PARAM_STR);
 		$q->bindValue(':name', $admin->name(), PDO::PARAM_STR);
 		$q->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
-		$q->bindValue(':password', $admin->password(), PDO::PARAM_STR);
+		$q->bindValue(':password', $pass_hash);
 
 		$q->execute();
+	}
+
+	public function connect()
+	{
+		$req = $this->_db->prepare('SELECT email, password FROM Administrator WHERE email = :email');
+		$req->execute(array('email' => $_POST['email']));
+		$result = $req->fetch();
+
+		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+
+		if (!$result) 
+		{
+			require('view/indexView.php');
+?>
+		
+		<script type="text/javascript">
+			errorLogin();
+		</script>
+
+		<style type="text/css">
+				.formLogin{
+					color: red;
+				}
+
+				.formLoginInput{
+					border : red solid 1px;
+				}
+			</style>
+<?php
+		}
+		else
+		{
+			if ($isPasswordCorrect) {
+				session_start();
+				$_SESSION['id'] = $result['id'];
+				$_SESSION['email'] = $_POST['email'];
+
+				echo 'Good';
+
+				return $result;
+				return $isPasswordCorrect;
+			}
+			else 
+			{
+				//require('view/indexView.php');
+				echo 'error 2';
+			}
+		}
+
 	}
 
 	public function delete(Administrator $admin)

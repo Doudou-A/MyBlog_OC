@@ -17,6 +17,36 @@ class Controller
 		require('view/loginView.php');
 	}
 
+	public function addBlogPostView()
+	{
+		require('view/addBlogPostView.php');
+	}
+
+	public function UpdateBlogPostView()
+	{
+		require('view/updateBlogPostView.php');
+	}
+
+	public function deleteBlogPostView()
+	{
+		require('view/deleteBlogPostView.php');
+	}
+
+	function formAddBlogPost()
+	{
+		require('model/Config.php');
+
+		$manager = new BlogPostManager($db);
+
+		$blogp = new BlogPost([
+		'title' => $_POST['title'],
+		'chapo' =>  $_POST['chapo'],
+		'content' =>  $_POST['content']
+		]);
+
+		$manager->add($blogp);
+	}
+
 	function formRegistration()
 	{
 		require('model/Config.php');
@@ -39,29 +69,33 @@ class Controller
 
 		$login = new AdministratorManager($db);
 
-		$login->connect();
+		$result = $login->connect();
+
+		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+
+		if (!$result['email']) 
+		{
+			 echo 'error1';
+			die();
+		}
+		else
+		{
+			if ($isPasswordCorrect) {
+				session_start();
+				$_SESSION['id'] = $result['id'];
+				$_SESSION['email'] = htmlspecialchars($_POST['email']);
+
+				require('view/adminView.php');
+
+				return $result;
+				return $isPasswordCorrect;
+			}
+			else 
+			{
+				//require('view/indexView.php');
+				echo 'error 2';
+				die();
+			}
+		}
 	}
 }
-/*
-function index()
-{
-	require('view/indexView.php');
-}
-
-function formLogin()
-{
-	$formLogin = getForm();
-
-}
-
-require('model/registrationModel.php');
-
-function formRegistration()
-{
-	$formRegistration = registration();
-}
-
-function registrationView()
-{
-	require('view/registrationView.php');
-}*/

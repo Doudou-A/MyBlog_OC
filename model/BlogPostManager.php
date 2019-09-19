@@ -5,12 +5,12 @@ class BlogPostManager
 
 	public function __construct($db)
 	{
-		$this->setDB($db);
+		$this->setDb($db);
 	}
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO blogpost(title, chapo, content, dateCreated) VALUES (:title, :chapo, :content, NOW())');
+		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated) VALUES (:title, :chapo, :content, NOW())');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);

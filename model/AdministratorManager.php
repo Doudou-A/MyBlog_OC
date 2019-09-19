@@ -28,46 +28,7 @@ class AdministratorManager
 		$req->execute(array('email' => $_POST['email']));
 		$result = $req->fetch();
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
-
-		if (!$result) 
-		{
-			require('view/indexView.php');
-?>
-		
-		<script type="text/javascript">
-			errorLogin();
-		</script>
-
-		<style type="text/css">
-				.formLogin{
-					color: red;
-				}
-
-				.formLoginInput{
-					border : red solid 1px;
-				}
-			</style>
-<?php
-		}
-		else
-		{
-			if ($isPasswordCorrect) {
-				session_start();
-				$_SESSION['id'] = $result['id'];
-				$_SESSION['email'] = $_POST['email'];
-
-				echo 'Good';
-
-				return $result;
-				return $isPasswordCorrect;
-			}
-			else 
-			{
-				//require('view/indexView.php');
-				echo 'error 2';
-			}
-		}
+		return $result;
 
 	}
 

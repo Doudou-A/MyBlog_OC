@@ -6,7 +6,7 @@ class AdministratorManager
 {
 	private $_db;
 
-	public function __construct($db)
+	public function __construct()
 	{
 		$this->setDb(DbConfig::dbConnect());
 	}

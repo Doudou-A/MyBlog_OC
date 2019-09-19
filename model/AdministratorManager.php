@@ -1,4 +1,7 @@
 <?php
+
+require('Config.php');
+
 class AdministratorManager
 {
 	private $_db;

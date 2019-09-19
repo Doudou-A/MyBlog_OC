@@ -1,5 +1,8 @@
 <?php
-
+require('model/Administrator.php');
+require('model/AdministratorManager.php');
+require('model/BlogPostManager.php');
+require('model/BlogPost.php');
 class Controller
 {
 	public function index()

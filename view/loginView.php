@@ -13,6 +13,24 @@
 </form>
 
 <a href="index.php?action=registrationView">S'inscrire</a>
+<?php 
+if($_GET['a'] == 7)
+{
+?>
+	<script type="text/javascript">
+			errorLogin();
+		</script>
+
+		<style type="text/css">
+				.formLogin{
+					color: red;
+				}
+
+				.formLoginInput{
+					border : red solid 1px;
+				}
+			</style>
+<?php } ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

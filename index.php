@@ -3,13 +3,6 @@ require('controller/controller.php');
 
 try 
 	{
-		function chargerClasse($class)
-	{
-	  require 'model/' . $class . '.php'; 
-	}
-
-	spl_autoload_register('chargerClasse'); 
-
 	$controller = new Controller;
 
 	if(!empty($_GET['action']))

@@ -1,15 +1,14 @@
 <?php
 
-require('Config.php');
 
 class AdministratorManager
 {
 	private $_db;
 
-	public function __construct()
-	{
-		$this->setDb(DbConfig::dbConnect());
-	}
+	public function __construct($db)
+  	{
+    	$this->setDb($db);
+ 	}
 
 	public function add(Administrator $admin)
 	{
@@ -44,7 +43,7 @@ class AdministratorManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT id, email, name, firstName, password FROM Administrator WHERE id = '.$id);
+		$q = $this->_db->query('SELECT idAdministrator, email, name, firstName, password FROM Administrator WHERE idAdministrator = '.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);

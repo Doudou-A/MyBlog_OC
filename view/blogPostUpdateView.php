@@ -12,28 +12,28 @@ session_start();
 		{
 ?>		
 		<div class="col-lg-12 d-flex">
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 <?php 
 				echo $blogp[$k]->idBlogPost();
 ?>		
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 <?php 
 				echo $blogp[$k]->title();
 ?>		
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 <?php 
 				echo $blogp[$k]->chapo();
 ?>		
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 <?php 
 				echo $blogp[$k]->content();
 ?>		
 			</div>
-			<div class="col-lg-3">
-				<a href="">
+			<div class="col-lg-2">
+				<a href="index.php?action=test(<?= $k?>)" >Ajouter un Blog Post</a>
 			</div>
 		</div>
 <?php

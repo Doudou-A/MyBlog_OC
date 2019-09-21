@@ -13,16 +13,11 @@ require "Config.php";
 'name' => 'nfeznjfe',
 'firstName' => 'fbebfezyefzby',
 'password' => 'dzuiuheifuz'
-]);
+]);*/
 
-$manager = new AdministratorManager($db);
+$manager = new BlogPostManager($db);
 
-//$admin = $manager->getList();
+$blogp = $manager->get(1);
 
-//var_dump($admin);
-$manager->add($admin);*/
-$login = new AdministratorManager($db);
-
-$result = $login->connect();
-
-var_dump($result);
+echo $blogp->idBlogPost();
+//$manager->add($admin);

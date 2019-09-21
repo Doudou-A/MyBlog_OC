@@ -3,8 +3,9 @@ require('model/Administrator.php');
 require('model/AdministratorManager.php');
 require('model/BlogPostManager.php');
 require('model/BlogPost.php');
+
 class Controller
-{
+{	
 	public function index()
 	{
 		require('view/indexView.php');
@@ -20,23 +21,44 @@ class Controller
 		require('view/loginView.php');
 	}
 
-	public function addBlogPostView()
+	public function blogPostAddView()
 	{
-		require('view/addBlogPostView.php');
+		require('view/blogPostAddView.php');
 	}
 
-	public function UpdateBlogPostView()
+	public function blogPostUpdateView()
 	{
-		require('view/updateBlogPostView.php');
+		require('model/Config.php');
+
+		$manager = new BlogPostManager($db);
+
+		/*$NumberId = $manager->getNumberId();
+
+		echo $NumberId ;
+
+		$i = 1;
+		$j = 1;
+
+		while($i<4){
+			$blogp[$j] = $manager->get($i);
+			$i++;
+			$j++;
+		}*/
+		$blogp = $manager->get(3);
+		echo $blogp->idBlogPost();
+		
+
+		require('view/blogPostUpdateView.php');
 	}
 
-	public function deleteBlogPostView()
+	public function blogPostDeleteView()
 	{
-		require('view/deleteBlogPostView.php');
+		require('view/blogPostDeleteView.php');
 	}
 
 	function formAddBlogPost()
 	{
+
 		require('model/Config.php');
 
 		$manager = new BlogPostManager($db);
@@ -48,6 +70,8 @@ class Controller
 		]);
 
 		$manager->add($blogp);
+
+		echo "Ajout du BP effectué";
 	}
 
 	function formRegistration()

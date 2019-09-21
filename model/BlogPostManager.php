@@ -1,15 +1,13 @@
 <?php
 
-require('Config.php');
-
 class BlogPostManager
 {
 	private $_db;
 
-	public function __construct()
-	{
-		$this->setDb(DbConfig::dbConnect());
-	}
+	 public function __construct($db)
+  	{
+    	$this->setDb($db);
+ 	}
 
 	public function add(BlogPost $blogp)
 	{
@@ -25,23 +23,32 @@ class BlogPostManager
 
 	public function delete(BlogPost $blogp)
 	{
-		$this->_db->exec('DELETE FROM blogPost WHERE id = '.$blogp->id());
+		$this->_db->exec('DELETE FROM BlogPost WHERE id = '.$blogp->id());
 	}
 
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogPost WHERE id='.$id);
-		$data = $q->detch(PDO::FETCH_ASSOC);
+		$q = $this->_db->query('SELECT idBlogPost, title, content, chapo FROM BlogPost WHERE idBlogPost='.$id);
+		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);
+	}
+
+	public function getNumberId()
+	{
+		$q = $this->_db->query('SELECT COUNT(idBlogPost) AS Nb FROM BlogPost');
+		$NumberId = $q->fetch();
+		$q->closeCursor();
+
+		return $NumberId['Nb'];
 	}
 
 	public function getList()
 	{
 		$blogp = [];
 
-		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogpost ORDER BY title');
+		$q = $this->_db->query('SELECT idBlogPost, title FROM BlogPost ORDER BY title');
 		
 		while ($data = $q->fetch(PDO::FETCH_ASSOC))
 		{

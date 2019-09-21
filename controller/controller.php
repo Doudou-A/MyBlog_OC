@@ -32,22 +32,18 @@ class Controller
 
 		$manager = new BlogPostManager($db);
 
-		/*$NumberId = $manager->getNumberId();
-
-		echo $NumberId ;
+		$NumberId = $manager->getNumberId();
 
 		$i = 1;
 		$j = 1;
 
-		while($i<4){
+		while($i<=$NumberId)
+		{
 			$blogp[$j] = $manager->get($i);
 			$i++;
 			$j++;
-		}*/
-		$blogp = $manager->get(3);
-		echo $blogp->idBlogPost();
+		}
 		
-
 		require('view/blogPostUpdateView.php');
 	}
 

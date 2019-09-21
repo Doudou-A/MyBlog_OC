@@ -1,7 +1,7 @@
 <?php
 class BlogPost
 {
-	private $_id;
+	private $_idBlogPost;
 	private $_title;
 	private $_chapo;
 	private $_content;
@@ -28,7 +28,7 @@ class BlogPost
 
 	//Getters
 
-	public function id() { return $this->_id; }
+	public function idBlogPost() { return $this->_idBlogPost; }
 	public function title() { return $this->_title; }
 	public function chapo() { return $this->_chapo; }
 	public function content() { return $this->_content; }
@@ -37,13 +37,13 @@ class BlogPost
 
 	//Setters
 
-	public function setId($id)
+	public function setIdBlogPost($idBlogPost)
 	{
-		$id = (int) $id;
+		$idBlogPost = (int) $idBlogPost;
 
-		if($id > 0)
+		if($idBlogPost > 0)
 		{
-			$this->_id = $id;
+			$this->_idBlogPost = $idBlogPost;
 		}
 	}
 
@@ -71,29 +71,29 @@ class BlogPost
 		}
 	}
 
-	public function setDateLastUpdate($date)
+	public function setDateLastUpdate($dateLastUpdate)
 	{
-		$date = DateTime::createFromFormat('d/m/Y', $string);
+		$date = DateTime::createFromFormat('d/m/Y', $dateLastUpdate);
 		if($date === true)
 		{
 			//On vérifie que la date existe
 			$validString = $date->format('d/m/Y');
-			if($string = $validString)
+			if($dateLastUpdate = $validString)
 			{
-				$this->_date = $date;
+				$this->_dateLastUpdate = $dateLastUpdate;
 			}
 		}
 	}
 
-	public function setDateCreated($date)
+	public function setDateCreated($dateCreated)
 	{
-		$date = DateTime::createdFromFormat('d/m/Y', $string);
+		$date= DateTime::createFromFormat('d/m/Y', $dateCreated);
 		if($date === true)
 		{
 			$validString = $date->format('d/m/Y');
-			if($string = $validString)
+			if($dateCreated = $validString)
 			{
-				$this->_date = $date;
+				$this->_dateCreated = $dateCreated;
 			}
 		}
 	}

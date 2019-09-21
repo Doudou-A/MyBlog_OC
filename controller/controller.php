@@ -47,6 +47,11 @@ class Controller
 		require('view/blogPostUpdateView.php');
 	}
 
+	public function test(1)
+	{
+		require('view/blogPostDeleteView.php');
+	}
+
 	public function blogPostDeleteView()
 	{
 		require('view/blogPostDeleteView.php');

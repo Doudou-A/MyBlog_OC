@@ -6,9 +6,18 @@ session_start();
  ?>
 
 <p>Gérer les Blogs Posts</p>
-<a href="index.php?action=blogPostAddView">Ajouter un Blog Post</a>
-<a href="index.php?action=blogPostUpdateView">Modifier un Blog Post</a>
-<a href="index.php?action=blogPostDeleteView">Supprimer un Blog Post</a>
+	<div>Gérer les Blogs Posts
+		<a href="index.php?action=blogPostAddView">Ajouter un Blog Post</a>
+		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Blog Post</a>
+	</div>
+	<div>Gérer les Commentaires
+		<a href="index.php?action=blogPostAddView">Ajouter un Commentaire</a>
+		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Blog Post</a>
+	</div>
+	<div>Gérer les Utilisateurs
+		<a href="index.php?action=blogPostAddView">Ajouter un Utilisateur</a>
+		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Utilisateur</a>
+	</div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

@@ -4,45 +4,19 @@
 ob_start(); 
 session_start();
 ?>
-
-<h1>Modifier un Blog Post</h1>
-<?php
-		$k = 1;
-		while($k<=$NumberId)
-		{
-?>		
-		<div class="col-lg-12 d-flex">
-			<div class="col-lg-2">
-<?php 
-				echo $blogp[$k]->idBlogPost();
-?>		
-			</div>
-			<div class="col-lg-2">
-<?php 
-				echo $blogp[$k]->title();
-?>		
-			</div>
-			<div class="col-lg-2">
-<?php 
-				echo $blogp[$k]->chapo();
-?>		
-			</div>
-			<div class="col-lg-2">
-<?php 
-				echo $blogp[$k]->content();
-?>		
-			</div>
-			<div class="col-lg-2">
-				<a href="index.php?action=test(<?= $k?>)" >Ajouter un Blog Post</a>
-			</div>
-		</div>
-<?php
-			$k++;
-?>
-</br>
-<?php
-		}
-?>
+<form action="index.php?action=formUpdateBlogPost" id="formUpdateBlogPost" method="POST">
+    <p>
+	    <label class="d-none">ID</label> <textarea class="formLoginInput d-none" type="text"name="idBlogPost"><?= $updateId ?></textarea>
+	    </br>
+	    <label>Titre</label> <textarea style=" resize:none;" class="formLoginInput" type="text" name="title" rows="1" maxlength="10"><?= $updateTitle ?></textarea>
+	    </br>
+	    <label>Châpo</label> <textarea class="formLoginInput" style=" resize:none;" type="text" name="chapo"><?= $updateChapo ?></textarea>
+	    </br>
+	    <label>Contenu</label> <textarea class="formLoginInput" style=" resize:none;" type="text" name="content"><?= $updateContent ?> </textarea>
+	    </br>
+	    <input type="submit" name="valide">
+	</p>
+</form>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

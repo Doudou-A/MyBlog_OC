@@ -1,5 +1,6 @@
 <?php
 require('controller/controller.php');
+$k = 1;
 
 try 
 	{

@@ -26,7 +26,7 @@ class Controller
 		require('view/blogPostAddView.php');
 	}
 
-	public function blogPostUpdateView()
+	public function blogPostGetView()
 	{
 		require('model/Config.php');
 
@@ -44,20 +44,91 @@ class Controller
 			$j++;
 		}
 		
-		require('view/blogPostUpdateView.php');
+		require('view/blogPostGetView.php');
 	}
 
-	public function test(1)
+	public function blogPostUpdateView()
 	{
-		require('view/blogPostDeleteView.php');
+		require('model/Config.php');
+
+		if (!empty($_GET['actions'])) 
+		{
+			$k = $_GET['actions'];
+
+			$manager = new BlogPostManager($db);
+
+			$blogp = $manager->get($k);
+
+			$updateId = $blogp->idBlogPost();
+			$updateTitle = $blogp->title();
+			$updateChapo = $blogp->chapo();
+			$updateContent = $blogp->content();
+
+			require('view/blogPostUpdateView.php');
+
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
 	}
 
-	public function blogPostDeleteView()
+	public function formUpdateBlogPost()
 	{
-		require('view/blogPostDeleteView.php');
+		require('model/Config.php');
+
+		$manager = new BlogPostManager($db);
+
+		$blogp = new BlogPost([
+		'idBlogPost' => $_POST['idBlogPost'],
+		'title' => $_POST['title'],
+		'chapo' =>  $_POST['chapo'],
+		'content' =>  $_POST['content']
+		]);
+
+		$manager->update($blogp);
+
+		$NumberId = $manager->getNumberId();
+
+		echo $NumberId;
+
+		$i = 1;
+		$j = 1;
+
+		while($i<=$NumberId)
+		{
+			$blogp[$j] = $manager->get($i);
+			$i++;
+			$j++;
+		}
+		
+		require('view/blogPostGetView.php');
 	}
 
-	function formAddBlogPost()
+	public function blogPostDelete()
+	{
+		require('model/Config.php');
+		if (!empty($_GET['actions'])) 
+		{
+			
+			$k = $_GET['actions'];
+
+			$manager = new BlogPostManager($db);
+
+			$blogp = $manager->get($k);
+
+			$manager->delete($blogp);
+
+			echo "ok";
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+
+	}
+
+	public function formAddBlogPost()
 	{
 
 		require('model/Config.php');
@@ -75,7 +146,7 @@ class Controller
 		echo "Ajout du BP effectué";
 	}
 
-	function formRegistration()
+	public function formRegistration()
 	{
 		require('model/Config.php');
 
@@ -91,7 +162,7 @@ class Controller
 		$manager->add($admin);
 	}
 
-	function login()
+	public function login()
 	{
 		require('model/Config.php');
 
@@ -103,8 +174,7 @@ class Controller
 
 		if (!$result['email']) 
 		{
-			 echo 'error1';
-			die();
+			throw new Exception("Error Processing Request");
 		}
 		else
 		{
@@ -120,9 +190,7 @@ class Controller
 			}
 			else 
 			{
-				//require('view/indexView.php');
-				echo 'error 2';
-				die();
+				throw new Exception("Error Processing Request");
 			}
 		}
 	}

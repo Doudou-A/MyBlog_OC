@@ -29,10 +29,27 @@ class CommentManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT id, pseudo, date, content, valid FROM comment WHERE id ='.$id);
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
+	}
+
+	public function getInvalid($id)
+	{
+		$id = (int) $id;
+
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+
+		return new Comment($data);
+	}
+
+	public function getNumberInvalid()
+	{
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+
+		return $q;
 	}
 
 	public function getList()

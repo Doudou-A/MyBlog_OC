@@ -11,8 +11,7 @@ session_start();
 		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Blog Post</a>
 	</div>
 	<div>Gérer les Commentaires
-		<a href="index.php?action=blogPostAddView">Ajouter un Commentaire</a>
-		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Blog Post</a>
+		<a href="index.php?action=commentGetView">Valider un Commentaire</a>
 	</div>
 	<div>Gérer les Utilisateurs
 		<a href="index.php?action=blogPostAddView">Ajouter un Utilisateur</a>

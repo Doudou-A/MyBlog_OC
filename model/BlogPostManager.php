@@ -48,14 +48,9 @@ class BlogPostManager
 	{
 		$blogp = [];
 
-		$q = $this->_db->query('SELECT idBlogPost, title FROM BlogPost ORDER BY title');
-		
-		while ($data = $q->fetch(PDO::FETCH_ASSOC))
-		{
-			$blogp[] = new BlogPost($data);
-		}
+		$q = $this->_db->query('SELECT * FROM BlogPost');
 
-		return $blogp;
+		return $q;
 	}
 
 	public function update(BlogPost $blogp)

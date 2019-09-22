@@ -3,6 +3,8 @@ require('model/Administrator.php');
 require('model/AdministratorManager.php');
 require('model/BlogPostManager.php');
 require('model/BlogPost.php');
+require('model/CommentManager.php');
+require('model/Comment.php');
 
 class Controller
 {	
@@ -87,22 +89,9 @@ class Controller
 		]);
 
 		$manager->update($blogp);
-
-		$NumberId = $manager->getNumberId();
-
-		echo $NumberId;
-
-		$i = 1;
-		$j = 1;
-
-		while($i<=$NumberId)
-		{
-			$blogp[$j] = $manager->get($i);
-			$i++;
-			$j++;
-		}
 		
-		require('view/blogPostGetView.php');
+		$controller = new Controller;
+		$controller->blogPostGetView();
 	}
 
 	public function blogPostDelete()
@@ -146,6 +135,27 @@ class Controller
 		echo "Ajout du BP effectué";
 	}
 
+	public function commentGetView()
+	{
+		require('model/Config.php');
+
+		$manager = new CommentManager($db);
+
+		$NumberInvalid = $manager->getNumberInvalid();
+
+		$i = 1;
+		$j = 1;
+
+		while($data=$NumberInvalid->fetch())
+		{
+			$com[$j] = $manager->getInvalid($i);
+			$i++;
+			$j++;
+		}
+		
+		require('view/commentGetView.php');
+	}
+
 	public function formRegistration()
 	{
 		require('model/Config.php');
@@ -180,7 +190,6 @@ class Controller
 		{
 			if ($isPasswordCorrect) {
 				session_start();
-				$_SESSION['id'] = $result['id'];
 				$_SESSION['email'] = htmlspecialchars($_POST['email']);
 
 				require('view/adminView.php');

@@ -24,7 +24,7 @@ session_start();
 			<div class="col-lg-2"> 
 				<?=$blogp[$k]->content();?>	
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-1">
 				<a href="index.php?action=blogPostUpdateView&amp;actions=<?=$blogp[$k]->idBlogPost();?>" >Modifier ce Blog Post</a>
 			</div>
 			<div class="col-lg-2">

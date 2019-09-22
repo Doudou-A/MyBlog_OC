@@ -23,7 +23,7 @@ class BlogPostManager
 
 	public function delete(BlogPost $blogp)
 	{
-		$this->_db->exec('DELETE FROM BlogPost WHERE id = '.$blogp->id());
+		$this->_db->exec('DELETE FROM BlogPost WHERE idBlogPost = '.$blogp->idBlogPost());
 	}
 
 	public function get($id)
@@ -60,13 +60,12 @@ class BlogPostManager
 
 	public function update(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('UPDATE blogp SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = :dateLastUpdate WHERE id = :id');
+		$q = $this->_db->prepare('UPDATE BlogPost SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = NOW() WHERE idBlogPost = :idBlogPost');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
-		$q->bindValue(':dateLastUpdate', $blogp->dateLastupdate());
-		$q->bindValue(':id', $blogp->id(), PDO::PARAM_INT);
+		$q->bindValue(':idBlogPost', $blogp->idBlogPost(), PDO::PARAM_INT);
 
 		$q->execute();
 	}

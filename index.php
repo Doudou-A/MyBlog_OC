@@ -1,7 +1,5 @@
 <?php
 require('controller/controller.php');
-$k = 1;
-
 try 
 	{
 	$controller = new Controller;

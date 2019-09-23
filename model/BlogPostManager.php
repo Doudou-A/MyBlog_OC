@@ -35,13 +35,11 @@ class BlogPostManager
 		return new BlogPost($data);
 	}
 
-	public function getNumberId()
+	public function getAll()
 	{
-		$q = $this->_db->query('SELECT COUNT(idBlogPost) AS Nb FROM BlogPost');
-		$NumberId = $q->fetch();
-		$q->closeCursor();
+		$q = $this->_db->query('SELECT idBlogPost, title, chapo, content FROM BlogPost');
 
-		return $NumberId['Nb'];
+		return $q;
 	}
 
 	public function getList()

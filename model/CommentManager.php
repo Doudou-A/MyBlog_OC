@@ -45,9 +45,10 @@ class CommentManager
 		return new Comment($data);
 	}
 
-	public function getNumberInvalid()
+	public function getComToValid()
 	{
 		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$q->execute(array());
 
 		return $q;
 	}
@@ -68,11 +69,7 @@ class CommentManager
 
 	public function update(Comment $com)
 	{
-		$q = $this->_db->prepare('UPDATE comment SET valid = :valid WHERE id = :id');
-
-		$q->bindValue(':valid', $com->valid());
-
-		$q->execute();
+		$this->_db->exec('UPDATE Comment SET valid = 1 WHERE idComment ='.$com->idComment());
 	}
 
 	public function setDb(PDO $db)

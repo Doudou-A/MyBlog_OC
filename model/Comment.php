@@ -35,7 +35,7 @@ class Comment
 
 	//Setters
 
-	public function setId($id)
+	public function setIdComment($idComment)
 	{
 		$idComment = (int) $idComment;
 

@@ -6,24 +6,26 @@ session_start();
 ?>
 <h1>Valider un Commentaire</h1>
 <?php
-		$k = 1;
-		while($data<=$NumberInvalid->fetch())
+		while($getCom = $comToValid->fetch())
 		{
 ?>		
 		<div class="col-lg-12 d-flex">
 			<div class="col-lg-2">
-				<?=$com[$k]->idComment();?>		
+				<?=$getCom['idComment']?>		
 			</div>
 			<div class="col-lg-2">
-				<?=$com[$k]->pseudo();?>
+				<?=$getCom['pseudo']?>
 			</div>
 			<div class="col-lg-2">
-				<?=$com[$k]->content();?>
+				<?=$getCom['content']?>
+			</div>
+			<div class="col-lg-1">
+				<a href="index.php?action=commentUpdate&amp;id=<?=$getCom['idComment']?>" >Valider ce Commentaire</a>
+			</div>
+			<div class="col-lg-2">
+				<a href="index.php?action=commentDelete&amp;id=<?=$getCom['idComment']?>" >Supprimer ce Commentaire</a>
 			</div>
 		</div>
-<?php
-			$k++;
-?>
 </br>
 <?php
 		}

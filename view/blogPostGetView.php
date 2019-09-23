@@ -8,7 +8,7 @@ session_start();
 <h1>Modifier un Blog Post</h1>
 <?php
 		$k = 1;
-		while($k<=$NumberId)
+		while($data <= $allBlogPost->fetch())
 		{
 ?>		
 		<div class="col-lg-12 d-flex">

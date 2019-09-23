@@ -34,12 +34,12 @@ class Controller
 
 		$manager = new BlogPostManager($db);
 
-		$NumberId = $manager->getNumberId();
+		$allBlogPost = $manager->getAll();
 
 		$i = 1;
 		$j = 1;
 
-		while($i<=$NumberId)
+		while($data = $allBlogPost->fetch())
 		{
 			$blogp[$j] = $manager->get($i);
 			$i++;
@@ -97,6 +97,7 @@ class Controller
 	public function blogPostDelete()
 	{
 		require('model/Config.php');
+
 		if (!empty($_GET['actions'])) 
 		{
 			
@@ -114,7 +115,6 @@ class Controller
 		{
 			throw new Exeption("Error Processing Request");
 		}
-
 	}
 
 	public function formAddBlogPost()
@@ -141,19 +141,30 @@ class Controller
 
 		$manager = new CommentManager($db);
 
-		$NumberInvalid = $manager->getNumberInvalid();
-
-		$i = 1;
-		$j = 1;
-
-		while($data=$NumberInvalid->fetch())
-		{
-			$com[$j] = $manager->getInvalid($i);
-			$i++;
-			$j++;
-		}
+		$comToValid = $manager->getComToValid();
 		
 		require('view/commentGetView.php');
+	}
+
+
+	public function commentUpdate()
+	{
+		require('model/Config.php');
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager($db);
+
+			$com = $manager->get($_GET['id']);
+			$manager->update($com);
+
+			$controller = new Controller;
+			$controller->commentGetView();
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
 	}
 
 	public function formRegistration()

@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>Inscription</h1>
+<h1>Ajouter un utilisateur</h1>
 <form action="index.php?action=formRegistration" id="formRegistration" method="POST">
 	<p>
 		<label>Email</label> <input type="text" name="email" />

@@ -14,7 +14,7 @@ session_start();
 		<a href="index.php?action=commentGetView">Valider un Commentaire</a>
 	</div>
 	<div>Gérer les Utilisateurs
-		<a href="index.php?action=blogPostAddView">Ajouter un Utilisateur</a>
+		<a href="index.php?action=registrationView">Ajouter un Utilisateur</a>
 		<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Utilisateur</a>
 	</div>
 <?php $content = ob_get_clean(); ?>

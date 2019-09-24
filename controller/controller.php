@@ -6,8 +6,11 @@ require('model/BlogPost.php');
 require('model/CommentManager.php');
 require('model/Comment.php');
 
+
 class Controller
 {	
+	private $db;
+	
 	public function index()
 	{
 		require('view/indexView.php');
@@ -23,6 +26,41 @@ class Controller
 		require('view/loginView.php');
 	}
 
+	public function login()
+	{
+
+		$login = new AdministratorManager($db);
+
+		$result = $login->connect();
+
+		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+
+		if (!$result['email']) 
+		{
+			$error = true;
+			$errorEmail = true;
+			require('view/loginView.php');
+		}
+		else
+		{
+			if ($isPasswordCorrect) {
+				session_start();
+				$_SESSION['email'] = htmlspecialchars($_POST['email']);
+
+				require('view/adminView.php');
+
+				return $result;
+				return $isPasswordCorrect;
+			}
+			else 
+			{
+				$error = true;
+				$errorPassword = true;
+				require('view/loginView.php');
+			}
+		}
+	}
+
 	public function blogPostAddView()
 	{
 		require('view/blogPostAddView.php');
@@ -30,7 +68,6 @@ class Controller
 
 	public function blogPostGetView()
 	{
-		require('model/Config.php');
 
 		$manager = new BlogPostManager($db);
 
@@ -41,7 +78,6 @@ class Controller
 
 	public function blogPostUpdateView()
 	{
-		require('model/Config.php');
 
 		if (!empty($_GET['id'])) 
 		{
@@ -65,7 +101,6 @@ class Controller
 
 	public function formUpdateBlogPost()
 	{
-		require('model/Config.php');
 
 		$manager = new BlogPostManager($db);
 
@@ -84,7 +119,6 @@ class Controller
 
 	public function blogPostDelete()
 	{
-		require('model/Config.php');
 
 		if (!empty($_GET['id'])) 
 		{
@@ -106,8 +140,6 @@ class Controller
 	public function formAddBlogPost()
 	{
 
-		require('model/Config.php');
-
 		$manager = new BlogPostManager($db);
 
 		$blogp = new BlogPost([
@@ -123,7 +155,6 @@ class Controller
 
 	public function commentGetView()
 	{
-		require('model/Config.php');
 
 		$manager = new CommentManager($db);
 
@@ -137,7 +168,6 @@ class Controller
 
 	public function commentUpdate()
 	{
-		require('model/Config.php');
 
 		if (!empty($_GET['id'])) 
 		{
@@ -157,7 +187,6 @@ class Controller
 
 	public function commentDelete()
 	{
-		require('model/Config.php');
 
 		if (!empty($_GET['id'])) 
 		{
@@ -178,7 +207,6 @@ class Controller
 
 	public function formRegistration()
 	{
-		require('model/Config.php');
 
 		$manager = new AdministratorManager($db);
 
@@ -190,37 +218,5 @@ class Controller
 		]);
 
 		$manager->add($admin);
-	}
-
-	public function login()
-	{
-		require('model/Config.php');
-
-		$login = new AdministratorManager($db);
-
-		$result = $login->connect();
-
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
-
-		if (!$result['email']) 
-		{
-			throw new Exception("Error Processing Request");
-		}
-		else
-		{
-			if ($isPasswordCorrect) {
-				session_start();
-				$_SESSION['email'] = htmlspecialchars($_POST['email']);
-
-				require('view/adminView.php');
-
-				return $result;
-				return $isPasswordCorrect;
-			}
-			else 
-			{
-				throw new Exception("Error Processing Request");
-			}
-		}
 	}
 }

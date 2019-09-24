@@ -1,5 +1,6 @@
 <?php
 
+require_once('Config.php');
 
 class AdministratorManager
 {
@@ -7,7 +8,7 @@ class AdministratorManager
 
 	public function __construct($db)
   	{
-    	$this->setDb($db);
+    	$this->setDb(DbConfig::dbConnect());
  	}
 
 	public function add(Administrator $admin)

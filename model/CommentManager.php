@@ -1,11 +1,14 @@
 <?php
+
+require_once('Config.php');
+
 class CommentManager
 {
 	private $_db;
 
 	public function __construct($db)
 	{
-		$this->setDb($db);
+		$this->setDb(DbConfig::dbConnect());
 	}
 
 	public function add(Comment $com)

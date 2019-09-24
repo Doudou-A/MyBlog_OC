@@ -35,9 +35,10 @@ class BlogPostManager
 		return new BlogPost($data);
 	}
 
-	public function getAll()
+	public function getBlogPost()
 	{
 		$q = $this->_db->query('SELECT idBlogPost, title, chapo, content FROM BlogPost');
+		$q->execute(array());
 
 		return $q;
 	}

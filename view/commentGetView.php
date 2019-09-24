@@ -29,6 +29,26 @@ session_start();
 </br>
 <?php
 		}
+		while($getCom = $comValid->fetch())
+		{
+?>		
+		<div class="col-lg-12 d-flex">
+			<div class="col-lg-2">
+				<?=$getCom['idComment']?>		
+			</div>
+			<div class="col-lg-2">
+				<?=$getCom['pseudo']?>
+			</div>
+			<div class="col-lg-2">
+				<?=$getCom['content']?>
+			</div>
+			<div class="col-lg-2">
+				<a href="index.php?action=commentDelete&amp;id=<?=$getCom['idComment']?>" >Supprimer ce Commentaire</a>
+			</div>
+		</div>
+</br>
+<?php
+		}
 ?>
 <?php $content = ob_get_clean(); ?>
 

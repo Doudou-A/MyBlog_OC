@@ -22,7 +22,7 @@ class CommentManager
 
 	public function delete(Comment $com)
 	{
-		$this->_db->exec('DELETE FROM comment WHERE id = '.$com->id());
+		$this->_db->exec('DELETE FROM Comment WHERE idComment = '.$com->idComment());
 	}
 
 	public function get($id)
@@ -48,6 +48,14 @@ class CommentManager
 	public function getComToValid()
 	{
 		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$q->execute(array());
+
+		return $q;
+	}
+
+	public function getComValid()
+	{
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 1');
 		$q->execute(array());
 
 		return $q;

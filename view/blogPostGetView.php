@@ -7,33 +7,29 @@ session_start();
 
 <h1>Modifier un Blog Post</h1>
 <?php
-		$k = 1;
-		while($data <= $allBlogPost->fetch())
+		while($getBlogPost = $blogp->fetch())
 		{
 ?>		
 		<div class="col-lg-12 d-flex">
 			<div class="col-lg-2">
-				<?=$blogp[$k]->idBlogPost();?>		
+				<?=$getBlogPost['idBlogPost']?>		
 			</div>
 			<div class="col-lg-2">
-				<?=$blogp[$k]->title();?>
+				<?=$getBlogPost['title']?>
 			</div>
 			<div class="col-lg-2">
-				<?=$blogp[$k]->chapo();?>
+				<?=$getBlogPost['chapo']?>
 			</div>
-			<div class="col-lg-2"> 
-				<?=$blogp[$k]->content();?>	
+			<div class="col-lg-2">
+				<?=$getBlogPost['content']?>
 			</div>
 			<div class="col-lg-1">
-				<a href="index.php?action=blogPostUpdateView&amp;actions=<?=$blogp[$k]->idBlogPost();?>" >Modifier ce Blog Post</a>
+				<a href="index.php?action=blogPostUpdateView&amp;id=<?=$getBlogPost['idBlogPost']?>" >Modifier ce Blog Post</a>
 			</div>
 			<div class="col-lg-2">
-				<a href="index.php?action=blogPostDelete&amp;actions=<?=$blogp[$k]->idBlogPost();?>" >Supprimer ce Blog Post</a>
+				<a href="index.php?action=blogPostDelete&amp;id=<?=$getBlogPost['idBlogPost']?>" >Supprimer ce Blog Post</a>
 			</div>
 		</div>
-<?php
-			$k++;
-?>
 </br>
 <?php
 		}

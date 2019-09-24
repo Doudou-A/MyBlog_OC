@@ -34,17 +34,7 @@ class Controller
 
 		$manager = new BlogPostManager($db);
 
-		$allBlogPost = $manager->getAll();
-
-		$i = 1;
-		$j = 1;
-
-		while($data = $allBlogPost->fetch())
-		{
-			$blogp[$j] = $manager->get($i);
-			$i++;
-			$j++;
-		}
+		$blogp = $manager->getBlogPost();
 		
 		require('view/blogPostGetView.php');
 	}
@@ -53,13 +43,11 @@ class Controller
 	{
 		require('model/Config.php');
 
-		if (!empty($_GET['actions'])) 
+		if (!empty($_GET['id'])) 
 		{
-			$k = $_GET['actions'];
-
 			$manager = new BlogPostManager($db);
 
-			$blogp = $manager->get($k);
+			$blogp = $manager->get($_GET['id']);
 
 			$updateId = $blogp->idBlogPost();
 			$updateTitle = $blogp->title();
@@ -98,18 +86,16 @@ class Controller
 	{
 		require('model/Config.php');
 
-		if (!empty($_GET['actions'])) 
+		if (!empty($_GET['id'])) 
 		{
-			
-			$k = $_GET['actions'];
-
 			$manager = new BlogPostManager($db);
 
-			$blogp = $manager->get($k);
+			$blogp = $manager->get($_GET['id']);
 
 			$manager->delete($blogp);
 
-			echo "ok";
+			$controller = new Controller;
+			$controller->blogPostGetView();
 		}
 		else
 		{
@@ -142,6 +128,8 @@ class Controller
 		$manager = new CommentManager($db);
 
 		$comToValid = $manager->getComToValid();
+
+		$comValid = $manager->getComValid();
 		
 		require('view/commentGetView.php');
 	}
@@ -157,6 +145,27 @@ class Controller
 
 			$com = $manager->get($_GET['id']);
 			$manager->update($com);
+
+			$controller = new Controller;
+			$controller->commentGetView();
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+	}
+
+	public function commentDelete()
+	{
+		require('model/Config.php');
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager($db);
+
+			$com = $manager->get($_GET['id']);
+
+			$manager->delete($com);
 
 			$controller = new Controller;
 			$controller->commentGetView();

@@ -165,6 +165,27 @@ class Controller
 		require('view/commentGetView.php');
 	}
 
+	public function commentFull()
+	{
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager($db);
+
+			$com = $manager->get($_GET['id']);
+
+			$comId = $com->idComment();
+			$comPseudo = $com->pseudo();
+			$comContent = $com->content();
+
+			require('view/commentFullView.php');
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+	}
+
 
 	public function commentUpdate()
 	{

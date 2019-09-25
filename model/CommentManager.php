@@ -38,7 +38,7 @@ class CommentManager
 		return new Comment($data);
 	}
 
-	public function getInvalid($id)
+	/*public function getInvalid($id)
 	{
 		$id = (int) $id;
 
@@ -46,11 +46,11 @@ class CommentManager
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
-	}
+	}*/
 
 	public function getComToValid()
 	{
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid, idBlogPost FROM Comment WHERE valid = 0');
 		$q->execute(array());
 
 		return $q;
@@ -58,7 +58,7 @@ class CommentManager
 
 	public function getComValid()
 	{
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 1');
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid, idBlogPost FROM Comment WHERE valid = 1');
 		$q->execute(array());
 
 		return $q;

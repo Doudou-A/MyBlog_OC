@@ -1,16 +1,17 @@
-<?php $title = 'My Blog'; ?>
+<?php $title = 'Page Connexion'; ?>
 
 <?php ob_start(); ?>
-<h1>Connexion</h1>
-<form action="index.php?action=login" id="login" method="POST">
-    <p>
-	    <label class="formLogin" >Email</label> <input class="formLoginInput" type="text" name="email"/>
-	    </br>
-	    <label class="formLogin" >Mot de passe</label> <input class="formLoginInput" type="password" name="Password"/>
-	    </br>
-	    <input type="submit" name="valide">
-	</p>
-</form>
+<div class="col-md-10 offset-md-1 h-75 aqua-gradient">
+	<form action="index.php?action=login" id="login" method="POST">
+	    <p>
+		    <label class="formLogin" >Email</label> <input class="formLoginInput" type="text" name="email"/>
+		    </br>
+		    <label class="formLogin" >Mot de passe</label> <input class="formLoginInput" type="password" name="Password"/>
+		    </br>
+		    <input type="submit" name="valide">
+		</p>
+	</form>
+</div>
 <?php 
 if(isset($error))
 {

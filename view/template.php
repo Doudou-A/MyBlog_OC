@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<title><?= $title ?></title>
 		<link rel="stylesheet" href="public/bootstrap.css" />
-		<link rel="stylesheet" href="public/bootstrap.min.css" />
+		<link rel="stylesheet" href="public/mdb.css" />
 		<script type="text/javascript" scr="public/style.js"></script>
 	</head>
 

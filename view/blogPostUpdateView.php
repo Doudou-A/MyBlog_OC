@@ -13,7 +13,7 @@ session_start();
 		    </br>
 		    <label>Châpo</label> <textarea class="formLoginInput" style=" resize:none;" type="text" name="chapo"><?= $updateChapo ?></textarea>
 		    </br>
-		    <label>Contenu</label> <textarea class="formLoginInput" style=" resize:none;" type="text" name="content"><?= $updateContent ?> </textarea>
+		    <label>Contenu</label> <textarea class="col-lg-10" style=" resize:none;" type="text" name="content" rows="10"><?= $updateContent ?> </textarea>
 		    </br>
 		    <input type="submit" name="valide">
 		</p>

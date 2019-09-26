@@ -9,7 +9,6 @@ require('model/Comment.php');
 
 class Controller
 {	
-	private $db;
 	
 	public function index()
 	{
@@ -29,7 +28,7 @@ class Controller
 	public function login()
 	{
 
-		$login = new AdministratorManager($db);
+		$login = new AdministratorManager();
 
 		$result = $login->connect();
 
@@ -69,7 +68,7 @@ class Controller
 	public function blogPostGetView()
 	{
 
-		$manager = new BlogPostManager($db);
+		$manager = new BlogPostManager();
 
 		$blogp = $manager->getBlogPost();
 		
@@ -81,7 +80,7 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
-			$manager = new BlogPostManager($db);
+			$manager = new BlogPostManager();
 
 			$blogp = $manager->get($_GET['id']);
 
@@ -102,7 +101,7 @@ class Controller
 	public function formUpdateBlogPost()
 	{
 
-		$manager = new BlogPostManager($db);
+		$manager = new BlogPostManager();
 
 		$blogp = new BlogPost([
 		'idBlogPost' => $_POST['idBlogPost'],
@@ -122,7 +121,7 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
-			$manager = new BlogPostManager($db);
+			$manager = new BlogPostManager();
 
 			$blogp = $manager->get($_GET['id']);
 
@@ -140,7 +139,7 @@ class Controller
 	public function formAddBlogPost()
 	{
 
-		$manager = new BlogPostManager($db);
+		$manager = new BlogPostManager();
 
 		$blogp = new BlogPost([
 		'title' => $_POST['title'],
@@ -156,7 +155,7 @@ class Controller
 	public function commentGetView()
 	{
 
-		$manager = new CommentManager($db);
+		$manager = new CommentManager();
 
 		$comToValid = $manager->getComToValid();
 
@@ -170,7 +169,7 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
-			$manager = new CommentManager($db);
+			$manager = new CommentManager();
 
 			$com = $manager->get($_GET['id']);
 
@@ -192,7 +191,7 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
-			$manager = new CommentManager($db);
+			$manager = new CommentManager();
 
 			$com = $manager->get($_GET['id']);
 			$manager->update($com);
@@ -211,7 +210,7 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
-			$manager = new CommentManager($db);
+			$manager = new CommentManager();
 
 			$com = $manager->get($_GET['id']);
 
@@ -229,7 +228,7 @@ class Controller
 	public function formRegistration()
 	{
 
-		$manager = new AdministratorManager($db);
+		$manager = new AdministratorManager();
 
 		$admin = new Administrator([
 		'email' => $_POST['email'],

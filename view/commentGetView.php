@@ -4,76 +4,76 @@
 ob_start(); 
 session_start();
 ?>
-<div class="col-lg-10">
-	<h1>Valider un Commentaire</h1>
-	<h2>Commentaire à Valider</h2>
-	<div class="col-lg-12 d-flex blue-grey lighten-3">
-		<div class="col-lg-1 border border-dark text-center font-weight-bold">Article N°</div>
-		<div class="col-lg-2 border border-dark text-center font-weight-bold">Titre Article</div>
-		<div class="col-lg-1 border border-dark text-center font-weight-bold">Pseudo</div>
-		<div class="col-lg-5 border border-dark text-center font-weight-bold">Contenu</div>
-		<div class="col-lg-3 border border-dark text-center font-weight-bold">Action</div>
+<div class="col-10 p-5 grey lighten-3">
+	<h1 class="border-bottom">Valider un Commentaire</h1>
+	<h2 class="mt-5 font-weight-normal">Commentaire à Valider</h2>
+	<div class="col-lg-12 d-flex green text-white mt-3">
+		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
+		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>
+		<div class="col-lg-1 border border-white text-center font-weight-bold">Pseudo</div>
+		<div class="col-lg-5 border border-white text-center font-weight-bold">Contenu</div>
+		<div class="col-lg-3 border border-white text-center font-weight-bold">Action</div>
 	</div>
 	<?php
-	while($getCom = $comToValid->fetch())
+	foreach ($commentsToValid as $key => $commentToValid) 
 	{
 	?>		
-	<div class="col-lg-12 d-flex blue-grey lighten-5">
-		<div class="col-lg-1 border border-dark text-center">
-			<?=$getCom['idBlogPost']?>		
+	<div class="col-lg-12 d-flex">
+		<div class="col-lg-1 border border-white text-center">
+			<?=$commentToValid->idComment();?>		
 		</div>
-		<div class="col-lg-2 border border-dark text-center">
-			<?=$getCom['titleBlogPost']?>		
+		<div class="col-lg-2 border border-white text-center">
+
 		</div>
-		<div class="col-lg-1 border border-dark text-truncate pl-2">
-			<?=$getCom['pseudo']?>
+		<div class="col-lg-1 border border-white text-truncate pl-2">
+			<?=$commentToValid->pseudo();?>	
 		</div>
-		<div class="col-lg-5 border border-dark text-truncate pl-2">
-			<?=$getCom['content']?>
+		<div class="col-lg-5 border border-white text-truncate pl-2">
+			<?=$commentToValid->content();?>
 		</div>
-		<div class="col-lg-1 border border-dark text-center">
-			<a href="index.php?action=commentFull&amp;id=<?=$getCom['idComment']?>" >Afficher</a>
+		<div class="col-lg-1 border border-white text-center">
+			<a href="index.php?action=commentFullToValid&amp;id=<?=$commentToValid->idComment();?>" >Afficher</a>
 		</div>
-		<div class="col-lg-1 border border-dark text-center">
-			<a href="index.php?action=commentUpdate&amp;id=<?=$getCom['idComment']?>" >Valider</a>
+		<div class="col-lg-1 border border-white text-center">
+			<a class="text-success" href="index.php?action=commentValid&amp;id=<?=$commentToValid->idComment();?>" >Valider</a>
 		</div>
-		<div class="col-lg-1 border border-dark text-center">
-			<a href="index.php?action=commentDelete&amp;id=<?=$getCom['idComment']?>" >Supprimer</a>
+		<div class="col-lg-1 border border-white text-center">
+			<a class="text-danger" href="index.php?action=commentDelete&amp;id=<?=$commentToValid->idComment();?>" >Supprimer</a>
 		</div>
 	</div>
 	<?php
 	}
 	?>
-	<h2>Commentaire Valider</h2>
-	<div class="col-lg-12 d-flex blue-grey lighten-3">
-		<div class="col-lg-1 border border-dark text-center font-weight-bold">Article N°</div>
-		<div class="col-lg-2 border border-dark text-center font-weight-bold">Titre Article</div>
-		<div class="col-lg-1 border border-dark text-center font-weight-bold">Pseudo</div>
-		<div class="col-lg-5 border border-dark text-center font-weight-bold">Contenu</div>
-		<div class="col-lg-3 border border-dark text-center font-weight-bold">Action</div>
+	<h2 class="mt-5 font-weight-normal">Commentaire Valider</h2>
+	<div class="col-lg-12 d-flex green text-white mt-3">
+		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
+		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>
+		<div class="col-lg-1 border border-white text-center font-weight-bold">Pseudo</div>
+		<div class="col-lg-5 border border-white text-center font-weight-bold">Contenu</div>
+		<div class="col-lg-3 border border-white text-center font-weight-bold">Action</div>
 	</div>
 	<?php
-	while($getCom = $comValid->fetch())
+	foreach ($commentsValid as $key => $commentValid)
 	{
 	?>		
-	<div class="col-lg-12 d-flex blue-grey lighten-5">
-		<div class="col-lg-1 border border-dark text-center">
-			<?=$getCom['idBlogPost']?>		
+	<div class="col-lg-12 d-flex lighten-5">
+		<div class="col-lg-1 border border-white text-center">
+			<?=$commentValid->idComment();?>	
 		</div>
-		<div class="col-lg-2 border border-dark text-center">
-			<?=$getCom['titleBlogPost']?>		
+		<div class="col-lg-2 border border-white text-center">	
+
 		</div>
-		<div class="col-lg-1 border border-dark text-truncate pl-2">
-			<?=$getCom['pseudo']?>
+		<div class="col-lg-1 border border-white text-truncate pl-2">
+			<?=$commentValid->pseudo();?>
 		</div>
-		<div class="col-lg-5 border border-dark text-truncate pl-2">
-			<?=$getCom['content']?>
+		<div class="col-lg-5 border border-white text-truncate pl-2">
+			<?=$commentValid->content();?>
 		</div>
-		<div class="col-lg-1-5 border border-dark text-center">
-			<a href="index.php?action=commentFull&amp;id=<?=$getCom['idComment']?>" >Afficher</a>
+		<div class="col-lg-1-5 border border-white text-center">
+			<a href="index.php?action=commentFullValid&amp;id=<?=$commentValid->idComment();?>" >Afficher</a>
 		</div>
-		<div class="col-lg-1-5 border border-dark text-center">
-			<a href="index.php?action=commentDelete&amp;id=<?=$getCom['idComment']?>" >Supprimer</a>
+		<div class="col-lg-1-5 border border-white text-center">
+			<a class="text-danger" href="index.php?action=commentDelete&amp;id=<?=$commentValid->idComment();?>" >Supprimer</a>
 		</div>
 	</div>
 	<?php

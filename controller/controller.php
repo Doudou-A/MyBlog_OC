@@ -70,8 +70,8 @@ class Controller
 
 		$manager = new BlogPostManager();
 
-		$blogp = $manager->getBlogPost();
-		
+		$blogposts = $manager->getBlogPost();
+
 		require('view/blogPostGetView.php');
 	}
 
@@ -121,6 +121,11 @@ class Controller
 
 		if (!empty($_GET['id'])) 
 		{
+			$manager = new CommentManager();
+
+			$com = $manager->get($_GET['id']);
+			$comment = $manager->deleteIdBlogPost($com->idBlogPost());
+
 			$manager = new BlogPostManager();
 
 			$blogp = $manager->get($_GET['id']);
@@ -157,14 +162,14 @@ class Controller
 
 		$manager = new CommentManager();
 
-		$comToValid = $manager->getComToValid();
+		$commentsToValid = $manager->getComToValid();
 
-		$comValid = $manager->getComValid();
+		$commentsValid = $manager->getComValid();
 		
 		require('view/commentGetView.php');
 	}
 
-	public function commentFull()
+	public function commentFullToValid()
 	{
 
 		if (!empty($_GET['id'])) 
@@ -177,7 +182,28 @@ class Controller
 			$comPseudo = $com->pseudo();
 			$comContent = $com->content();
 
-			require('view/commentFullView.php');
+			require('view/commentToValidFullView.php');
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+	}
+
+	public function commentFullValid()
+	{
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager();
+
+			$com = $manager->get($_GET['id']);
+
+			$comId = $com->idComment();
+			$comPseudo = $com->pseudo();
+			$comContent = $com->content();
+
+			require('view/commentValidFullView.php');
 		}
 		else
 		{
@@ -186,7 +212,7 @@ class Controller
 	}
 
 
-	public function commentUpdate()
+	public function commentValid()
 	{
 
 		if (!empty($_GET['id'])) 

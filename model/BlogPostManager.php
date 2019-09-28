@@ -39,10 +39,18 @@ class BlogPostManager
 
 	public function getBlogPost()
 	{
-		$q = $this->_db->query('SELECT idBlogPost, title, chapo, content FROM BlogPost');
-		$q->execute(array());
+		$postspublish=[];
 
-		return $q;
+		$q = $this->_db->query('SELECT * FROM BlogPost');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$postpublish = new BlogPost($data[$i]);
+			array_push($postspublish, $postpublish); 
+		} 
+
+		return $postspublish;
 	}
 
 	public function getList()

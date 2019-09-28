@@ -4,18 +4,21 @@
 ob_start(); 
 session_start();
 ?>
-<div class="d-flex flex-column">
-	<h1>Ajouter un Blog Post</h1>
+<div class="col-10 m-auto h-100 p-5 d-flex flex-column">
+	<h2>Ajouter un Blog Post</h1>
 	<form action="index.php?action=formAddBlogPost" id="formAddBlogPost" method="POST">
-	    <p>
-		    <label>Titre</label> <input class="formLoginInput" type="text" name="title"/>
-		    </br>
-		    <label>Châpo</label> <input class="formLoginInput" type="text" name="chapo"/>
-		    </br>
-		    <label>Contenu</label> <input class="formLoginInput" type="text" name="content"/>
-		    </br>
-		    <input type="submit" name="valide">
-		</p>
+		<div class="row col-12 p-0 m-0">
+			<div class="row p-0 m-0 col-12">
+			    <label class="col-lg-12 mt-4">Titre :</label> <input class="col-lg-12 p-2" type="text" name="title"/>
+			</div>
+			<div class="row p-0 m-0 col-12">
+			    <label class="col-lg-12 mt-4">Châpo :</label> <input class="col-lg-12 p-2" type="text" name="chapo"/>
+			</div>
+			<div class="row p-0 m-0 col-12">
+			    <label class="col-lg-12 mt-4">Contenu :</label> <textarea class="col-lg-12 p-2" type="text" name="content" rows="10"></textarea>
+			</div>
+			    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
+		</div>
 	</form>
 </div>
 <?php $content = ob_get_clean(); ?>

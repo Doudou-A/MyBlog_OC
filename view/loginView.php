@@ -1,16 +1,24 @@
 <?php $title = 'Page Connexion'; ?>
 
 <?php ob_start(); ?>
-<div class="col-md-10 offset-md-1 h-75 aqua-gradient">
-	<form action="index.php?action=login" id="login" method="POST">
-	    <p>
-		    <label class="formLogin" >Email</label> <input class="formLoginInput" type="text" name="email"/>
-		    </br>
-		    <label class="formLogin" >Mot de passe</label> <input class="formLoginInput" type="password" name="Password"/>
-		    </br>
-		    <input type="submit" name="valide">
-		</p>
-	</form>
+<div class="row align-items-center h-100">
+	<div class="col-md-12 m-auto h-50 aqua-gradient shadow d-flex">
+		<img src="public/MyBlog.png" class=" h-50  m-auto">
+		<div class="col-md-4 shadow h-110 p-4 mt-n3 white" style="margin-right:8.3333%;">
+			<div class="text-center">
+				<h2>Connexion</h2>
+			</div>
+			<form class="h-100" action="index.php?action=login" id="login" method="POST">
+			    <p>
+				    <input class="col-12 mt-4 rounded border p-2" type="text" name="email" placeholder="Email" />
+				    </br>
+				    <input class="col-12 mt-4 rounded border p-2" type="password" name="Password" placeholder="Mot de Passe" />
+				    </br>
+				    <input class="btn border-secondary col-6 offset-3 mt-4 rounded" type="submit" name="valide">
+				</p>
+			</form>
+		</div>
+	</div>
 </div>
 <?php 
 if(isset($error))

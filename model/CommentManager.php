@@ -28,10 +28,15 @@ class CommentManager
 		$this->_db->exec('DELETE FROM Comment WHERE idComment = '.$com->idComment());
 	}
 
+	
+	public function deleteIdBlogPost(Comment $com)
+	{
+		$this->_db->exec('DELETE FROM Comment WHERE idBlogPost = '.$com);
+	}
+
 	public function get($id)
 	{
 		$id = (int) $id;
-
 		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
@@ -50,18 +55,34 @@ class CommentManager
 
 	public function getComToValid()
 	{
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid, idBlogPost FROM Comment WHERE valid = 0');
-		$q->execute(array());
+		$comspublish=[];
 
-		return $q;
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$compublish = new Comment($data[$i]);
+			array_push($comspublish, $compublish); 
+		} 
+
+		return $comspublish;
 	}
 
 	public function getComValid()
 	{
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid, idBlogPost FROM Comment WHERE valid = 1');
-		$q->execute(array());
+		$comspublish=[];
 
-		return $q;
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 1');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$compublish = new Comment($data[$i]);
+			array_push($comspublish, $compublish); 
+		} 
+
+		return $comspublish;
 	}
 
 	public function getList()

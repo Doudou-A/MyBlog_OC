@@ -10,31 +10,31 @@
 
 	<body>
 	<div class="d-flex h-100">
-		<div class="col-md-2 d-flex flex-column h-100 aqua-gradient">
-			<btn class="btn border-bottom-login" id="BlogsPosts">Gérer les Articles
+		<div class="col-md-2 d-flex flex-column h-100 aqua-gradient pt-5">
+			<btn class="admin-btn p-3 border-primary border-top font-weight-bold" id="BlogsPosts">Articles
 				<div style="display: none;" id="BlogsPostsLinks">
-					<div class="border-top">
-						<a href="index.php?action=blogPostAddView">Ajouter un Blog Post</a>
+					<div class="border-top font-weight-light">
+						<a class="text-white" href="index.php?action=blogPostAddView">Ajouter un Article</a>
 					</div>
-					<div class="border-top">
-						<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Blog Post</a>
+					<div class="border-top font-weight-light">
+						<a class="text-white" href="index.php?action=blogPostGetView">Modifier/Supprimer un Article</a>
 					</div>
 				</div>
 			</btn>
-			<btn class="btn border-bottom-login" id="Comments">Gérer les Commentaires
+			<btn class="admin-btn p-3 border-primary border-top font-weight-bold" id="Comments">Commentaires
 				<div style="display: none;" id="CommentsLinks">
-					<div class="border-top">
-						<a href="index.php?action=commentGetView">Valider un Commentaire</a>
+					<div class="border-top font-weight-light">
+						<a class="text-white" href="index.php?action=commentGetView">Valider un Commentaire</a>
 					</div>
 				</div>
 			</btn>
-			<btn class="btn border-bottom-login" id="Administrators">Gérer les Utilisateurs
+			<btn class="admin-btn p-3 border-primary border-top border-bottom font-weight-bold" id="Administrators">Utilisateurs
 				<div style="display: none;" id="AdministratorsLinks">
-					<div class="border-top"">
-						<a href="index.php?action=registrationView">Ajouter un Utilisateur</a>
+					<div class="border-top font-weight-light">
+						<a class="text-white" href="index.php?action=registrationView">Ajouter un Utilisateur</a>
 					</div>
-					<div class="border-top">
-						<a href="index.php?action=blogPostGetView">Modifier/Supprimer un Utilisateur</a>
+					<div class="border-top font-weight-light">
+						<a class="text-white" href="index.php?action=blogPostGetView">Modifier/Supprimer un Utilisateur</a>
 					</div>
 				</div>
 			</btn>

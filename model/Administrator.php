@@ -34,13 +34,13 @@ class Administrator
 
 	//Setters
 
-	public function setId($id)
+	public function setIdAdministrator($idAdministrator)
 	{
-		$id = (int) $id;
+		$idAdministrator = (int) $idAdministrator;
 
-		if ($id >0)
+		if ($idAdministrator >0)
 		{
-			$this->_id = $id;
+			$this->_idAdministrator = $idAdministrator;
 		}
 	}
 

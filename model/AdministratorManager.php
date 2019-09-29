@@ -37,7 +37,7 @@ class AdministratorManager
 
 	public function delete(Administrator $admin)
 	{
-		$this->_db->exec('DELETE FROM Administrator WHERE id = '.$admin->id());
+		$this->_db->exec('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
 	}
 
 	public function get($id)
@@ -50,18 +50,20 @@ class AdministratorManager
 		return new Administrator($data);
 	}
 
-	public function getList()
+	public function getAdministrators()
 	{
-		$admin = [];
+		$adminspublish=[];
 
-		$q = $this->_db->query('SELECT id, email, name, firstName From Administrator Order BY name');
+		$q = $this->_db->query('SELECT * FROM Administrator');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
-		while ($data = $q->fetch(PDO::FETCH_ASSOC))
-		{
-			$admin[] = new Administrator($data);
-		}
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$adminpublish = new Administrator($data[$i]);
+			array_push($adminspublish, $adminpublish); 
+		} 
 
-		return $admin;
+		return $adminspublish;
 	}
 
 	public function setDb(PDO $db)

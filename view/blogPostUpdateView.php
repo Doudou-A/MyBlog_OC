@@ -6,7 +6,7 @@ session_start();
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Modifier un Article</h1>
-	<form action="index.php?action=formUpdateBlogPost" id="formUpdateBlogPost" method="POST">
+	<form action="index.php?action=blogPostUpdateForm" id="formUpdateBlogPost" method="POST">
 	  <div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
 		   		<label class="d-none">ID</label> <textarea class="formLoginInput d-none" type="text"name="idBlogPost"><?= $updateId ?></textarea>
@@ -20,7 +20,7 @@ session_start();
 		    <div class="row p-0 m-0 col-12">
 		    	<label class="col-lg-12 mt-4">Contenu</label> <textarea class="col-lg-12 p-2 text-justify" style=" resize:none;" type="text" name="content" rows="10"><?= $updateContent ?></textarea>
 		    </div>
-		    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
+		    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide" value="Valider">
 		</p>
 	</form>
 </div>

@@ -5,8 +5,8 @@ ob_start();
 session_start();
 ?>
 <div class="col-10 p-5 grey lighten-3">
-	<h1 class="border-bottom">Valider un Commentaire</h1>
-	<h2 class="mt-5 font-weight-normal">Commentaire à Valider</h2>
+	<h2 class="border-bottom">Valider un Commentaire</h2>
+	<h3 class="mt-5 font-weight-normal">Commentaire à Valider</h3>
 	<div class="col-lg-12 d-flex green text-white mt-3">
 		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>
@@ -44,7 +44,7 @@ session_start();
 	<?php
 	}
 	?>
-	<h2 class="mt-5 font-weight-normal">Commentaire Valider</h2>
+	<h3 class="mt-5 font-weight-normal">Commentaire Valider</h3>
 	<div class="col-lg-12 d-flex green text-white mt-3">
 		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>

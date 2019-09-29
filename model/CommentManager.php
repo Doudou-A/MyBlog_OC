@@ -53,21 +53,6 @@ class CommentManager
 		return new Comment($data);
 	}*/
 
-	public function getComToValid()
-	{
-		$comspublish=[];
-
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
-
-		for ($i=0; $i< count($data); $i++) 
-		{ 
-			$compublish = new Comment($data[$i]);
-			array_push($comspublish, $compublish); 
-		} 
-
-		return $comspublish;
-	}
 
 	public function getComValid()
 	{
@@ -85,6 +70,22 @@ class CommentManager
 		return $comspublish;
 	}
 
+	public function getComToValid()
+	{
+		$comspublish=[];
+
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$compublish = new Comment($data[$i]);
+			array_push($comspublish, $compublish); 
+		} 
+
+		return $comspublish;
+	}
+	
 	public function getList()
 	{
 		$com = [];

@@ -5,7 +5,7 @@ ob_start();
 session_start();
 ?>
 <div class="col-lg-10 p-5 grey lighten-3">
-	<h1 class="border-bottom">Gérer les Articles</h1>
+	<h2 class="border-bottom">Gérer les Articles</h2>
 	<div class="col-lg-12 d-flex green text-white mt-3">
 		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>

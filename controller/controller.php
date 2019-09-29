@@ -9,60 +9,107 @@ require('model/Comment.php');
 
 class Controller
 {	
-	
-	public function index()
+	public function administratorAddForm()
 	{
-		require('view/indexView.php');
+
+		$manager = new AdministratorManager();
+
+		$admin = new Administrator([
+		'email' => $_POST['email'],
+		'name' =>  $_POST['name'],
+		'firstName' =>  $_POST['firstName'],
+		'password' =>  $_POST['password'],
+		]);
+
+		$manager->add($admin);
+
+		$controller = new Controller;
+		$controller->administratorGetView();
 	}
 
-	public function registrationView()
+	public function administratorAddView()
 	{
-		require('view/registrationView.php');
+		require('view/AdministratorAddView.php');
 	}
 
-	public function loginView()
-	{
-		require('view/loginView.php');
-	}
-
-	public function login()
+	public function administratorDelete()
 	{
 
-		$login = new AdministratorManager();
-
-		$result = $login->connect();
-
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
-
-		if (!$result['email']) 
+		if (!empty($_GET['id'])) 
 		{
-			$error = true;
-			$errorEmail = true;
-			require('view/loginView.php');
+			$manager = new AdministratorManager();
+
+			$admin = $manager->get($_GET['id']);
+
+			$manager->delete($admin);
+
+			$controller = new Controller;
+			$controller->administratorGetView();
 		}
 		else
 		{
-			if ($isPasswordCorrect) {
-				session_start();
-				$_SESSION['email'] = htmlspecialchars($_POST['email']);
-
-				require('view/adminView.php');
-
-				return $result;
-				return $isPasswordCorrect;
-			}
-			else 
-			{
-				$error = true;
-				$errorPassword = true;
-				require('view/loginView.php');
-			}
+			throw new Exeption("Error Processing Request");
 		}
 	}
 
+	public function administratorGetView()
+	{
+
+		$manager = new AdministratorManager();
+
+		$administrators = $manager->getAdministrators();
+		
+		require('view/administratorGetView.php');
+	}
+
+	public function blogPostAddForm()
+	{
+
+		$manager = new BlogPostManager();
+
+		$blogp = new BlogPost([
+		'title' => $_POST['title'],
+		'chapo' =>  $_POST['chapo'],
+		'content' =>  $_POST['content']
+		]);
+
+		$manager->add($blogp);
+
+		echo "Ajout du BP effectué";
+	}
+	
 	public function blogPostAddView()
 	{
 		require('view/blogPostAddView.php');
+	}
+
+	public function blogPostAllView()
+	{
+		$manager = new BlogPostManager();
+
+		$blogposts = $manager->getBlogPosts();
+		
+		require('view/blogPostAllView.php');
+	}
+
+	public function blogPostDelete()
+	{
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new BlogPostManager();
+
+			$blogp = $manager->get($_GET['id']);
+
+			$manager->delete($blogp);
+
+			$controller = new Controller;
+			$controller->blogPostGetView();
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
 	}
 
 	public function blogPostGetView()
@@ -70,9 +117,27 @@ class Controller
 
 		$manager = new BlogPostManager();
 
-		$blogposts = $manager->getBlogPost();
+		$blogposts = $manager->getBlogPosts();
 
 		require('view/blogPostGetView.php');
+	}
+
+	public function blogPostUpdateForm()
+	{
+
+		$manager = new BlogPostManager();
+
+		$blogp = new BlogPost([
+		'idBlogPost' => $_POST['idBlogPost'],
+		'title' => $_POST['title'],
+		'chapo' =>  $_POST['chapo'],
+		'content' =>  $_POST['content']
+		]);
+
+		$manager->update($blogp);
+		
+		$controller = new Controller;
+		$controller->blogPostGetView();
 	}
 
 	public function blogPostUpdateView()
@@ -98,25 +163,7 @@ class Controller
 		}
 	}
 
-	public function formUpdateBlogPost()
-	{
-
-		$manager = new BlogPostManager();
-
-		$blogp = new BlogPost([
-		'idBlogPost' => $_POST['idBlogPost'],
-		'title' => $_POST['title'],
-		'chapo' =>  $_POST['chapo'],
-		'content' =>  $_POST['content']
-		]);
-
-		$manager->update($blogp);
-		
-		$controller = new Controller;
-		$controller->blogPostGetView();
-	}
-
-	public function blogPostDelete()
+	public function commentDelete()
 	{
 
 		if (!empty($_GET['id'])) 
@@ -124,49 +171,16 @@ class Controller
 			$manager = new CommentManager();
 
 			$com = $manager->get($_GET['id']);
-			$comment = $manager->deleteIdBlogPost($com->idBlogPost());
 
-			$manager = new BlogPostManager();
-
-			$blogp = $manager->get($_GET['id']);
-
-			$manager->delete($blogp);
+			$manager->delete($com);
 
 			$controller = new Controller;
-			$controller->blogPostGetView();
+			$controller->commentGetView();
 		}
 		else
 		{
 			throw new Exeption("Error Processing Request");
 		}
-	}
-
-	public function formAddBlogPost()
-	{
-
-		$manager = new BlogPostManager();
-
-		$blogp = new BlogPost([
-		'title' => $_POST['title'],
-		'chapo' =>  $_POST['chapo'],
-		'content' =>  $_POST['content']
-		]);
-
-		$manager->add($blogp);
-
-		echo "Ajout du BP effectué";
-	}
-
-	public function commentGetView()
-	{
-
-		$manager = new CommentManager();
-
-		$commentsToValid = $manager->getComToValid();
-
-		$commentsValid = $manager->getComValid();
-		
-		require('view/commentGetView.php');
 	}
 
 	public function commentFullToValid()
@@ -211,6 +225,17 @@ class Controller
 		}
 	}
 
+	public function commentGetView()
+	{
+
+		$manager = new CommentManager();
+
+		$commentsToValid = $manager->getComToValid();
+
+		$commentsValid = $manager->getComValid();
+		
+		require('view/commentGetView.php');
+	}
 
 	public function commentValid()
 	{
@@ -231,38 +256,48 @@ class Controller
 		}
 	}
 
-	public function commentDelete()
+	public function index()
+	{
+		require('view/indexView.php');
+	}
+
+	public function login()
 	{
 
-		if (!empty($_GET['id'])) 
+		$login = new AdministratorManager();
+
+		$result = $login->connect();
+
+		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+
+		if (!$result['email']) 
 		{
-			$manager = new CommentManager();
-
-			$com = $manager->get($_GET['id']);
-
-			$manager->delete($com);
-
-			$controller = new Controller;
-			$controller->commentGetView();
+			$error = true;
+			$errorEmail = true;
+			require('view/loginView.php');
 		}
 		else
 		{
-			throw new Exeption("Error Processing Request");
+			if ($isPasswordCorrect) {
+				session_start();
+				$_SESSION['email'] = htmlspecialchars($_POST['email']);
+
+				require('view/adminView.php');
+
+				return $result;
+				return $isPasswordCorrect;
+			}
+			else 
+			{
+				$error = true;
+				$errorPassword = true;
+				require('view/loginView.php');
+			}
 		}
 	}
 
-	public function formRegistration()
+	public function loginView()
 	{
-
-		$manager = new AdministratorManager();
-
-		$admin = new Administrator([
-		'email' => $_POST['email'],
-		'name' =>  $_POST['name'],
-		'firstName' =>  $_POST['firstName'],
-		'password' =>  $_POST['password'],
-		]);
-
-		$manager->add($admin);
+		require('view/loginView.php');
 	}
 }

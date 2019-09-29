@@ -31,10 +31,10 @@
 			<btn class="admin-btn p-3 border-primary border-top border-bottom font-weight-bold" id="Administrators">Utilisateurs
 				<div style="display: none;" id="AdministratorsLinks">
 					<div class="border-top font-weight-light">
-						<a class="text-white" href="index.php?action=registrationView">Ajouter un Utilisateur</a>
+						<a class="text-white" href="index.php?action=administratorAddView">Ajouter un Utilisateur</a>
 					</div>
 					<div class="border-top font-weight-light">
-						<a class="text-white" href="index.php?action=blogPostGetView">Modifier/Supprimer un Utilisateur</a>
+						<a class="text-white" href="index.php?action=administratorGetView">Modifier/Supprimer un Utilisateur</a>
 					</div>
 				</div>
 			</btn>

@@ -1,18 +1,22 @@
 <?php $title = 'Inscription'; ?>
 
 <?php ob_start(); ?>
-<div class="col-lg-10">
-	<h1>Ajouter un utilisateur</h1>
-	<form action="index.php?action=formRegistration" id="formRegistration" method="POST">
-		<p>
-			<label>Email</label> <input type="text" name="email" />
-			</br>
-			<label>Name</label> <input type="text" name="name" />
-			</br>
-			<label>FirstName</label> <input type="text" name="firstName" />
-			</br>
-			<label>Mot de Passe</label> <input id="pass" type="password" name="password" />
-			</br>	
+<div class="col-10 m-auto h-100 p-5 d-flex flex-column">
+	<h2>Ajouter un utilisateur</h1>
+	<form action="index.php?action=administratorAddForm" id="formRegistration" method="POST">
+		<div class="row col-12 p-0 m-0">
+			<div class="row p-0 m-0 col-12">
+			<label class="col-lg-12 mt-4">Email</label> <input class="col-lg-12 p-2" type="text" name="email" />
+			</div>
+			<div class="row p-0 m-0 col-12">
+			<label class="col-lg-12 mt-4">Name</label> <input class="col-lg-12 p-2" type="text" name="name" />
+			</div>
+			<div class="row p-0 m-0 col-12">
+			<label class="col-lg-12 mt-4">FirstName</label> <input class="col-lg-12 p-2" type="text" name="firstName" />
+			</div>
+			<div class="row p-0 m-0 col-12">
+			<label class="col-lg-12 mt-4">Mot de Passe</label> <input class="col-lg-12 p-2" id="pass" type="password" name="password"/>
+			</div>	
 			<!--<div>
 				<p id="securityPassword"></p>
 				<div style="display: flex; ">
@@ -29,11 +33,11 @@
 			</ul>
 			<label class="passConfirm">Confirmer Mot de Passe</label> <input type="password" name="passwordconfirm" id="formPassRegistration" />
 			</br>-->
-			<input id="submitFormRegistration" type="submit" name="valide" />
+			<input id="submitFormRegistration" type="submit" name="valide" value="Valider" class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" />
 			<!--<div id="interrogationPoint">
 				<p>?</p>
 			</div>-->
-		</p>
+		</div>
 	</form>
 
 	<!--<script type="text/javascript"> 

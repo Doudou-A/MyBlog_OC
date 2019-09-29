@@ -6,7 +6,7 @@ session_start();
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Ajouter un Blog Post</h1>
-	<form action="index.php?action=formAddBlogPost" id="formAddBlogPost" method="POST">
+	<form action="index.php?action=blogPostAddForm" id="formAddBlogPost" method="POST">
 		<div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
 			    <label class="col-lg-12 mt-4">Titre :</label> <input class="col-lg-12 p-2" type="text" name="title"/>
@@ -17,7 +17,10 @@ session_start();
 			<div class="row p-0 m-0 col-12">
 			    <label class="col-lg-12 mt-4">Contenu :</label> <textarea class="col-lg-12 p-2" type="text" name="content" rows="10"></textarea>
 			</div>
-			    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
+			<div class="row p-0 m-0 col-12">
+				<label class="col-lg-12 mt-4">Image : </label> <input type="file" name="image" accept="image/png, image/jpeg">
+			</div>
+			<input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
 		</div>
 	</form>
 </div>

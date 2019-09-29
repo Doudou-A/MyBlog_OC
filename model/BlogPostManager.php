@@ -37,7 +37,7 @@ class BlogPostManager
 		return new BlogPost($data);
 	}
 
-	public function getBlogPost()
+	public function getBlogPosts()
 	{
 		$postspublish=[];
 

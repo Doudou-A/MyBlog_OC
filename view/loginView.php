@@ -14,7 +14,7 @@
 				    </br>
 				    <input class="col-12 mt-4 rounded border p-2" type="password" name="Password" placeholder="Mot de Passe" />
 				    </br>
-				    <input class="btn border-secondary col-6 offset-3 mt-4 rounded" type="submit" name="valide">
+				    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
 				</p>
 			</form>
 		</div>

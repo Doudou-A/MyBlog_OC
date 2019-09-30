@@ -13,11 +13,12 @@ class BlogPostManager
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated) VALUES (:title, :chapo, :content, NOW())');
+		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image) VALUES (:title, :chapo, :content, NOW(), :image)');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
+		$q->bindValue(':image', $blogp->image(), PDO::PARAM_STR);
 
 		$q->execute();
 
@@ -31,7 +32,7 @@ class BlogPostManager
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT idBlogPost, title, content, chapo FROM BlogPost WHERE idBlogPost='.$id);
+		$q = $this->_db->query('SELECT * FROM BlogPost WHERE idBlogPost='.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);

@@ -65,17 +65,40 @@ class Controller
 	public function blogPostAddForm()
 	{
 
+		$content_dir = 'upload/';
+
+	    $tmp_file = $_FILES['image']['tmp_name'];
+
+	    if( !is_uploaded_file($tmp_file) )
+	    {
+	    	throw new Exception("Le image est introuvable", 1);
+	    }
+
+	    // on copie le image dans le dossier de destination
+	    $name_file = $_FILES['image']['name'];
+
+	    if( preg_match('#[\x00-\x1F\x7F-\x9F/\\\\]#', $name_file) )
+		{
+			throw new Exception("Nom de image non valide", 1);
+		}
+		else if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+		{
+			throw new Exception("Impossible de copier le image dans $content_dir", 1);
+		}
+
 		$manager = new BlogPostManager();
 
 		$blogp = new BlogPost([
 		'title' => $_POST['title'],
 		'chapo' =>  $_POST['chapo'],
-		'content' =>  $_POST['content']
+		'content' =>  $_POST['content'],
+		'image' =>  $name_file
 		]);
 
 		$manager->add($blogp);
 
-		echo "Ajout du BP effectué";
+		$controller = new Controller();
+		$controller->blogPostGetView();
 	}
 	
 	public function blogPostAddView()
@@ -88,7 +111,7 @@ class Controller
 		$manager = new BlogPostManager();
 
 		$blogposts = $manager->getBlogPosts();
-		
+
 		require('view/blogPostAllView.php');
 	}
 
@@ -105,6 +128,22 @@ class Controller
 
 			$controller = new Controller;
 			$controller->blogPostGetView();
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+	}
+
+	public function blogPostFullView()
+	{
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new BlogPostManager();
+
+			$blogp = $manager->get($_GET['id']);
+
+			require('view/blogPostFullView.php');
 		}
 		else
 		{

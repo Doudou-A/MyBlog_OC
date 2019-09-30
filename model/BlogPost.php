@@ -7,6 +7,7 @@ class BlogPost
 	private $_content;
 	private $_dateLastUpdate;
 	private $_dateCreated;
+	private $_image;
 
 	public function __construct(array $data)
 	{
@@ -34,6 +35,7 @@ class BlogPost
 	public function content() { return $this->_content; }
 	public function dateLastUpdate() { return $this->_dateLastUpdate; }
 	public function dateCreated() { return $this->_dateCreated; }
+	public function image() { return $this->_image; }
 
 	//Setters
 
@@ -97,4 +99,13 @@ class BlogPost
 			}
 		}
 	}
+
+	public function setImage($image)
+	{
+		if(is_string($image))
+		{
+			$this->_image = $image;
+		}
+	}
+
 }

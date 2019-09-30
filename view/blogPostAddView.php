@@ -6,7 +6,7 @@ session_start();
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Ajouter un Blog Post</h1>
-	<form action="index.php?action=blogPostAddForm" id="formAddBlogPost" method="POST">
+	<form action="index.php?action=blogPostAddForm" id="formAddBlogPost" method="POST" enctype="multipart/form-data">
 		<div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
 			    <label class="col-lg-12 mt-4">Titre :</label> <input class="col-lg-12 p-2" type="text" name="title"/>

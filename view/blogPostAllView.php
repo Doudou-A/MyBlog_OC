@@ -12,13 +12,16 @@ session_start();
 		?>		
 				<div class="col-md-3 m-1 mt-5">
 					<div class="col-md-12 border border-green white p-2">
+						<img src="upload/<?=$blogpost->image();?>" class="h-100 w-100">
+					</div>
+					<div class="col-md-12 border border-green white p-2">
 						<?=$blogpost->title();?>
 					</div>
 					<div class="col-md-12 border border-green white p-2">
 						<?=$blogpost->chapo();?>	
 					</div>
-					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white">
-						<a class="font-weight-bold text-white" href="index.php?action=blogPostDelete&amp;id=<?=$blogpost->idBlogPost();?>" >Lire l'Article</a>
+					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white ">
+						<a class="font-weight-bold text-white" href="index.php?action=blogPostFullView&amp;id=<?=$blogpost->idBlogPost();?>" >Lire l'Article</a>
 					</div>
 				</div>
 		<?php

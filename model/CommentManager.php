@@ -1,11 +1,14 @@
 <?php
+
+require_once('Config.php');
+
 class CommentManager
 {
 	private $_db;
 
-	public function __construct($db)
+	public function __construct()
 	{
-		$this->setDb($db);
+		$this->setDb(DbConfig::dbConnect());
 	}
 
 	public function add(Comment $com)
@@ -22,19 +25,67 @@ class CommentManager
 
 	public function delete(Comment $com)
 	{
-		$this->_db->exec('DELETE FROM comment WHERE id = '.$com->id());
+		$this->_db->exec('DELETE FROM Comment WHERE idComment = '.$com->idComment());
+	}
+
+	
+	public function deleteIdBlogPost(Comment $com)
+	{
+		$this->_db->exec('DELETE FROM Comment WHERE idBlogPost = '.$com);
 	}
 
 	public function get($id)
 	{
 		$id = (int) $id;
-
-		$q = $this->_db->query('SELECT id, pseudo, date, content, valid FROM comment WHERE id ='.$id);
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
 	}
 
+	/*public function getInvalid($id)
+	{
+		$id = (int) $id;
+
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+
+		return new Comment($data);
+	}*/
+
+
+	public function getComValid()
+	{
+		$comspublish=[];
+
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 1');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$compublish = new Comment($data[$i]);
+			array_push($comspublish, $compublish); 
+		} 
+
+		return $comspublish;
+	}
+
+	public function getComToValid()
+	{
+		$comspublish=[];
+
+		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$compublish = new Comment($data[$i]);
+			array_push($comspublish, $compublish); 
+		} 
+
+		return $comspublish;
+	}
+	
 	public function getList()
 	{
 		$com = [];
@@ -51,11 +102,7 @@ class CommentManager
 
 	public function update(Comment $com)
 	{
-		$q = $this->_db->prepare('UPDATE comment SET valid = :valid WHERE id = :id');
-
-		$q->bindValue(':valid', $com->valid());
-
-		$q->execute();
+		$this->_db->exec('UPDATE Comment SET valid = 1 WHERE idComment ='.$com->idComment());
 	}
 
 	public function setDb(PDO $db)

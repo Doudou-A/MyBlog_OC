@@ -1,7 +1,7 @@
 <?php
 class Comment
 {
-	private $_id;
+	private $_idComment;
 	private $_pseudo;
 	private $_date;
 	private $_content;
@@ -27,7 +27,7 @@ class Comment
 
 	//Getters
 
-	public function id() { return $this->_id; }
+	public function idComment() { return $this->_idComment; }
 	public function pseudo() { return $this->_pseudo; }
 	public function date() { return $this->_date; }
 	public function content() { return $this->_content; }
@@ -35,13 +35,13 @@ class Comment
 
 	//Setters
 
-	public function setId($id)
+	public function setIdComment($idComment)
 	{
-		$id = (int) $id;
+		$idComment = (int) $idComment;
 
-		if ($id >0)
+		if ($idComment >0)
 		{
-			$this->_id = $id;
+			$this->_idComment = $idComment;
 		}
 	}
 

@@ -8,16 +8,16 @@ spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload
 
 require "Config.php";
 
-$admin = new Administrator([
+/*$admin = new Administrator([
 'email' => 'Meeeee',
 'name' => 'nfeznjfe',
 'firstName' => 'fbebfezyefzby',
 'password' => 'dzuiuheifuz'
-]);
+]);*/
 
-$manager = new AdministratorManager($db);
+$manager = new BlogPostManager($db);
 
-//$admin = $manager->getList();
+$blogp = $manager->get(1);
 
-//var_dump($admin);
-$manager->add($admin);
+echo $blogp->idBlogPost();
+//$manager->add($admin);

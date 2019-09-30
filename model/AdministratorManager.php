@@ -1,12 +1,15 @@
 <?php
+
+require_once('Config.php');
+
 class AdministratorManager
 {
 	private $_db;
 
-	public function __construct($db)
-	{
-		$this->setDb($db);
-	}
+	public function __construct()
+  	{
+    	$this->setDb(DbConfig::dbConnect());
+ 	}
 
 	public function add(Administrator $admin)
 	{
@@ -28,76 +31,39 @@ class AdministratorManager
 		$req->execute(array('email' => $_POST['email']));
 		$result = $req->fetch();
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
-
-		if (!$result) 
-		{
-			require('view/indexView.php');
-?>
-		
-		<script type="text/javascript">
-			errorLogin();
-		</script>
-
-		<style type="text/css">
-				.formLogin{
-					color: red;
-				}
-
-				.formLoginInput{
-					border : red solid 1px;
-				}
-			</style>
-<?php
-		}
-		else
-		{
-			if ($isPasswordCorrect) {
-				session_start();
-				$_SESSION['id'] = $result['id'];
-				$_SESSION['email'] = $_POST['email'];
-
-				echo 'Good';
-
-				return $result;
-				return $isPasswordCorrect;
-			}
-			else 
-			{
-				//require('view/indexView.php');
-				echo 'error 2';
-			}
-		}
+		return $result;
 
 	}
 
 	public function delete(Administrator $admin)
 	{
-		$this->_db->exec('DELETE FROM Administrator WHERE id = '.$admin->id());
+		$this->_db->exec('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
 	}
 
 	public function get($id)
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT id, email, name, firstName, password FROM Administrator WHERE id = '.$id);
+		$q = $this->_db->query('SELECT idAdministrator, email, name, firstName, password FROM Administrator WHERE idAdministrator = '.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);
 	}
 
-	public function getList()
+	public function getAdministrators()
 	{
-		$admin = [];
+		$adminspublish=[];
 
-		$q = $this->_db->query('SELECT id, email, name, firstName From Administrator Order BY name');
+		$q = $this->_db->query('SELECT * FROM Administrator');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
-		while ($data = $q->fetch(PDO::FETCH_ASSOC))
-		{
-			$admin[] = new Administrator($data);
-		}
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$adminpublish = new Administrator($data[$i]);
+			array_push($adminspublish, $adminpublish); 
+		} 
 
-		return $admin;
+		return $adminspublish;
 	}
 
 	public function setDb(PDO $db)

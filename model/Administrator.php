@@ -1,7 +1,7 @@
 <?php
 class Administrator
 {
-	private $_id;
+	private $_idAdministrator;
 	private $_email;
 	private $_name;
 	private $_firstName;
@@ -26,7 +26,7 @@ class Administrator
 
 	//Getters
 
-	public function id() { return $this->_id; }
+	public function idAdministrator() { return $this->_idAdministrator; }
 	public function email()	{ return $this->_email;	}
 	public function name() { return $this->_name; }
 	public function firstName() { return $this->_firstName;	}
@@ -34,13 +34,13 @@ class Administrator
 
 	//Setters
 
-	public function setId($id)
+	public function setIdAdministrator($idAdministrator)
 	{
-		$id = (int) $id;
+		$idAdministrator = (int) $idAdministrator;
 
-		if ($id >0)
+		if ($idAdministrator >0)
 		{
-			$this->_id = $id;
+			$this->_idAdministrator = $idAdministrator;
 		}
 	}
 

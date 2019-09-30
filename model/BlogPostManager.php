@@ -1,20 +1,24 @@
 <?php
+
+require_once('Config.php');
+
 class BlogPostManager
 {
 	private $_db;
 
-	public function __construct($db)
-	{
-		$this->setDB($db);
-	}
+	 public function __construct()
+  	{
+    	$this->setDb(DbConfig::dbConnect());
+ 	}
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO blogpost(title, chapo, content, dateCreated) VALUES (:title, :chapo, :content, NOW())');
+		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image) VALUES (:title, :chapo, :content, NOW(), :image)');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
+		$q->bindValue(':image', $blogp->image(), PDO::PARAM_STR);
 
 		$q->execute();
 
@@ -22,41 +26,51 @@ class BlogPostManager
 
 	public function delete(BlogPost $blogp)
 	{
-		$this->_db->exec('DELETE FROM blogPost WHERE id = '.$blogp->id());
+		$this->_db->exec('DELETE FROM BlogPost WHERE idBlogPost = '.$blogp->idBlogPost());
 	}
 
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogPost WHERE id='.$id);
-		$data = $q->detch(PDO::FETCH_ASSOC);
+		$q = $this->_db->query('SELECT * FROM BlogPost WHERE idBlogPost='.$id);
+		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);
+	}
+
+	public function getBlogPosts()
+	{
+		$postspublish=[];
+
+		$q = $this->_db->query('SELECT * FROM BlogPost');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$postpublish = new BlogPost($data[$i]);
+			array_push($postspublish, $postpublish); 
+		} 
+
+		return $postspublish;
 	}
 
 	public function getList()
 	{
 		$blogp = [];
 
-		$q = $this->_db->query('SELECT id, title, chapo, content, dateLastUpdate, dateCreated FROM blogpost ORDER BY title');
-		
-		while ($data = $q->fetch(PDO::FETCH_ASSOC))
-		{
-			$blogp[] = new BlogPost($data);
-		}
+		$q = $this->_db->query('SELECT * FROM BlogPost');
 
-		return $blogp;
+		return $q;
 	}
 
 	public function update(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('UPDATE blogp SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = :dateLastUpdate WHERE id = :id');
+		$q = $this->_db->prepare('UPDATE BlogPost SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = NOW() WHERE idBlogPost = :idBlogPost');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
-		$q->bindValue(':dateLastUpdate', $blogp->dateLastupdate());
-		$q->bindValue(':id', $blogp->id(), PDO::PARAM_INT);
+		$q->bindValue(':idBlogPost', $blogp->idBlogPost(), PDO::PARAM_INT);
 
 		$q->execute();
 	}

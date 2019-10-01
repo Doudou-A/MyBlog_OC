@@ -140,8 +140,11 @@ class Controller
 		if (!empty($_GET['id'])) 
 		{
 			$manager = new BlogPostManager();
+			$managerC = new CommentManager();
 
 			$blogp = $manager->get($_GET['id']);
+
+			$commentsBlogPost = $managerC->getCommentsBlogPost();
 
 			require('view/blogPostFullView.php');
 		}
@@ -200,6 +203,28 @@ class Controller
 		{
 			throw new Exeption("Error Processing Request");
 		}
+	}
+
+	public function commentAddForm()
+	{
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager();
+
+			$com = new Comment([
+			'pseudo' => $_POST['pseudo'],
+			'content' =>  $_POST['content']
+			]);
+
+			$manager->add($com);
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+
+		$controller = new Controller();
+		$controller->blogPostAllView();
 	}
 
 	public function commentDelete()

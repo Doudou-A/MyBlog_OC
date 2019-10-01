@@ -9,10 +9,10 @@ session_start();
 	<form action="index.php?action=blogPostAddForm" id="formAddBlogPost" method="POST" enctype="multipart/form-data">
 		<div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
-			    <label class="col-lg-12 mt-4">Titre :</label> <input class="col-lg-12 p-2" type="text" name="title"/>
+			    <label class="col-lg-12 mt-4">Titre :</label> <input class="col-lg-12 p-2" type="text" name="title" />
 			</div>
 			<div class="row p-0 m-0 col-12">
-			    <label class="col-lg-12 mt-4">Châpo :</label> <input class="col-lg-12 p-2" type="text" name="chapo"/>
+			    <label class="col-lg-12 mt-4">Châpo :</label> <input class="col-lg-12 p-2 " type="text" name="chapo" maxlength="200" />
 			</div>
 			<div class="row p-0 m-0 col-12">
 			    <label class="col-lg-12 mt-4">Contenu :</label> <textarea class="col-lg-12 p-2" type="text" name="content" rows="10"></textarea>

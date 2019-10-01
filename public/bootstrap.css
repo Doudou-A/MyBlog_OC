@@ -10114,4 +10114,8 @@ textarea:focus{
   color: #424242;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

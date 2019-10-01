@@ -56,7 +56,7 @@ session_start();
 	foreach ($commentsValid as $key => $commentValid)
 	{
 	?>		
-	<div class="col-lg-12 d-flex lighten-5">
+	<div class="col-lg-12 d-flex">
 		<div class="col-lg-1 border border-white text-center">
 			<?=$commentValid->idComment();?>	
 		</div>

@@ -3,7 +3,7 @@ class Comment
 {
 	private $_idComment;
 	private $_pseudo;
-	private $_date;
+	private $_dateCreated;
 	private $_content;
 	private $_valid;
 
@@ -29,7 +29,7 @@ class Comment
 
 	public function idComment() { return $this->_idComment; }
 	public function pseudo() { return $this->_pseudo; }
-	public function date() { return $this->_date; }
+	public function dateCreated() { return $this->_dateCreated; }
 	public function content() { return $this->_content; }
 	public function valid() { return $this->_valid; }
 
@@ -53,16 +53,11 @@ class Comment
 		}
 	}
 
-	public function setDate($date)
+	public function setDateCreated($dateCreated)
 	{
-		$date = DateTime::createFromFormat('d/m/Y', $string);
-		if ($date === true) {
-    		// on vérifie que la date existe
-    		$validString = $date->format('d/m/Y');
-    		if ($string = $validString) 
-    		{
-        		$this->_date = $date;
-    		}
+		if(is_string($dateCreated))
+		{
+			$this->_dateCreated = $dateCreated;
 		}
 	}
 

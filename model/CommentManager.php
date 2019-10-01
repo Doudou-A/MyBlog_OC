@@ -15,7 +15,7 @@ class CommentManager
 	{
 		$valid = false;
 
-		$q = $this->_db->prepare('INSERT INTO comment(pseudo, date, content, valid) VALUES (:pseudo, NOW(), :content, '.((int) $valid).')');
+		$q = $this->_db->prepare('INSERT INTO Comment(pseudo, dateCreated, content, valid, idBlogPost) VALUES (:pseudo, NOW(), :content, '.((int) $valid).' , '.$_GET['id'].')');
 		
 		$q->bindValue(':pseudo', $com->pseudo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $com->content(), PDO::PARAM_STR);
@@ -41,6 +41,24 @@ class CommentManager
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
+	}
+
+	public function getCommentsBlogPost()
+	{
+		$valid = true;
+
+		$commentspublish=[];
+
+		$q = $this->_db->query('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = '.$_GET['id'].'');
+		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$commentpublish = new Comment($data[$i]);
+			array_push($commentspublish, $commentpublish); 
+		} 
+
+		return $commentspublish;
 	}
 
 	/*public function getInvalid($id)

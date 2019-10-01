@@ -5,7 +5,6 @@
 		<title><?= $title ?></title>
 		<link rel="stylesheet" href="public/bootstrap.css" />
 		<link rel="stylesheet" href="public/mdb.css" />
-		<script type="text/javascript" scr="public/style.js"></script>
 	</head>
 
 	<body>

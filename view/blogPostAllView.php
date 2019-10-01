@@ -1,35 +1,34 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title><?= $title ?></title>
-		<link rel="stylesheet" href="public/bootstrap.css" />
-		<link rel="stylesheet" href="public/mdb.css" />
-		<nav class="navbar navbar-expand-md navbar-dark green">
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarCollapse">
-		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="index.php">Acceuil <span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="index.php?action=blogPostAllView">Tous les Articles</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		      </li>
-		    </ul>
-		    <form class="form-inline mt-2 mt-md-0">
-		      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		    </form>
-		  </div>
-		</nav>
-	</head>
+<?php $title = 'Affichage de tous les Articles'; ?>
 
-	<body>
-		<?= $content ?>
-	</body>
-</html>
+<?php 
+ob_start(); 
+session_start();
+?>
+<div class="col-lg-12 p-5 h-100 grey lighten-3">
+	<h2 class="border-bottom col-12">Tous les Articles</h2>
+	<div  class="d-flex justify-content-around flex-wrap">
+		<?php
+				foreach ($blogposts as $key => $blogpost) {
+		?>		
+				<div class="col-md-3 m-1 mt-5">
+					<div class="col-md-12 border border-green white p-2">
+						<img src="upload/<?=$blogpost->image();?>" class="h-100 w-100">
+					</div>
+					<div class="col-md-12 border border-green white p-2 text-center">
+						<?=$blogpost->title();?>
+					</div>
+					<div class="col-md-12 border border-green white p-2">
+						<?=$blogpost->chapo();?>	
+					</div>
+					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white ">
+						<a class="font-weight-bold text-white" href="index.php?action=blogPostFullView&amp;id=<?=$blogpost->idBlogPost();?>" >Lire l'Article</a>
+					</div>
+				</div>
+		<?php
+				}
+		?>
+	</div>
+</div>
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

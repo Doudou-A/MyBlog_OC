@@ -1,9 +1,7 @@
 <?php $title = 'Valider un Commentaire'; ?>
 
-<?php 
-ob_start(); 
-session_start();
-?>
+<?php ob_start(); ?>
+
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2><?=$blogp->title();?></h2>
 	<div class="d-flex flex-column">

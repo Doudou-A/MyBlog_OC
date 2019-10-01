@@ -13,18 +13,24 @@ class Controller
 	{
 
 		$manager = new AdministratorManager();
+		
+		if($_POST['password'] == $_POST['passwordconfirm']){
+			$admin = new Administrator([
+			'email' => $_POST['email'],
+			'name' =>  $_POST['name'],
+			'firstName' =>  $_POST['firstName'],
+			'password' =>  $_POST['password'],
+			]);
 
-		$admin = new Administrator([
-		'email' => $_POST['email'],
-		'name' =>  $_POST['name'],
-		'firstName' =>  $_POST['firstName'],
-		'password' =>  $_POST['password'],
-		]);
+			$manager->add($admin);
 
-		$manager->add($admin);
-
-		$controller = new Controller;
-		$controller->administratorGetView();
+			$controller = new Controller;
+			$controller->administratorGetView();
+		}
+		else 
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
 	}
 
 	public function administratorAddView()
@@ -295,6 +301,14 @@ class Controller
 		}
 	}
 
+	public function destroy()
+	{
+		session_destroy();
+
+		$controller = new Controller;
+		$controller->loginView();
+	}
+
 	public function index()
 	{
 		require('view/indexView.php');
@@ -305,11 +319,11 @@ class Controller
 
 		$login = new AdministratorManager();
 
-		$result = $login->connect();
+		$admin = $login->connect();
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+		$isPasswordCorrect = password_verify($_POST['Password'], $admin->password());
 
-		if (!$result['email']) 
+		if (!$admin->email()) 
 		{
 			$error = true;
 			$errorEmail = true;
@@ -318,8 +332,10 @@ class Controller
 		else
 		{
 			if ($isPasswordCorrect) {
+
 				session_start();
-				$_SESSION['email'] = htmlspecialchars($_POST['email']);
+				$_SESSION['firstName'] = htmlspecialchars($admin->firstName());
+				$_SESSION['name'] = htmlspecialchars($admin->name());
 
 				require('view/adminView.php');
 

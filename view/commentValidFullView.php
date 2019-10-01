@@ -3,6 +3,8 @@
 <?php 
 ob_start(); 
 session_start();
+$_SESSION['firstName'];
+$_SESSION['name'];
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h1>Commentaire</h1>

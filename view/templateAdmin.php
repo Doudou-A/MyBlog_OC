@@ -6,6 +6,17 @@
 		<link rel="stylesheet" href="public/bootstrap.css" />
 		<link rel="stylesheet" href="public/mdb.css" />
 		<script type="text/javascript" scr="public/style.js"></script>
+		<?php
+		if (isset($_SESSION['firstName'])) {
+		  echo "Bonjour ".$_SESSION['firstName']." ".$_SESSION['name']."";
+		}
+		else{
+			header("Location: index.php?action=loginView");
+		}
+		?>
+		<div>
+			<a href="index.php?action=destroy">Déconnexion</a>
+		</div>
 	</head>
 
 	<body>

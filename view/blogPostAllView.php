@@ -1,9 +1,6 @@
 <?php $title = 'Affichage de tous les Articles'; ?>
 
-<?php 
-ob_start(); 
-session_start();
-?>
+<?php ob_start(); ?>
 <div class="col-lg-12 p-5 h-100 grey lighten-3">
 	<h2 class="border-bottom col-12">Tous les Articles</h2>
 	<div  class="d-flex justify-content-around flex-wrap">

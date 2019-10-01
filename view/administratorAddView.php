@@ -1,6 +1,9 @@
 <?php $title = 'Inscription'; ?>
 
-<?php ob_start(); ?>
+<?php ob_start(); 
+session_start();
+$_SESSION['firstName'];
+$_SESSION['name'];?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Ajouter un utilisateur</h1>
 	<form action="index.php?action=administratorAddForm" id="formRegistration" method="POST">
@@ -17,6 +20,10 @@
 			<div class="row p-0 m-0 col-12">
 			<label class="col-lg-12 mt-4">Mot de Passe</label> <input class="col-lg-12 p-2" id="pass" type="password" name="password"/>
 			</div>	
+			<div class="row p-0 m-0 col-12">
+			<label class="col-lg-12 mt-4">Confirmer le Mot de Passe</label> <input class="col-lg-12 p-2" id="pass" type="password" name="passwordconfirm"/>
+			</div>	
+
 			<!--<div>
 				<p id="securityPassword"></p>
 				<div style="display: flex; ">

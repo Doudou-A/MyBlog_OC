@@ -3,6 +3,8 @@
 <?php 
 ob_start(); 
 session_start();
+$_SESSION['firstName'];
+$_SESSION['name'];
 ?>
 <div class="col-10 p-5 grey lighten-3">
 	<h2 class="border-bottom">Valider un Commentaire</h2>

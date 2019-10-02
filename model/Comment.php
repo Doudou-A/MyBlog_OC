@@ -6,6 +6,7 @@ class Comment
 	private $_dateCreated;
 	private $_content;
 	private $_valid;
+	private $_BlogPost;
 
 	public function __construct(array $data)
 	{
@@ -75,5 +76,10 @@ class Comment
 		{
 			$this->_valid = $valid;
 		}
+	}
+
+	public function setBlogPost($BlogPost)
+	{
+			$this->_BlogPost = $BlogPost;
 	}
 }

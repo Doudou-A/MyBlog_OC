@@ -8,7 +8,7 @@
 		<nav class="navbar navbar-expand-md navbar-dark green d-flex flex-wrap">
 			<div class="w-100 green p-2 text-white">
 				<?php if (isset($_SESSION['firstName'])){?>
-		  		Bonjour <?=$_SESSION['firstName']?> <?=$_SESSION['Name']?>
+		  		Bonjour <?=$_SESSION['firstName']?> <?=$_SESSION['name']?>
 		  		<?php }?>
 		  	</div>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

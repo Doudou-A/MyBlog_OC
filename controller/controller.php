@@ -353,7 +353,7 @@ class Controller
 		{
 			if ($isPasswordCorrect) {
 				session_start();
-				$_SESSION['Name'] = $result->name();
+				$_SESSION['name'] = $result->name();
 				$_SESSION['firstName'] = $result->firstName();
 
 				require('view/adminView.php');

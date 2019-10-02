@@ -75,28 +75,17 @@ class BlogPost
 
 	public function setDateLastUpdate($dateLastUpdate)
 	{
-		$date = DateTime::createFromFormat('d/m/Y', $dateLastUpdate);
-		if($date === true)
+		if(is_string($dateLastUpdate))
 		{
-			//On vérifie que la date existe
-			$validString = $date->format('d/m/Y');
-			if($dateLastUpdate = $validString)
-			{
-				$this->_dateLastUpdate = $dateLastUpdate;
-			}
+			$this->_dateLastUpdate = $dateLastUpdate;
 		}
 	}
 
 	public function setDateCreated($dateCreated)
 	{
-		$date= DateTime::createFromFormat('d/m/Y', $dateCreated);
-		if($date === true)
+		if(is_string($dateCreated))
 		{
-			$validString = $date->format('d/m/Y');
-			if($dateCreated = $validString)
-			{
-				$this->_dateCreated = $dateCreated;
-			}
+			$this->_dateCreated = $dateCreated;
 		}
 	}
 

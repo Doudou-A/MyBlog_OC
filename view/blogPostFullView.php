@@ -12,6 +12,13 @@ session_start();
 		<div class="col-lg-12 p-2 mt-2 text-justify">
 			<?php echo nl2br($blogp->content()); ?>
 		</div>
+		<div class="p-3 text-success">
+			Dernière Mise à Jour de l'Artcile : 
+			<?php 
+				$date = DateTime::createFromFormat('Y-m-d H:i:s', $blogp->dateLastUpdate());
+				echo $date->format('d/m/Y H:i:s');
+			?>
+		</div>
 	<div class="mt-5">
 		<div style="display: none;" id="comments">
 			<?php

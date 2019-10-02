@@ -27,11 +27,11 @@ class AdministratorManager
 
 	public function connect()
 	{
-		$req = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
+		$req = $this->_db->prepare('SELECT email, password FROM Administrator WHERE email = :email');
 		$req->execute(array('email' => $_POST['email']));
 		$result = $req->fetch();
 
-		return new Administrator($result);
+		return $result;
 
 	}
 
@@ -44,7 +44,7 @@ class AdministratorManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT * FROM Administrator WHERE idAdministrator = '.$id);
+		$q = $this->_db->query('SELECT idAdministrator, email, name, firstName, password FROM Administrator WHERE idAdministrator = '.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);

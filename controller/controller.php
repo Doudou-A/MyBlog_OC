@@ -342,7 +342,7 @@ class Controller
 
 		$isPasswordCorrect = password_verify($_POST['Password'], $result->password());
 
-		if (!$result['email']) 
+		if (!$result->email()) 
 		{
 			$error = true;
 			$errorEmail = true;

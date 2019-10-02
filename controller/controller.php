@@ -13,24 +13,18 @@ class Controller
 	{
 
 		$manager = new AdministratorManager();
-		
-		if($_POST['password'] == $_POST['passwordconfirm']){
-			$admin = new Administrator([
-			'email' => $_POST['email'],
-			'name' =>  $_POST['name'],
-			'firstName' =>  $_POST['firstName'],
-			'password' =>  $_POST['password'],
-			]);
 
-			$manager->add($admin);
+		$admin = new Administrator([
+		'email' => $_POST['email'],
+		'name' =>  $_POST['name'],
+		'firstName' =>  $_POST['firstName'],
+		'password' =>  $_POST['password'],
+		]);
 
-			$controller = new Controller;
-			$controller->administratorGetView();
-		}
-		else 
-		{
-			throw new Exception("Error Processing Request", 1);
-		}
+		$manager->add($admin);
+
+		$controller = new Controller;
+		$controller->administratorGetView();
 	}
 
 	public function administratorAddView()
@@ -146,8 +140,11 @@ class Controller
 		if (!empty($_GET['id'])) 
 		{
 			$manager = new BlogPostManager();
+			$managerC = new CommentManager();
 
 			$blogp = $manager->get($_GET['id']);
+
+			$commentsBlogPost = $managerC->getCommentsBlogPost();
 
 			require('view/blogPostFullView.php');
 		}
@@ -206,6 +203,28 @@ class Controller
 		{
 			throw new Exeption("Error Processing Request");
 		}
+	}
+
+	public function commentAddForm()
+	{
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new CommentManager();
+
+			$com = new Comment([
+			'pseudo' => $_POST['pseudo'],
+			'content' =>  $_POST['content']
+			]);
+
+			$manager->add($com);
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+
+		$controller = new Controller();
+		$controller->blogPostAllView();
 	}
 
 	public function commentDelete()
@@ -301,14 +320,6 @@ class Controller
 		}
 	}
 
-	public function destroy()
-	{
-		session_destroy();
-
-		$controller = new Controller;
-		$controller->loginView();
-	}
-
 	public function index()
 	{
 		require('view/indexView.php');
@@ -319,11 +330,11 @@ class Controller
 
 		$login = new AdministratorManager();
 
-		$admin = $login->connect();
+		$result = $login->connect();
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $admin->password());
+		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
 
-		if (!$admin->email()) 
+		if (!$result['email']) 
 		{
 			$error = true;
 			$errorEmail = true;
@@ -332,15 +343,13 @@ class Controller
 		else
 		{
 			if ($isPasswordCorrect) {
-
 				session_start();
-				$_SESSION['firstName'] = htmlspecialchars($admin->firstName());
-				$_SESSION['name'] = htmlspecialchars($admin->name());
+				$_SESSION['email'] = htmlspecialchars($_POST['email']);
 
 				require('view/adminView.php');
 
-				/*return $result;
-				return $isPasswordCorrect;*/
+				return $result;
+				return $isPasswordCorrect;
 			}
 			else 
 			{

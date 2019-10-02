@@ -4226,18 +4226,18 @@ table.table a.btn.btn-success {
   color: #fff; }
 
 .btn-outline-success {
-  border: 2px solid #00c851 !important;
+  border: 2px solid white !important;
   background-color: transparent !important;
-  color: #00c851 !important; }
+  color: white !important; }
   .btn-outline-success:hover, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus, .btn-outline-success.active {
-    border-color: #00c851 !important;
+    border-color: white !important;
     background-color: transparent !important;
-    color: #00c851 !important; }
+    color: white !important; }
   .btn-outline-success:not([disabled]):not(.disabled):active, .btn-outline-success:not([disabled]):not(.disabled).active,
   .show > .btn-outline-success.dropdown-toggle {
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     background-color: transparent !important;
-    border-color: #00c851 !important; }
+    border-color: white !important; }
   .btn-outline-success:not([disabled]):not(.disabled):active:focus, .btn-outline-success:not([disabled]):not(.disabled).active:focus,
   .show > .btn-outline-success.dropdown-toggle:focus {
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }

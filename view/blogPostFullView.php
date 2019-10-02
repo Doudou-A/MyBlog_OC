@@ -55,7 +55,7 @@ session_start();
 	</div>
 </div>
 
-<script type="text/javascript"">
+<script type="text/javascript">
 	
 	var comments = document.getElementById('comments');
 		var commentsview = document.getElementById('commentsview');

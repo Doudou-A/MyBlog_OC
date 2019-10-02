@@ -27,8 +27,9 @@ class AdministratorManager
 
 	public function connect()
 	{
-		$q = $this->_db->query('SELECT * FROM Administrator WHERE email ='.$_POST['email']);
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
+		$q->execute(array(':email' => $_POST['email']));
+		$data = $q->fetch();
 
 		return new Administrator($data);
 

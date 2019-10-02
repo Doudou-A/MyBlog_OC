@@ -3,12 +3,6 @@
 <?php 
 ob_start(); 
 session_start();
-if(isset($_SESSION['Name'])){
-	$_SESSION['Name']);
-	$_SESSION['firstName'];
-}else{
-	throw new Exception("Error Processing Request", 1);
-}
 ?>
 <div class="col-lg-10 p-5 grey lighten-3">
 	<h2 class="border-bottom">Gérer les Administrateurs</h2>

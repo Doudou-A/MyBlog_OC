@@ -3,8 +3,6 @@
 <?php 
 ob_start(); 
 session_start();
-$Name = htmlspecialchars($_SESSION['Name']);
-$firstName = htmlspecialchars($_SESSION['firstName']);
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h1>Commentaire</h1>

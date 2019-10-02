@@ -322,10 +322,11 @@ class Controller
 
 	public function destroy()
 	{
+		session_start();
 		session_destroy();
-
 		$controller = new Controller;
-		$controller->loginView();
+		$controller->index();
+		exit;
 	}
 
 	public function index()

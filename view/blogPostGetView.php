@@ -3,8 +3,6 @@
 <?php 
 ob_start(); 
 session_start();
-$Name = htmlspecialchars($_SESSION['Name']);
-$firstName = htmlspecialchars($_SESSION['firstName']);
 ?>
 <div class="col-lg-10 p-5 grey lighten-3">
 	<h2 class="border-bottom">Gérer les Articles</h2>

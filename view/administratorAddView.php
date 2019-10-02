@@ -2,8 +2,8 @@
 
 <?php ob_start(); 
 session_start();
-$_SESSION['firstName'];
-$_SESSION['name'];?>
+$Name = htmlspecialchars($_SESSION['Name']);
+$firstName = htmlspecialchars($_SESSION['firstName']);?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Ajouter un utilisateur</h1>
 	<form action="index.php?action=administratorAddForm" id="formRegistration" method="POST">

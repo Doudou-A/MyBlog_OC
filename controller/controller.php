@@ -344,7 +344,8 @@ class Controller
 		{
 			if ($isPasswordCorrect) {
 				session_start();
-				$_SESSION['email'] = htmlspecialchars($_POST['email']);
+				$Name = htmlspecialchars($_SESSION['Name']);
+				$firstName = htmlspecialchars($_SESSION['firstName']);
 
 				require('view/adminView.php');
 

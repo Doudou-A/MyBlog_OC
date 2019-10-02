@@ -3,8 +3,8 @@
 <?php 
 ob_start();
 session_start();
-$_SESSION['firstName'];
-$_SESSION['name'];
+$Name = htmlspecialchars($_SESSION['Name']);
+$firstName = htmlspecialchars($_SESSION['firstName']);
  ?>
 
 <?php $content = ob_get_clean(); ?>

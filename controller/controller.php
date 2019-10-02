@@ -339,8 +339,8 @@ class Controller
 
 				require('view/adminView.php');
 
-				return $result;
-				return $isPasswordCorrect;
+				/*return $result;
+				return $isPasswordCorrect;*/
 			}
 			else 
 			{

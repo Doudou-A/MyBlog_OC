@@ -27,11 +27,11 @@ class AdministratorManager
 
 	public function connect()
 	{
-		$req = $this->_db->prepare('SELECT email, password FROM Administrator WHERE email = :email');
-		$req->execute(array('email' => $_POST['email']));
-		$result = $req->fetch();
+		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
+		$q->execute(array('email' => $_POST['email']));
+		$data = $q->fetch();
 
-		return $result;
+		return new Administrator($data);
 
 	}
 

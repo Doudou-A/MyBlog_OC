@@ -320,6 +320,14 @@ class Controller
 		}
 	}
 
+	public function destroy()
+	{
+		session_destroy();
+
+		$controller = new Controller;
+		$controller->loginView();
+	}
+
 	public function index()
 	{
 		require('view/indexView.php');
@@ -332,7 +340,7 @@ class Controller
 
 		$result = $login->connect();
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $result['password']);
+		$isPasswordCorrect = password_verify($_POST['Password'], $result->password());
 
 		if (!$result['email']) 
 		{
@@ -344,8 +352,8 @@ class Controller
 		{
 			if ($isPasswordCorrect) {
 				session_start();
-				$Name = htmlspecialchars($_SESSION['Name']);
-				$firstName = htmlspecialchars($_SESSION['firstName']);
+				$_SESSION['Name'] = $result->name();
+				$_SESSION['firstName'] = $result->firstName();
 
 				require('view/adminView.php');
 

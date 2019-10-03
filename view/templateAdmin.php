@@ -71,6 +71,7 @@ if (!isset($_SESSION['firstName'])) {
 		</div>
 
 		<script type="text/javascript">
+			var Administration = document.getElementById('Administration');
 			var BlogsPosts = document.getElementById('BlogsPosts');
 			var BlogsPostLinks = document.getElementById('BlogsPostsLinks');
 			var Comments = document.getElementById('Comments');

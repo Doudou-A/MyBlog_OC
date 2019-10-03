@@ -20,7 +20,7 @@ session_start();
 	?>		
 	<div class="col-lg-12 d-flex">
 		<div class="col-lg-1 border border-white text-center">
-			<?=$commentToValid->idComment();?>		
+			<?=$commentToValid->idBlogPost();?>		
 		</div>
 		<div class="col-lg-2 border border-white text-center">
 
@@ -58,10 +58,10 @@ session_start();
 	?>		
 	<div class="col-lg-12 d-flex lighten-5">
 		<div class="col-lg-1 border border-white text-center">
-			<?=$commentValid->idComment();?>	
+			<?=$commentValid->idBlogPost();?>	
 		</div>
-		<div class="col-lg-2 border border-white text-center">	
-
+		<div class="col-lg-2 border border-white text-center">
+			
 		</div>
 		<div class="col-lg-1 border border-white text-truncate pl-2">
 			<?=$commentValid->pseudo();?>

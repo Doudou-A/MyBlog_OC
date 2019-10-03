@@ -12,7 +12,9 @@ if (!isset($_SESSION['firstName'])) {
 		<link rel="stylesheet" href="public/mdb.css" />
 		<nav class="navbar navbar-expand-md navbar-dark green d-flex flex-wrap">
 			<div class="w-100 green p-2 text-white">
-		  		Bonjour <?=$_SESSION['firstName']?> <?=$_SESSION['Name']?>
+				<?php if (isset($_SESSION['firstName'])){?>
+		  		Bonjour <?=$_SESSION['firstName']?> <?=$_SESSION['name']?>
+		  		<?php }?>
 		  	</div>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -26,12 +28,18 @@ if (!isset($_SESSION['firstName'])) {
 		        <a class="nav-link" href="index.php?action=blogPostAllView">Tous les Articles</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Formulaire de Contact</a>
+		        <a class="nav-link" href="index.php?action=adminView">Administration</a>
 		      </li>
 		    </ul>
-		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
-		      	Déconnexion
+		      <?php if(isset($_SESSION['firstName'])){?>
+					  <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
+				      	Déconnexion
+				      </a>
+		  	<?php }else{ ?>
+		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=loginView">
+		      	Connexion
 		      </a>
+		    <?php }?>
 		  </div>
 		</nav>
 		<script type="text/javascript" scr="public/style.js"></script>

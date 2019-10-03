@@ -22,9 +22,6 @@
 		      <li class="nav-item">
 		        <a class="nav-link" href="index.php?action=blogPostAllView">Tous les Articles</a>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Formulaire de Contact</a>
-		      </li>
 		    </ul>
 		      <?php if(isset($_SESSION['firstName'])){?>
 					  <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">

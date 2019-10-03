@@ -144,7 +144,7 @@ class Controller
 
 			$blogp = $manager->get($_GET['id']);
 
-			$commentsBlogPost = $managerC->getCommentsBlogPost();
+			$commentsBlogPost = $managerC->getCommentsBlogPost($blogp->idBlogPost());
 
 			require('view/blogPostFullView.php');
 		}
@@ -213,10 +213,11 @@ class Controller
 
 			$com = new Comment([
 			'pseudo' => $_POST['pseudo'],
-			'content' =>  $_POST['content']
+			'content' =>  $_POST['content'],
+			'idBlogPost' =>  $_GET['id']
 			]);
 
-			$manager->add($com);
+			$managerC->add($com);
 		}
 		else
 		{
@@ -373,5 +374,10 @@ class Controller
 	public function loginView()
 	{
 		require('view/loginView.php');
+	}
+
+	public function adminView()
+	{
+		require('view/adminView.php');
 	}
 }

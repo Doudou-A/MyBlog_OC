@@ -31,15 +31,9 @@ if (!isset($_SESSION['firstName'])) {
 		        <a class="nav-link" href="index.php?action=adminView">Administration</a>
 		      </li>
 		    </ul>
-		      <?php if(isset($_SESSION['firstName'])){?>
-					  <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
-				      	Déconnexion
-				      </a>
-		  	<?php }else{ ?>
-		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=loginView">
-		      	Connexion
+			  <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
+		      	Déconnexion
 		      </a>
-		    <?php }?>
 		  </div>
 		</nav>
 		<script type="text/javascript" scr="public/style.js"></script>

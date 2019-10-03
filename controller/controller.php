@@ -325,8 +325,7 @@ class Controller
 	{
 		session_start();
 		session_destroy();
-		$controller = new Controller;
-		$controller->index();
+		header("Location : index.php");
 		exit;
 	}
 
@@ -357,7 +356,7 @@ class Controller
 				$_SESSION['name'] = $result->name();
 				$_SESSION['firstName'] = $result->firstName();
 
-				require('view/adminView.php');
+				require_once('view/adminView.php');
 
 				return $result;
 				return $isPasswordCorrect;

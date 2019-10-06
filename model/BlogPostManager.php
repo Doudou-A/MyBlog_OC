@@ -13,12 +13,13 @@ class BlogPostManager
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image) VALUES (:title, :chapo, :content, NOW(), :image)');
+		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image, idAdministrator) VALUES (:title, :chapo, :content, NOW(), :image, :idAdministrator)');
 
 		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
 		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
 		$q->bindValue(':image', $blogp->image(), PDO::PARAM_STR);
+		$q->bindValue(':idAdministrator', $blogp->idAdministrator(), PDO::PARAM_STR);
 
 		$q->execute();
 

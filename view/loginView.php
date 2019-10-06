@@ -1,8 +1,8 @@
 <?php $title = 'Page Connexion'; ?>
 
 <?php ob_start(); ?>
-<div class="row align-items-center h-100">
-	<div class="col-md-12 m-auto h-50 aqua-gradient shadow d-flex">
+<div class="container-fluid row align-items-center h-75 m-0 p-0">
+	<div class="col-md-8 m-auto h-50 aqua-gradient shadow d-flex">
 		<img src="public/MyBlog.png" class=" h-50  m-auto">
 		<div class="col-md-4 shadow h-110 p-4 mt-n3 white" style="margin-right:8.3333%;">
 			<div class="text-center">
@@ -14,41 +14,42 @@
 				    </br>
 				    <input class="col-12 mt-4 rounded border p-2" type="password" name="Password" placeholder="Mot de Passe" />
 				    </br>
-				    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">
+				    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide">  
+					<div class="text-danger" style="display: none;" id="errorEmail">
+						* Email Incorrect
+					</div>
+					<div class="text-danger" style="display: none;" id="errorPassword">
+						* Mot de passe Incorrect
+					</div>
 				</p>
 			</form>
 		</div>
 	</div>
 </div>
 <?php 
-if(isset($error))
+if($_GET['error'] == 1)
 {
 ?>
-		<style type="text/css">
-				.formLogin{
-					color: red;
-				}
+	<script type="text/javascript">
+		var errorEmail = document.getElementById('errorEmail');
+		errorEmail.style.display = "block";
 
-				.formLoginInput{
-					border : red solid 1px;
-				}
-			</style>
+	</script>
+		
 <?php
-	if(isset($errorEmail))
-	{
+}
+elseif($_GET['error'] == 2)
+{
 ?>
-	<div class="text-red">Email Incorrect</div>
+	<script type="text/javascript">
+		var errorPassword = document.getElementById('errorPassword');
+		errorPassword.style.display = "block";
+
+	</script>
 <?php
-	}
-	elseif(isset($errorPassword))
-	{
+}
 ?>
-	<div class="text-red">Mot de passe Incorrect</div>
-<?php
-	}
-	
-?>		
-<?php } ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

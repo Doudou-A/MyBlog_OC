@@ -8,6 +8,7 @@ class BlogPost
 	private $_dateLastUpdate;
 	private $_dateCreated;
 	private $_image;
+	private $_idAdministrator;
 
 	public function __construct(array $data)
 	{
@@ -36,6 +37,7 @@ class BlogPost
 	public function dateLastUpdate() { return $this->_dateLastUpdate; }
 	public function dateCreated() { return $this->_dateCreated; }
 	public function image() { return $this->_image; }
+	public function idAdministrator() { return $this->_idAdministrator; }
 
 	//Setters
 
@@ -96,5 +98,16 @@ class BlogPost
 			$this->_image = $image;
 		}
 	}
+
+	public function setIdAdministrator($idAdministrator)
+	{
+		$idAdministrator = (int) $idAdministrator;
+
+		if ($idAdministrator >0)
+		{
+			$this->_idAdministrator = $idAdministrator;
+		}
+	}
+
 
 }

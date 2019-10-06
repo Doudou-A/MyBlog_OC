@@ -3,6 +3,7 @@
 <?php 
 ob_start(); 
 session_start();
+require('adminAccess.php');
 ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h1>Commentaire</h1>
@@ -32,4 +33,4 @@ session_start();
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templateAdmin.php'); ?>
+<?php require('template.php'); ?>

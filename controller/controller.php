@@ -11,20 +11,35 @@ class Controller
 {	
 	public function administratorAddForm()
 	{
-
 		$manager = new AdministratorManager();
 
-		$admin = new Administrator([
-		'email' => $_POST['email'],
-		'name' =>  $_POST['name'],
-		'firstName' =>  $_POST['firstName'],
-		'password' =>  $_POST['password'],
-		]);
+		$emailExist = $manager->emailExist($_POST['email']);
 
-		$manager->add($admin);
+		if ($emailExist != 0) //Vérification si le pseudo existe
+		{
+			header("Location : index.php?action=administratorAddView&error=1");
+			die();
+		}
+		elseif($_POST['password'] == $_POST['passwordConfirm'])
+		{
 
-		$controller = new Controller;
-		$controller->administratorGetView();
+			$admin = new Administrator([
+			'email' => $_POST['email'],
+			'name' =>  $_POST['name'],
+			'firstName' =>  $_POST['firstName'],
+			'password' =>  $_POST['password'],
+			]);
+
+			$manager->add($admin);
+
+			$controller = new Controller;
+			$controller->administratorGetView();
+		}
+		else
+		{
+			header("Location : index.php?action=administratorAddView&error=2");
+			die();
+		}
 	}
 
 	public function administratorAddView()
@@ -43,8 +58,8 @@ class Controller
 
 			$manager->delete($admin);
 
-			$controller = new Controller;
-			$controller->administratorGetView();
+			header("Location : index.php?action=administratorGetView");
+			die();
 		}
 		else
 		{
@@ -60,6 +75,92 @@ class Controller
 		$administrators = $manager->getAdministrators();
 		
 		require('view/administratorGetView.php');
+	}
+
+	public function administratorUpdateForm()
+	{	
+		
+		$manager = new AdministratorManager();
+		$administrator = $manager->get($_GET['id']);
+
+		if ($administrator->email() != $_POST['email']) {
+
+			$emailExist = $manager->emailExist($_POST['email']);
+
+			if ($emailExist != 0) //Vérification si le mail existe
+			{
+				header("Location : index.php?action=administratorUpdateView&id=".$_GET['id']."&error=1");
+				die();
+			}
+		}
+		if(!empty($_POST['password']))
+		{
+
+			if($_POST['password'] == $_POST['passwordConfirm'])
+			{
+
+				$admin = new Administrator([
+				'idAdministrator' => $_GET['id'],
+				'email' => $_POST['email'],
+				'name' =>  $_POST['name'],
+				'firstName' =>  $_POST['firstName'],
+				'password' =>  $_POST['password'],
+				]);
+
+				$manager->update($admin);
+
+				header("Location : index.php?action=administratorGetView&alert=1");
+				die();
+			}
+			else
+			{
+				header("Location : index.php?action=administratorUpdateView&id=".$_GET['id']."&error=2");
+				die();
+			}
+		}
+		else
+		{
+			$admin = new Administrator([
+			'idAdministrator' => $_GET['id'],
+			'email' => $_POST['email'],
+			'name' =>  $_POST['name'],
+			'firstName' =>  $_POST['firstName'],
+			]);
+
+			$manager->updateNoPassword($admin);
+
+			header("Location : index.php?action=administratorGetView&alert=2");
+			die();
+
+		}
+	}
+
+	public function administratorUpdateView()
+	{
+
+		if (!empty($_GET['id'])) 
+		{
+			$manager = new AdministratorManager();
+
+			$admin = $manager->get($_GET['id']);
+
+			$updateId = $admin->idAdministrator();
+			$updateEmail = $admin->email();
+			$updateName = $admin->name();
+			$updateFirstName = $admin->firstName();
+
+			require('view/AdministratorUpdateView.php');
+
+		}
+		else
+		{
+			throw new Exeption("Error Processing Request");
+		}
+	}
+
+	public function adminView()
+	{
+		require('view/adminView.php');
 	}
 
 	public function blogPostAddForm()
@@ -87,18 +188,21 @@ class Controller
 		}
 
 		$manager = new BlogPostManager();
+		$idAdministrator = $_GET['id'];
 
 		$blogp = new BlogPost([
 		'title' => $_POST['title'],
 		'chapo' =>  $_POST['chapo'],
 		'content' =>  $_POST['content'],
-		'image' =>  $name_file
+		'image' =>  $name_file,
+		'idAdministrator' => $idAdministrator
 		]);
 
 		$manager->add($blogp);
 
-		$controller = new Controller();
-		$controller->blogPostGetView();
+		header("Location : index.php?action=blogPostGetView");
+		die();
+
 	}
 	
 	public function blogPostAddView()
@@ -126,8 +230,8 @@ class Controller
 
 			$manager->delete($blogp);
 
-			$controller = new Controller;
-			$controller->blogPostGetView();
+			header("Location : index.php?action=blogPostGetView");
+			die();
 		}
 		else
 		{
@@ -137,12 +241,20 @@ class Controller
 
 	public function blogPostFullView()
 	{
-		if (!empty($_GET['id'])) 
+		if (!empty($_GET['idBlogPost'])) 
 		{
+
+			if (!empty($_GET['idSession']))
+			{
+				$managerA = new AdministratorManager();
+
+				$commentAdmin = $managerA->get($_GET['idSession']);
+				
+			}
 			$manager = new BlogPostManager();
 			$managerC = new CommentManager();
 
-			$blogp = $manager->get($_GET['id']);
+			$blogp = $manager->get($_GET['idBlogPost']);
 
 			$commentsBlogPost = $managerC->getCommentsBlogPost($blogp->idBlogPost());
 
@@ -178,8 +290,8 @@ class Controller
 
 		$manager->update($blogp);
 		
-		$controller = new Controller;
-		$controller->blogPostGetView();
+		header("Location : index.php?action=blogPostGetView");
+		die();
 	}
 
 	public function blogPostUpdateView()
@@ -212,20 +324,21 @@ class Controller
 			$manager = new CommentManager();
 
 			$com = new Comment([
+			'idBlogPost' =>  $_GET['id'],
 			'pseudo' => $_POST['pseudo'],
-			'content' =>  $_POST['content'],
-			'idBlogPost' =>  $_GET['id']
+			'content' =>  $_POST['content']
 			]);
 
-			$managerC->add($com);
+			$manager->add($com);
+
+			header("Location : index.php?action=blogPostAllView&alert=1");
+			die();
+
 		}
 		else
 		{
 			throw new Exeption("Error Processing Request");
 		}
-
-		$controller = new Controller();
-		$controller->blogPostAllView();
 	}
 
 	public function commentDelete()
@@ -239,8 +352,8 @@ class Controller
 
 			$manager->delete($com);
 
-			$controller = new Controller;
-			$controller->commentGetView();
+			header("Location : index.php?action=commentGetView");
+			die();
 		}
 		else
 		{
@@ -312,8 +425,8 @@ class Controller
 			$com = $manager->get($_GET['id']);
 			$manager->update($com);
 
-			$controller = new Controller;
-			$controller->commentGetView();
+			header("Location : index.php?action=commentGetView");
+			die();
 		}
 		else
 		{
@@ -339,33 +452,34 @@ class Controller
 
 		$login = new AdministratorManager();
 
-		$result = $login->connect();
+		$getEmail = $login->getEmail($_POST['email']);
 
-		$isPasswordCorrect = password_verify($_POST['Password'], $result->password());
-
-		if (!$result->email()) 
+		if (!$getEmail) 
 		{
-			$error = true;
-			$errorEmail = true;
-			require('view/loginView.php');
+			header("Location : index.php?action=loginView&error=1");
 		}
 		else
 		{
+
+			$administrator = $login->connect($_POST['email']);
+
+			$isPasswordCorrect = password_verify($_POST['Password'], $administrator->password());
+
 			if ($isPasswordCorrect) {
 				session_start();
-				$_SESSION['name'] = $result->name();
-				$_SESSION['firstName'] = $result->firstName();
+				$_SESSION['name'] = $administrator->name();
+				$_SESSION['firstName'] = $administrator->firstName();	
+				$_SESSION['id'] = $administrator->idAdministrator();
 
-				require_once('view/adminView.php');
+				$controller = new Controller;
+				$controller->adminView();
 
-				return $result;
+				return $administrator;
 				return $isPasswordCorrect;
 			}
 			else 
 			{
-				$error = true;
-				$errorPassword = true;
-				require('view/loginView.php');
+				header("Location : index.php?action=loginView&error=2");
 			}
 		}
 	}
@@ -373,10 +487,5 @@ class Controller
 	public function loginView()
 	{
 		require('view/loginView.php');
-	}
-
-	public function adminView()
-	{
-		require('view/adminView.php');
 	}
 }

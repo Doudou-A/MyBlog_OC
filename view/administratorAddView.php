@@ -2,27 +2,32 @@
 
 <?php ob_start(); 
 session_start();
-$Name = htmlspecialchars($_SESSION['Name']);
-$firstName = htmlspecialchars($_SESSION['firstName']);?>
+require('adminAccess.php');?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column">
 	<h2>Ajouter un utilisateur</h1>
 	<form action="index.php?action=administratorAddForm" id="formRegistration" method="POST">
 		<div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
-			<label class="col-lg-12 mt-4">Email</label> <input class="col-lg-12 p-2" type="text" name="email" />
+			<label class="col-lg-12 mt-4">Email</label> <input class="col-lg-12 p-2" type="email" name="email" required="required" />
+			</div>
+			<div  style="display: none;" class="text-danger" id="errorEmail">
+				* L'adresse Mail existe déja !
 			</div>
 			<div class="row p-0 m-0 col-12">
-			<label class="col-lg-12 mt-4">Name</label> <input class="col-lg-12 p-2" type="text" name="name" />
+			<label class="col-lg-12 mt-4">Nom : </label> <input class="col-lg-12 p-2" type="text" name="name" required="required" />
 			</div>
 			<div class="row p-0 m-0 col-12">
-			<label class="col-lg-12 mt-4">FirstName</label> <input class="col-lg-12 p-2" type="text" name="firstName" />
+			<label class="col-lg-12 mt-4">Prénom : </label> <input class="col-lg-12 p-2" type="text" name="firstName" required="required" />
 			</div>
 			<div class="row p-0 m-0 col-12">
-			<label class="col-lg-12 mt-4">Mot de Passe</label> <input class="col-lg-12 p-2" id="pass" type="password" name="password"/>
+			<label class="col-lg-12 mt-4">Mot de Passe : </label> <input class="col-lg-12 p-2" id="pass" type="password" name="password" required="required" />
 			</div>	
 			<div class="row p-0 m-0 col-12">
-			<label class="col-lg-12 mt-4">Confirmer le Mot de Passe</label> <input class="col-lg-12 p-2" id="pass" type="password" name="passwordconfirm"/>
+			<label class="col-lg-12 mt-4">Confirmer le Mot de Passe : </label> <input class="col-lg-12 p-2" id="pass" type="password" name="passwordConfirm" required="required" />
 			</div>	
+			<div style="display: none;" class="text-danger" id="errorPassword">
+				* Les mots de passe sont différents !
+			</div>
 
 			<!--<div>
 				<p id="securityPassword"></p>
@@ -51,6 +56,20 @@ $firstName = htmlspecialchars($_SESSION['firstName']);?>
 		formRegistrationJS(); 
 	</script>-->
 </div>
+<?php if($_GET['error'] == 1) : ?>
+	<script type="text/javascript">
+		var errorEmail = document.getElementById('errorEmail');
+		errorEmail.style.display = "block";
+
+	</script>
+<?php elseif($_GET['error'] == 2) :?>
+	<script type="text/javascript">
+		var errorPassword = document.getElementById('errorPassword');
+		errorPassword.style.display = "block";
+
+	</script>
+<?php endif ?>
+
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templateAdmin.php'); ?>
+<?php require('template.php'); ?>

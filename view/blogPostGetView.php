@@ -3,8 +3,8 @@
 <?php 
 ob_start(); 
 session_start();
-?>
-<div class="col-lg-10 p-5 grey lighten-3">
+require('adminAccess.php');?>
+<div class="container-fluid h-100 p-5 grey lighten-3">
 	<h2 class="border-bottom">Gérer les Articles</h2>
 	<div class="col-lg-12 d-flex green text-white mt-3">
 		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
@@ -42,4 +42,4 @@ session_start();
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templateAdmin.php'); ?>
+<?php require('template.php'); ?>

@@ -9,32 +9,32 @@ if($_SESSION['id'] != $_GET['id'])
 }
 require('adminAccess.php');
 ?>
-<div class="h-100 m-auto h-100 p-5 d-flex flex-column">
+<div class="h-100 m-auto h-100 p-5 d-flex flex-column animated fadeIn">
 	<h2>Modifier un Utilisateur</h1>
 	<form action="index.php?action=administratorUpdateForm&amp;id=<?= $updateId ?>" id="formUpdateBlogPost" method="POST">
   		<div class="row col-12 p-0 m-0">
 			<div class="row p-0 m-0 col-12">
-		   		<label>Email : </label> <input class="col-lg-12 p-2" type="text" name="email" value="<?= $updateEmail ?>"/>
+		   		<label class="col-lg-12 mt-4 animated fadeInRight">Email : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="email" value="<?= $updateEmail ?>"/>
 		    </div>
 		    <div  style="display: none;" class="text-danger" id="errorEmail">
 				* L'adresse Mail existe déja !
 			</div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4">Nom : </label> <input class="col-lg-12 p-2" type="text" name="name" rows="1" maxlength="10" value="<?= $updateFirstName ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Nom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="name" rows="1" maxlength="10" value="<?= $updateFirstName ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4">Prénom : </label> <input class="col-lg-12 p-2" type="text" name="firstName" value="<?= $updateName ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Prénom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="firstName" value="<?= $updateName ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4">Nouveau Mot de Passe : </label><input class="col-lg-12 p-2" type="password" name="password"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Nouveau Mot de Passe : </label><input class="col-lg-12 p-2 animated fadeInLeft border" type="password" name="password"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4">Confirmer le Nouveau Mot de Passe : </label><input class="col-lg-12 p-2" type="password" name="passwordConfirm"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Confirmer le Nouveau Mot de Passe : </label><input class="col-lg-12 p-2 animated fadeInLeft border" type="password" name="passwordConfirm"/>
 		    </div>
 		    <div style="display: none;" class="text-danger" id="errorPassword">
 				* Les mots de passe sont différents !
 			</div>
-		    <input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white" type="submit" name="valide" value="Valider">
+		    <input class="btn border-secondary col-6 offset-3 mt-4 animated fadeInRight rounded text-white" type="submit" name="valide" value="Valider">
 	</form>
 </div>
 

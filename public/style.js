@@ -11,3 +11,13 @@ function blogPostFullView(){
 			}
 	}
 }
+
+function loginErrorMail(){
+	var errorEmail = document.getElementById('errorEmail');
+	errorEmail.style.display = "block";
+}
+
+function loginErrorPassword(){
+	var errorPassword = document.getElementById('errorPassword');
+	errorPassword.style.display = "block";
+}

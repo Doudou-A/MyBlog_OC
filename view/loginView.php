@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 <div class="container-fluid row align-items-center h-75 m-0 p-0">
-	<div class="col-md-8 m-auto h-50 aqua-gradient shadow d-flex">
-		<img src="public/MyBlog.png" class=" h-50  m-auto">
-		<div class="col-md-4 shadow h-110 p-4 mt-n3 white" style="margin-right:8.3333%;">
+	<div class="col-md-8 m-auto h-50 aqua-gradient shadow d-flex pr-5">
+		<img src="src/MyBlog.png" class=" h-50  m-auto d-none d-xl-block">
+		<div class="col-xl-4 shadow h-110 p-4 mt-n3 white">
 			<div class="text-center">
 				<h2>Connexion</h2>
 			</div>
@@ -26,29 +26,17 @@
 		</div>
 	</div>
 </div>
-<?php 
-if($_GET['error'] == 1)
-{
-?>
-	<script type="text/javascript">
+<?php if($_GET['error'] == 1) : ?>
+	<script type="text/javascript"> 
 		var errorEmail = document.getElementById('errorEmail');
 		errorEmail.style.display = "block";
-
 	</script>
-		
-<?php
-}
-elseif($_GET['error'] == 2)
-{
-?>
+<?php elseif($_GET['error'] == 2) : ?>
 	<script type="text/javascript">
 		var errorPassword = document.getElementById('errorPassword');
 		errorPassword.style.display = "block";
-
 	</script>
-<?php
-}
-?>
+<?php endif ?>
 
 <?php $content = ob_get_clean(); ?>
 

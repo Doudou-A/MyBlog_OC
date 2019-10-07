@@ -278,14 +278,14 @@ class Controller
 
 	public function blogPostUpdateForm()
 	{
-
 		$manager = new BlogPostManager();
 
 		$blogp = new BlogPost([
 		'idBlogPost' => $_POST['idBlogPost'],
 		'title' => $_POST['title'],
 		'chapo' =>  $_POST['chapo'],
-		'content' =>  $_POST['content']
+		'content' =>  $_POST['content'],
+		'idAdministrator' => $_POST['Administrator']
 		]);
 
 		$manager->update($blogp);
@@ -304,9 +304,15 @@ class Controller
 			$blogp = $manager->get($_GET['id']);
 
 			$updateId = $blogp->idBlogPost();
-			$updateTitle = $blogp->title();
+			$updateTitle = $blogp->title();		
 			$updateChapo = $blogp->chapo();
 			$updateContent = $blogp->content();
+
+			$managerA = new AdministratorManager();
+
+			$admin = $managerA->get($blogp->idAdministrator());
+
+			$administrators = $managerA->getAdministrators();
 
 			require('view/blogPostUpdateView.php');
 
@@ -326,7 +332,7 @@ class Controller
 			$com = new Comment([
 			'idBlogPost' =>  $_GET['id'],
 			'pseudo' => $_POST['pseudo'],
-			'content' =>  $_POST['content']
+			'content' =>  $_POST['content'],
 			]);
 
 			$manager->add($com);
@@ -440,6 +446,16 @@ class Controller
 		session_destroy();
 		header("Location : index.php");
 		exit;
+	}
+
+	public function mail(){
+
+		$dest = "adeldoudou1996@gmail.com";
+		$sujet = "formulaire";
+		$message = $_POST['message'];
+
+		mail($dest, $sujet, $message);
+
 	}
 
 	public function index()

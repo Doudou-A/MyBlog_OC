@@ -6,8 +6,8 @@ session_start();
 ?>
 <div class="container-fluid white">
 	<div class="col-10 m-auto h-75 p-5 d-flex flex-column">
-		<h2 class="text-center border-bottom border-secondary p-2"><?=$blogp->title();?></h2>
-		<div class="col-lg-12 p-2 mt-2 text-justify">
+		<h2 class="text-center border-bottom border-secondary p-2 animated zoomIn"><?=$blogp->title();?></h2>
+		<div class="col-lg-12 p-2 mt-2 text-justify animated fadeIn delay-1s">
 			<?php echo nl2br($blogp->content()); ?>
 		</div>
 		<?php if($blogp->dateLastUpdate() == NULL) : ?>
@@ -20,7 +20,7 @@ session_start();
 			</div>
 		<?php else : ?>
 			<div class="p-3 text-success">
-				Dernière Mise à Jour de l'Artcile : 
+				Article mis à jour le : 
 				<?php 
 				$date = DateTime::createFromFormat('Y-m-d H:i:s', $blogp->dateLastUpdate());
 				echo $date->format('d/m/Y à H');
@@ -38,7 +38,7 @@ session_start();
 		<div class="mt-5">
 			<div style="display: none;" id="comments">
 		<?php 	foreach ($commentsBlogPost as $key => $commentBlogPost) :?>		
-				<div class="col-lg-8 offset-2 d-flex flex-wrap border p-3 mt-1">
+				<div class="col-lg-8 offset-lg-2 d-flex flex-wrap border p-3 mt-1 animated zoomIn">
 					<div class="col-lg-12 border border-white  font-weight-bold">
 						<?=$commentBlogPost->pseudo();?>	
 					</div>
@@ -61,7 +61,7 @@ session_start();
 			<div class="row col-12 p-0 m-0">
 				<?php if(isset($_SESSION['id'])) : ?>
 				<div class="row p-0 m-0 col-4">
-				    <input class="col-lg-12 p-2" type="text" name="pseudo" value="<?=$commentAdmin->name();?> <?=$commentAdmin->firstName();?>" readonly />
+				    <input class="col-lg-12 p-2 border-0" type="text" name="pseudo" value="<?=$commentAdmin->name();?> <?=$commentAdmin->firstName();?>" readonly />
 				</div>
 				<?php else : ?>
 				<div class="row p-0 m-0 col-4">

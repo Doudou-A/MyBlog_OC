@@ -15,10 +15,11 @@ class CommentManager
 	{
 		$valid = false;
 
-		$q = $this->_db->prepare('INSERT INTO Comment(pseudo, dateCreated, content, valid, idBlogPost) VALUES (:pseudo, NOW(), :content, '.((int) $valid).' , '.$_GET['id'].')');
+		$q = $this->_db->prepare('INSERT INTO Comment(pseudo, dateCreated, content, valid, idBlogPost) VALUES (:pseudo, NOW(), :content, '.((int) $valid).' , :idBlogPost)');
 		
 		$q->bindValue(':pseudo', $com->pseudo(), PDO::PARAM_STR);
 		$q->bindValue(':content', $com->content(), PDO::PARAM_STR);
+		$q->bindValue(':idBlogPost', $com->idBlogPost(), PDO::PARAM_INT);
 
 		$q->execute();
 	}
@@ -43,13 +44,13 @@ class CommentManager
 		return new Comment($data);
 	}
 
-	public function getCommentsBlogPost()
+	public function getCommentsBlogPost($id)
 	{
 		$valid = true;
 
 		$commentspublish=[];
 
-		$q = $this->_db->query('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = '.$_GET['id'].'');
+		$q = $this->_db->query('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = '.$id);
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
@@ -75,8 +76,9 @@ class CommentManager
 	public function getComValid()
 	{
 		$comspublish=[];
+		$BlogPost= new BlogPostManager;
 
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 1');
+		$q = $this->_db->query('SELECT * FROM Comment WHERE valid = 1');
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
@@ -90,7 +92,8 @@ class CommentManager
 
 	public function getComToValid()
 	{
-		$comspublish=[];
+		$comspublish = [];
+		//$blogPost = new BlogPostManager;
 
 		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
@@ -98,6 +101,8 @@ class CommentManager
 		for ($i=0; $i< count($data); $i++) 
 		{ 
 			$compublish = new Comment($data[$i]);
+			//$compublish->idBlogPost($blogPost->get($data[$i]["idBlogPost"]));
+ 			//var_dump($compublish);
 			array_push($comspublish, $compublish); 
 		} 
 

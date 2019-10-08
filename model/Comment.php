@@ -6,6 +6,7 @@ class Comment
 	private $_dateCreated;
 	private $_content;
 	private $_valid;
+	private $_idBlogPost;
 
 	public function __construct(array $data)
 	{
@@ -32,6 +33,8 @@ class Comment
 	public function dateCreated() { return $this->_dateCreated; }
 	public function content() { return $this->_content; }
 	public function valid() { return $this->_valid; }
+	public function idBlogPost() { return $this->_idBlogPost; }
+
 
 	//Setters
 
@@ -75,5 +78,10 @@ class Comment
 		{
 			$this->_valid = $valid;
 		}
+	}
+
+	public function setIdBlogPost($idBlogPost)
+	{
+			$this->_idBlogPost = $idBlogPost;
 	}
 }

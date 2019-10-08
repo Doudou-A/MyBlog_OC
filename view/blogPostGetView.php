@@ -3,10 +3,10 @@
 <?php 
 ob_start(); 
 session_start();
-?>
-<div class="col-lg-10 p-5 grey lighten-3">
-	<h2 class="border-bottom">Gérer les Articles</h2>
-	<div class="col-lg-12 d-flex green text-white mt-3">
+require('adminAccess.php');?>
+<div class="container-fluid h-100 p-5 grey lighten-3">
+	<h2 class="border-bottom animated slideInDown">Gérer les Articles</h2>
+	<div class="col-lg-12 d-flex green text-white mt-3 animated slideInUp">
 		<div class="col-lg-1 border border-white text-center font-weight-bold">Article N°</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold">Titre Article</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold">Résumé</div>
@@ -16,7 +16,7 @@ session_start();
 	<?php
 			foreach ($blogposts as $key => $blogpost) {
 	?>		
-			<div class="col-lg-12 d-flex">
+			<div class="col-lg-12 d-flex animated slideInUp">
 				<div class="col-lg-1 border border-white text-center">
 					<?=$blogpost->idBlogPost();?>	
 				</div>
@@ -29,10 +29,10 @@ session_start();
 				<div class="col-lg-5 border border-white text-truncate pl-2">
 					<?=$blogpost->content();?>
 				</div>
-				<div class="col-lg-1 border border-white text-center">
+				<div class="col-lg-1 border border-white text-center animated zoomIn delay-1s">
 					<a href="index.php?action=blogPostUpdateView&amp;id=<?=$blogpost->idBlogPost();?>" >Modifier</a>
 				</div>
-				<div class="col-lg-1 border border-white text-center">
+				<div class="col-lg-1 border border-white text-center animated zoomIn delay-1s">
 					<a class="text-danger" href="index.php?action=blogPostDelete&amp;id=<?=$blogpost->idBlogPost();?>" >Supprimer</a>
 				</div>
 			</div>
@@ -42,4 +42,4 @@ session_start();
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templateAdmin.php'); ?>
+<?php require('template.php'); ?>

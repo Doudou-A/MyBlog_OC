@@ -8,6 +8,7 @@ class BlogPost
 	private $_dateLastUpdate;
 	private $_dateCreated;
 	private $_image;
+	private $_idAdministrator;
 
 	public function __construct(array $data)
 	{
@@ -36,6 +37,7 @@ class BlogPost
 	public function dateLastUpdate() { return $this->_dateLastUpdate; }
 	public function dateCreated() { return $this->_dateCreated; }
 	public function image() { return $this->_image; }
+	public function idAdministrator() { return $this->_idAdministrator; }
 
 	//Setters
 
@@ -75,28 +77,17 @@ class BlogPost
 
 	public function setDateLastUpdate($dateLastUpdate)
 	{
-		$date = DateTime::createFromFormat('d/m/Y', $dateLastUpdate);
-		if($date === true)
+		if(is_string($dateLastUpdate))
 		{
-			//On vérifie que la date existe
-			$validString = $date->format('d/m/Y');
-			if($dateLastUpdate = $validString)
-			{
-				$this->_dateLastUpdate = $dateLastUpdate;
-			}
+			$this->_dateLastUpdate = $dateLastUpdate;
 		}
 	}
 
 	public function setDateCreated($dateCreated)
 	{
-		$date= DateTime::createFromFormat('d/m/Y', $dateCreated);
-		if($date === true)
+		if(is_string($dateCreated))
 		{
-			$validString = $date->format('d/m/Y');
-			if($dateCreated = $validString)
-			{
-				$this->_dateCreated = $dateCreated;
-			}
+			$this->_dateCreated = $dateCreated;
 		}
 	}
 
@@ -107,5 +98,16 @@ class BlogPost
 			$this->_image = $image;
 		}
 	}
+
+	public function setIdAdministrator($idAdministrator)
+	{
+		$idAdministrator = (int) $idAdministrator;
+
+		if ($idAdministrator >0)
+		{
+			$this->_idAdministrator = $idAdministrator;
+		}
+	}
+
 
 }

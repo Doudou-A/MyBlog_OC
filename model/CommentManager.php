@@ -76,15 +76,18 @@ class CommentManager
 	public function getComValid()
 	{
 		$comspublish=[];
-		$BlogPost= new BlogPostManager;
+		$BlogPost = new BlogPostManager;
 
 		$q = $this->_db->query('SELECT * FROM Comment WHERE valid = 1');
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
-			$compublish = new Comment($data[$i]);
+			$compublish = new Comment($data[$i]);	
+			$compublish->idBlogPost($BlogPost->get($data[$i]["idBlogPost"]));
+			var_dump($compublish);
 			array_push($comspublish, $compublish); 
+
 		} 
 
 		return $comspublish;
@@ -93,16 +96,15 @@ class CommentManager
 	public function getComToValid()
 	{
 		$comspublish = [];
-		//$blogPost = new BlogPostManager;
+		$BlogPost = new BlogPostManager;
 
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE valid = 0');
+		$q = $this->_db->query('SELECT * FROM Comment WHERE valid = 0');
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
 			$compublish = new Comment($data[$i]);
-			//$compublish->idBlogPost($blogPost->get($data[$i]["idBlogPost"]));
- 			//var_dump($compublish);
+			$compublish->idBlogPost($BlogPost->get($data[$i]["idBlogPost"]));
 			array_push($comspublish, $compublish); 
 		} 
 

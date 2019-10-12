@@ -28,45 +28,19 @@ require('adminAccess.php');?>
 			<div style="display: none;" class="text-danger" id="errorPassword">
 				* Les mots de passe sont différents !
 			</div>
-
-			<!--<div>
-				<p id="securityPassword"></p>
-				<div style="display: flex; ">
-					<div id="firstSecurity" style="width: 100px; height: 15px; background-color: grey;"></div>
-					<div id="sdSecurity" style="width: 100px; height: 15px; background-color: grey;"></div>
-					<div id="tdSecurity" style="width: 100px; height: 15px; background-color: grey;"></div>
-				</div>
-			</div>
-			<ul>
-				<li style="list-style: none;">Pour votre sécurité, utilisez un mot de passe contenant :</li>
-				<li style="list-style: none;">• Minimum 5 carcatères</li>
-				<li style="list-style: none;">• Au moins une lettre en majuscule</li>
-				<li style="list-style: none;">• Un chiffre</li>
-			</ul>
-			<label class="passConfirm">Confirmer Mot de Passe</label> <input type="password" name="passwordconfirm" id="formPassRegistration" />
-			</br>-->
 			<input id="submitFormRegistration" type="submit" name="valide" value="Valider" class="btn border-secondary col-6 offset-3 mt-4 animated fadeInRight rounded text-white" />
-			<!--<div id="interrogationPoint">
-				<p>?</p>
-			</div>-->
 		</div>
 	</form>
-
-	<!--<script type="text/javascript"> 
-		formRegistrationJS(); 
-	</script>-->
 </div>
 <?php if($_GET['error'] == 1) : ?>
 	<script type="text/javascript">
 		var errorEmail = document.getElementById('errorEmail');
 		errorEmail.style.display = "block";
-
 	</script>
 <?php elseif($_GET['error'] == 2) :?>
 	<script type="text/javascript">
 		var errorPassword = document.getElementById('errorPassword');
 		errorPassword.style.display = "block";
-
 	</script>
 <?php endif ?>
 

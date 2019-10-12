@@ -22,7 +22,7 @@ require('adminAccess.php');
 			<?=$commentToValid->idBlogPost();?>		
 		</div>
 		<div class="col-lg-2 border border-white text-center animated slideInRight faster">
-
+					
 		</div>
 		<div class="col-lg-1 border border-white text-truncate pl-2 animated slideInRight faster">
 			<?=htmlspecialchars($commentToValid->pseudo());?>	

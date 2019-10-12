@@ -17,7 +17,7 @@ class Controller
 
 		if ($emailExist != 0) //Vérification si le pseudo existe
 		{
-			header("Location : index.php?action=administratorAddView&error=1");
+			header("Location : Ajouter-un-Utilisateur-Error-1.html");
 			die();
 		}
 		elseif($_POST['password'] == $_POST['passwordConfirm'])
@@ -32,12 +32,12 @@ class Controller
 
 			$manager->add($admin);
 
-			$controller = new Controller;
-			$controller->administratorGetView();
+			header("Location : Gérer-les-Utilisateurs.html");
+			die();
 		}
 		else
 		{
-			header("Location : index.php?action=administratorAddView&error=2");
+			header("Location : Ajouter-un-Utilisateur-Error-2.html");
 			die();
 		}
 	}
@@ -50,7 +50,8 @@ class Controller
 	public function administratorDelete()
 	{
 
-		if (!empty($_GET['id'])) 
+		session_start();
+		if (!empty($_GET['id']) && !empty($_GET['jeton']) && !empty($_SESSION['jeton']) && ($_GET['jeton'] == $_SESSION['jeton'])) 
 		{
 			$manager = new AdministratorManager();
 
@@ -63,7 +64,8 @@ class Controller
 		}
 		else
 		{
-			throw new Exeption("Error Processing Request");
+			header("Location : Gérer-les-Utilisateurs-Protection-1.html");
+			die();
 		}
 	}
 
@@ -89,7 +91,7 @@ class Controller
 
 			if ($emailExist != 0) //Vérification si le mail existe
 			{
-				header("Location : index.php?action=administratorUpdateView&id=".$_GET['id']."&error=1");
+				header("Location : Modifier-Utilisateur-".$_GET['id']."-Error-1.html");
 				die();
 			}
 		}
@@ -109,12 +111,12 @@ class Controller
 
 				$manager->update($admin);
 
-				header("Location : index.php?action=administratorGetView&alert=1");
+				header("Location : Gérer-les-Utilisateurs-Alert-1.html");
 				die();
 			}
 			else
 			{
-				header("Location : index.php?action=administratorUpdateView&id=".$_GET['id']."&error=2");
+				header("Location : Modifier-Utilisateur-".$_GET['id']."-Error-2.html");
 				die();
 			}
 		}
@@ -129,7 +131,7 @@ class Controller
 
 			$manager->updateNoPassword($admin);
 
-			header("Location : index.php?action=administratorGetView&alert=2");
+			header("Location : Gérer-les-Utilisateurs-Alert-2.html");
 			die();
 
 		}
@@ -200,7 +202,7 @@ class Controller
 
 		$manager->add($blogp);
 
-		header("Location : index.php?action=blogPostGetView");
+		header("Location : Gérer-les-Articles.html");
 		die();
 
 	}
@@ -221,8 +223,9 @@ class Controller
 
 	public function blogPostDelete()
 	{
+		session_start();
 
-		if (!empty($_GET['id'])) 
+		if (!empty($_GET['id']) && !empty($_GET['jeton']) && !empty($_SESSION['jeton']) && ($_GET['jeton'] == $_SESSION['jeton'])) 
 		{
 			$manager = new BlogPostManager();
 
@@ -230,12 +233,13 @@ class Controller
 
 			$manager->delete($blogp);
 
-			header("Location : index.php?action=blogPostGetView");
+			header("Location : Gérer-les-Articles.html");
 			die();
 		}
 		else
 		{
-			throw new Exeption("Error Processing Request");
+			header("Location : Gérer-les-Articles-Protection-1.html");
+			die();
 		}
 	}
 
@@ -290,7 +294,7 @@ class Controller
 
 		$manager->update($blogp);
 		
-		header("Location : index.php?action=blogPostGetView");
+		header("Location : Gérer-les-Articles.html");
 		die();
 	}
 
@@ -337,7 +341,7 @@ class Controller
 
 			$manager->add($com);
 
-			header("Location : index.php?action=blogPostAllView&alert=1");
+			header("Location : Tous-Les-Articles-Alert-1.html");
 			die();
 
 		}
@@ -349,8 +353,9 @@ class Controller
 
 	public function commentDelete()
 	{
+		session_start();
 
-		if (!empty($_GET['id'])) 
+		if (!empty($_GET['id']) && !empty($_GET['jeton']) && !empty($_SESSION['jeton']) && ($_GET['jeton'] == $_SESSION['jeton'])) 
 		{
 			$manager = new CommentManager();
 
@@ -358,12 +363,13 @@ class Controller
 
 			$manager->delete($com);
 
-			header("Location : index.php?action=commentGetView");
+			header("Location : Gérer-les-Commentaires.html");
 			die();
 		}
 		else
 		{
-			throw new Exeption("Error Processing Request");
+			header("Location : Gérer-les-Commentaires-Protection-1.html");
+			die();
 		}
 	}
 
@@ -431,7 +437,7 @@ class Controller
 			$com = $manager->get($_GET['id']);
 			$manager->update($com);
 
-			header("Location : index.php?action=commentGetView");
+			header("Location : Gérer-les-Commentaires.html");
 			die();
 		}
 		else
@@ -448,13 +454,15 @@ class Controller
 		exit;
 	}
 
-	public function mail(){
-
+	public function sendMail(){
 		$dest = "adeldoudou1996@gmail.com";
 		$sujet = "formulaire";
 		$message = $_POST['message'];
 
 		mail($dest, $sujet, $message);
+
+		header("Location : index.php?action=index&alert=1");
+		die();
 
 	}
 
@@ -472,7 +480,7 @@ class Controller
 
 		if (!$getEmail) 
 		{
-			header("Location : index.php?action=loginView&error=1");
+			header("Location : Connexion-Error-1.html");
 		}
 		else
 		{
@@ -482,10 +490,12 @@ class Controller
 			$isPasswordCorrect = password_verify($_POST['Password'], $administrator->password());
 
 			if ($isPasswordCorrect) {
+				unset($_SESSION['jeton']);
 				session_start();
-				$_SESSION['name'] = $administrator->name();
-				$_SESSION['firstName'] = $administrator->firstName();	
+				$_SESSION['name'] = htmlspecialchars($administrator->name());
+				$_SESSION['firstName'] = htmlspecialchars($administrator->firstName());	
 				$_SESSION['id'] = $administrator->idAdministrator();
+   				$_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(6));
 
 				$controller = new Controller;
 				$controller->adminView();
@@ -495,7 +505,7 @@ class Controller
 			}
 			else 
 			{
-				header("Location : index.php?action=loginView&error=2");
+				header("Location : Connexion-Error-2.html");
 			}
 		}
 	}

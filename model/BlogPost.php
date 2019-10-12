@@ -108,6 +108,4 @@ class BlogPost
 			$this->_idAdministrator = $idAdministrator;
 		}
 	}
-
-
 }

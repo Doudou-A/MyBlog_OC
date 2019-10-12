@@ -8,7 +8,7 @@
 			<div class="text-center">
 				<h2>Connexion</h2>
 			</div>
-			<form class="h-100" action="index.php?action=login" id="login" method="POST">
+			<form class="h-100" action="Espace-Administrateur.html" id="login" method="POST">
 			    <p>
 				    <input class="col-12 mt-4 rounded border p-2" type="text" name="email" placeholder="Email" />
 				    </br>

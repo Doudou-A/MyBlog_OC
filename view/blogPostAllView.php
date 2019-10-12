@@ -38,11 +38,11 @@ session_start();
 					</div>
 					<?php if(isset($_SESSION['id'])) : ?>
 					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white ">
-						<a class="font-weight-bold text-white" href="index.php?action=blogPostFullView&amp;idBlogPost=<?=$blogpost->idBlogPost();?>&amp;idSession=<?=$_SESSION['id']?>" >Lire l'Article</a>
+						<a class="font-weight-bold text-white" href="Article-<?=$blogpost->idBlogPost();?>-<?=$_SESSION['id']?>.html" >Lire l'Article</a>
 					</div>
 					<?php else : ?>
 					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white ">
-						<a class="font-weight-bold text-white" href="index.php?action=blogPostFullView&amp;idBlogPost=<?=$blogpost->idBlogPost();?>" >Lire l'Article</a>
+						<a class="font-weight-bold text-white" href="Article-<?=$blogpost->idBlogPost();?>.html" >Lire l'Article</a>
 					</div>
 					<?php endif ?>
 				</div>

@@ -14,7 +14,7 @@ require('adminAccess.php');
 					Pseudo :
 				</div>
 				<div class="col-lg-12 p-2 border mt-2 animated fadeInLeft">
-					<?= $comPseudo ?>
+					<?= htmlspecialchars($comPseudo) ?>
 				</div>
 			</div>
 			<div class="row p-0 m-0 col-12">
@@ -22,7 +22,7 @@ require('adminAccess.php');
 					Contenu :
 				</div>
 				<div class="col-lg-12 p-2 border mt-2 text-justify animated fadeInLeft">
-					<?= $comContent ?>
+					<?= htmlspecialchars($comContent) ?>
 				</div>
 			</div>
 			<div class="col-md-12 mt-4 text-center">

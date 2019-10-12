@@ -21,7 +21,7 @@
 		        <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="index.php?action=blogPostAllView">Tous les Articles</a>
+		        <a class="nav-link" href="Tous-les-Articles.html">Tous les Articles</a>
 		      </li>
 		      <?php if(isset($_SESSION['firstName'])) : ?>
 		       <li class="nav-item">
@@ -30,27 +30,27 @@
 					<btn style="display: none;" class="admin-btn p-3 font-weight-bold animated bounceIn" id="BlogsPosts" >Articles
 						<div style="display: none;" id="BlogsPostsLinks">
 							<div class="border-top font-weight-light">
-								<a class="text-white" href="index.php?action=blogPostAddView">Ajouter un Article</a>
+								<a class="text-white" href="Ajouter-un-Article.html">Ajouter un Article</a>
 							</div>
 							<div class="border-top font-weight-light">
-								<a class="text-white" href="index.php?action=blogPostGetView">Modifier/Supprimer un Article</a>
+								<a class="text-white" href="Gérer-les-Articles.html">Modifier/Supprimer un Article</a>
 							</div>
 						</div>
 					</btn>
 					<btn style="display: none;" class="admin-btn p-3 border-primary border-top font-weight-bold animated bounceIn" id="Comments">Commentaires
 						<div style="display: none;" id="CommentsLinks">
 							<div class="border-top font-weight-light">
-								<a class="text-white" href="index.php?action=commentGetView">Valider un Commentaire</a>
+								<a class="text-white" href="Gérer-les-Commentaires.html">Valider un Commentaire</a>
 							</div>
 						</div>
 					</btn>
 					<btn style="display: none;" class="admin-btn p-3 border-primary border-top font-weight-bold animated bounceIn" id="Administrators">Utilisateurs
 						<div style="display: none;" id="AdministratorsLinks">
 							<div class="border-top font-weight-light">
-								<a class="text-white" href="index.php?action=administratorAddView">Ajouter un Utilisateur</a>
+								<a class="text-white" href="Ajouter-un-Utilisateur.html">Ajouter un Utilisateur</a>
 							</div>
 							<div class="border-top font-weight-light">
-								<a class="text-white" href="index.php?action=administratorGetView">Modifier/Supprimer un Utilisateur</a>
+								<a class="text-white" href="Gérer-les-Utilisateurs.html">Modifier/Supprimer un Utilisateur</a>
 							</div>
 						</div>
 					</btn>
@@ -63,7 +63,7 @@
 				      	Déconnexion
 				      </a>
 		  	<?php 	else : ?>
-		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=loginView">
+		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="Connexion.html">
 		      	Connexion
 		      </a>
 		    <?php endif?>

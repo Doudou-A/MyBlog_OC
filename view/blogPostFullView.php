@@ -40,7 +40,7 @@ session_start();
 		<?php 	foreach ($commentsBlogPost as $key => $commentBlogPost) :?>		
 				<div class="col-lg-8 offset-lg-2 d-flex flex-wrap border p-3 mt-1 animated zoomIn">
 					<div class="col-lg-12 border border-white  font-weight-bold">
-						<?=$commentBlogPost->pseudo();?>	
+						<?=htmlspecialchars($commentBlogPost->pseudo());?>	
 					</div>
 					<div class="col-lg-12 border border-white ">
 						<?php 
@@ -49,7 +49,7 @@ session_start();
 						?>
 					</div>
 					<div class="col-lg-12 border border-white mt-3">
-						<?php echo nl2br($commentBlogPost->content()); ?>
+						<?php echo nl2br(htmlspecialchars($commentBlogPost->content())); ?>
 					</div>
 				</div>
 		<?php 	endforeach ?>
@@ -69,7 +69,7 @@ session_start();
 				</div>
 				<?php endif ?>
 				<div class="row p-0 m-0 col-12">
-				    <textarea class="col-lg-12 p-2 " type="text" name="content" maxlength="200" rows="5" placeholder="Commentaire"></textarea>
+				    <textarea class="col-lg-12 p-2 border" type="text" name="content" maxlength="200" rows="5" placeholder="Commentaire"></textarea>
 				</div>
 				<input class="btn border-secondary col-6 offset-3 mt-4 rounded text-white mb-4" type="submit" name="valide" value="Valider">
 			</div>

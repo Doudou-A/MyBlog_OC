@@ -20,10 +20,10 @@ require('adminAccess.php');
 				* L'adresse Mail existe déja !
 			</div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4 animated fadeInRight">Nom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="name" rows="1" maxlength="10" value="<?= $updateFirstName ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Nom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="name" rows="1" maxlength="10" value="<?= $updateName ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4 animated fadeInRight">Prénom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="firstName" value="<?= $updateName ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Prénom : </label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="firstName" value="<?= $updateFirstName ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
 		    	<label class="col-lg-12 mt-4 animated fadeInRight">Nouveau Mot de Passe : </label><input class="col-lg-12 p-2 animated fadeInLeft border" type="password" name="password"/>

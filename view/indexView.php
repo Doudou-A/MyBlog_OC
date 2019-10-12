@@ -13,7 +13,7 @@ session_start(); ?>
 	<div class="mt-5 p-3 d-flex justify-content-around flex-wrap">
 		<div class="white p-3 m-3 border rounded col-lg-3 text-index animated fadeIn">
 			Formulaire de Contact :
-			<form action="index.php?action=mail" method="POST" class="mt-3">
+			<form action="index.php?action=sendMail" method="POST" class="mt-3">
 		  		<div class="row col-12 p-0 m-0">
 					<div class="row p-0 m-0 col-12">
 				   		<input class="col-lg-12 p-2" type="text" name="email" required="required" placeholder="Email" />

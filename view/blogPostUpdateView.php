@@ -13,10 +13,10 @@ require('adminAccess.php');
 		   		<textarea class="formLoginInput d-none" type="text" name="idBlogPost"><?= $updateId ?></textarea>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4 animated fadeInRight">Titre : </label> <input style=" resize:none;" class="col-lg-12 p-2 border animated fadeInLeft" type="text" name="title" rows="1" maxlength="10" value="<?= $updateTitle ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Titre : </label> <input style=" resize:none;" class="col-lg-12 p-2 border animated fadeInLeft" type="text" name="title" rows="1" maxlength="100" value="<?= $updateTitle ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
-		    	<label class="col-lg-12 mt-4 animated fadeInRight">Châpo : </label> <input class="col-lg-12 p-2 border animated fadeInLeft" style=" resize:none;" type="text" name="chapo" value="<?= $updateChapo ?>"/>
+		    	<label class="col-lg-12 mt-4 animated fadeInRight">Châpo : </label> <input class="col-lg-12 p-2 border animated fadeInLeft" style=" resize:none;" type="text" name="chapo" maxlength="200" value="<?= $updateChapo ?>"/>
 		    </div>
 		    <div class="row p-0 m-0 col-12">
 		    	<label class="col-lg-12 mt-4 animated fadeInRight">Auteur :</label>

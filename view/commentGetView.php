@@ -19,10 +19,10 @@ require('adminAccess.php');
 	foreach ($commentsToValid as $key => $commentToValid) :	?>		
 	<div class="col-lg-12 d-flex">
 		<div class="col-lg-1 border border-white text-center animated slideInRight faster">
-			<?=$commentToValid->idBlogPost();?>		
+			<?=$commentToValid->idBlogPost()->idBlogPost();?>	
 		</div>
 		<div class="col-lg-2 border border-white text-center animated slideInRight faster">
-					
+			<?=$commentToValid->idBlogPost()->title();?>		
 		</div>
 		<div class="col-lg-1 border border-white text-truncate pl-2 animated slideInRight faster">
 			<?=htmlspecialchars($commentToValid->pseudo());?>	
@@ -54,10 +54,10 @@ require('adminAccess.php');
 	foreach ($commentsValid as $key => $commentValid) : ?>		
 	<div class="col-lg-12 d-flex lighten-5">
 		<div class="col-lg-1 border border-white text-center animated slideInRight">
-			<?=$commentValid->idBlogPost();?>	
+			<?=$commentValid->idBlogPost()->idBlogPost();?>	
 		</div>
 		<div class="col-lg-2 border border-white text-center animated slideInRight">
-
+			<?=$commentValid->idBlogPost()->title();?>	
 		</div>
 		<div class="col-lg-1 border border-white text-truncate pl-2 animated slideInRight">
 			<?=$commentValid->pseudo();?>

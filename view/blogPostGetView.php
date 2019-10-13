@@ -37,7 +37,7 @@ require('adminAccess.php');?>
 	</div>
 <?php endforeach	?>
 </div>
-<?php if($_GET['protection'] == 1) : ?>
+<?php if(isset($_GET['protection']) && $_GET['protection'] == 1) : ?>
 <script type="text/javascript">alert('Vous n\'êtes pas autorisé à supprimer un article');</script>
 <?php endif ?>
 <?php $content = ob_get_clean(); ?>

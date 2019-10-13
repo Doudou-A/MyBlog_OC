@@ -4,7 +4,7 @@
 ob_start(); 
 session_start();
 ?>
-<div class="container-fluid h-100 p-5 grey lighten-3">
+<div class="container-fluid min-h-100 p-5 grey lighten-3">
 	<h2 class="border-bottom col-12 animated fadeInLeft">Tous les Articles</h2>
 	<div  class="d-flex justify-content-around flex-wrap">
   <?php foreach ($blogposts as $key => $blogpost) :?>		
@@ -33,7 +33,7 @@ session_start();
 						</div>
 					<?php endif ?>
 					</div>
-					<div class="col-md-12 border border-green white p-2">
+					<div class="col-md-12 border border-green white p-2 text-justify">
 						<?=$blogpost->chapo();?>	
 					</div>
 					<?php if(isset($_SESSION['id'])) : ?>

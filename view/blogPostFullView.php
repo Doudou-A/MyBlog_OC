@@ -30,7 +30,7 @@ session_start();
 		<?php endif ?>
 		<div class="p-3 text-success">
 			Auteur :
-			<?=$blogp->idAdministrator()?>
+			<?=$blogp->idAdministrator()->name()?>
 		</div>
 		<div class="font-weight-bold p-1 h4 text-center green lighten-2 text-white rounded col-4 offset-4 mt-3 cursor-pointer" id="commentsview">
 			Afficher les Commentaires

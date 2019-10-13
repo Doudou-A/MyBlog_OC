@@ -17,7 +17,7 @@ class Controller
 
 		if ($emailExist != 0) //Vérification si le pseudo existe
 		{
-			header("Location : Ajouter-un-Utilisateur-Error-1.html");
+			header("Location: Ajouter-un-Utilisateur-Error-1.html");
 			die();
 		}
 		elseif($_POST['password'] == $_POST['passwordConfirm'])
@@ -32,12 +32,12 @@ class Controller
 
 			$manager->add($admin);
 
-			header("Location : Gérer-les-Utilisateurs.html");
+			header("Location: Gérer-les-Utilisateurs.html");
 			die();
 		}
 		else
 		{
-			header("Location : Ajouter-un-Utilisateur-Error-2.html");
+			header("Location: Ajouter-un-Utilisateur-Error-2.html");
 			die();
 		}
 	}
@@ -59,12 +59,12 @@ class Controller
 
 			$manager->delete($admin);
 
-			header("Location : index.php?action=administratorGetView");
+			header("Location: index.php?action=administratorGetView");
 			die();
 		}
 		else
 		{
-			header("Location : Gérer-les-Utilisateurs-Protection-1.html");
+			header("Location: Gérer-les-Utilisateurs-Protection-1.html");
 			die();
 		}
 	}
@@ -91,7 +91,7 @@ class Controller
 
 			if ($emailExist != 0) //Vérification si le mail existe
 			{
-				header("Location : Modifier-Utilisateur-".$_GET['id']."-Error-1.html");
+				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-1.html");
 				die();
 			}
 		}
@@ -111,12 +111,12 @@ class Controller
 
 				$manager->update($admin);
 
-				header("Location : Gérer-les-Utilisateurs-Alert-1.html");
+				header("Location: Gérer-les-Utilisateurs-Alert-1.html");
 				die();
 			}
 			else
 			{
-				header("Location : Modifier-Utilisateur-".$_GET['id']."-Error-2.html");
+				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-2.html");
 				die();
 			}
 		}
@@ -131,7 +131,7 @@ class Controller
 
 			$manager->updateNoPassword($admin);
 
-			header("Location : Gérer-les-Utilisateurs-Alert-2.html");
+			header("Location: Gérer-les-Utilisateurs-Alert-2.html");
 			die();
 
 		}
@@ -202,7 +202,7 @@ class Controller
 
 		$manager->add($blogp);
 
-		header("Location : Gérer-les-Articles.html");
+		header("Location: Gérer-les-Articles.html");
 		die();
 
 	}
@@ -233,12 +233,12 @@ class Controller
 
 			$manager->delete($blogp);
 
-			header("Location : Gérer-les-Articles.html");
+			header("Location: Gérer-les-Articles.html");
 			die();
 		}
 		else
 		{
-			header("Location : Gérer-les-Articles-Protection-1.html");
+			header("Location: Gérer-les-Articles-Protection-1.html");
 			die();
 		}
 	}
@@ -257,6 +257,7 @@ class Controller
 			}
 			$manager = new BlogPostManager();
 			$managerC = new CommentManager();
+			$managerA = new AdministratorManager();
 
 			$blogp = $manager->get($_GET['idBlogPost']);
 
@@ -294,7 +295,7 @@ class Controller
 
 		$manager->update($blogp);
 		
-		header("Location : Gérer-les-Articles.html");
+		header("Location: Gérer-les-Articles.html");
 		die();
 	}
 
@@ -341,7 +342,7 @@ class Controller
 
 			$manager->add($com);
 
-			header("Location : Tous-Les-Articles-Alert-1.html");
+			header("Location: Tous-Les-Articles-Alert-1.html");
 			die();
 
 		}
@@ -363,12 +364,12 @@ class Controller
 
 			$manager->delete($com);
 
-			header("Location : Gérer-les-Commentaires.html");
+			header("Location: Gérer-les-Commentaires.html");
 			die();
 		}
 		else
 		{
-			header("Location : Gérer-les-Commentaires-Protection-1.html");
+			header("Location: Gérer-les-Commentaires-Protection-1.html");
 			die();
 		}
 	}
@@ -437,7 +438,7 @@ class Controller
 			$com = $manager->get($_GET['id']);
 			$manager->update($com);
 
-			header("Location : Gérer-les-Commentaires.html");
+			header("Location: Gérer-les-Commentaires.html");
 			die();
 		}
 		else
@@ -450,7 +451,7 @@ class Controller
 	{
 		session_start();
 		session_destroy();
-		header("Location : index.php");
+		header("Location: index.php");
 		exit;
 	}
 
@@ -461,7 +462,7 @@ class Controller
 
 		mail($dest, $sujet, $message);
 
-		header("Location : index.php?action=index&alert=1");
+		header("Location: index.php?action=index&alert=1");
 		die();
 
 	}
@@ -480,7 +481,7 @@ class Controller
 
 		if (!$getEmail) 
 		{
-			header("Location : Connexion-Error-1.html");
+			header("Location: Connexion-Error-1.html");
 		}
 		else
 		{
@@ -505,7 +506,7 @@ class Controller
 			}
 			else 
 			{
-				header("Location : Connexion-Error-2.html");
+				header("Location: Connexion-Error-2.html");
 			}
 		}
 	}

@@ -42,15 +42,15 @@ require('adminAccess.php');?>
 			</div>
 	<?php endforeach ?>
 </div>
-<?php if($_GET['alert'] == 1) : ?>
+<?php if(isset($_GET['alert']) && $_GET['alert'] == 1) : ?>
 	<script type="text/javascript">
 		alert("Le mot de Passe a été modifié avec succès !");
 	</script>
-<?php elseif ($_GET['alert'] == 2) : ?>
+<?php elseif (isset($_GET['alert']) && $_GET['alert'] == 2) : ?>
 	<script type="text/javascript">
 		alert("L'Utilisateur a été modifié avec succès !");
 	</script>
-<?php elseif($_GET['protection'] == 1) : ?>
+<?php elseif(isset($_GET['protection']) && $_GET['protection'] == 1) : ?>
 	<script type="text/javascript">alert('Vous n\'êtes pas autorisé à supprimer un utilisateur');</script>
 <?php endif ?>
 

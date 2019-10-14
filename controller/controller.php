@@ -5,7 +5,9 @@ require('model/BlogPostManager.php');
 require('model/BlogPost.php');
 require('model/CommentManager.php');
 require('model/Comment.php');
-
+require('PHPMailer-master/src/PHPMailer.php');
+require("PHPMailer-master/src/SMTP.php");
+require("PHPMailer-master/src/Exception.php");
 
 class Controller
 {	
@@ -454,18 +456,6 @@ class Controller
 		exit;
 	}
 
-	public function sendMail(){
-		$dest = "adeldoudou1996@gmail.com";
-		$sujet = "formulaire";
-		$message = $_POST['message'];
-
-		mail($dest, $sujet, $message);
-
-		header("Location: index.php?action=index&alert=1");
-		die();
-
-	}
-
 	public function index()
 	{
 		require('view/indexView.php');
@@ -514,4 +504,44 @@ class Controller
 	{
 		require('view/loginView.php');
 	}
+
+	public function sendMail(){
+
+		$mail = new PHPMailer\PHPMailer\PHPMailer();
+
+		$mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+		$mail->CharSet="UTF-8";
+	    $mail->Host = "smtp.gmail.com";
+	    $mail->SMTPDebug = 1; 
+	    $mail->Port = 465 ; //465 or 587
+
+	    $mail->SMTPSecure = 'ssl';  
+	    $mail->SMTPAuth = true; 
+	    $mail->IsHTML(true);
+
+	    //Authentication
+	    $mail->Username = "adeldoudou1996@gmail.com";
+	    $mail->Password = "mdm0071malik";
+
+	    //Set Params
+	    $mail->SetFrom("foo@gmail.com");
+	    $mail->AddAddress("adeldoudou1996@gmail.com");
+	    $mail->Subject = "MyBlogMail";
+	    $mail->Body ="
+	    HI :) </br> </br>
+	    mail : ".$_POST['email']." </br> </br>
+	    Name: ".$_POST['name']." </br> </br>
+	    Firstname: ".$_POST['firstName']." </br> </br>
+	    message : ".$_POST['message']."
+	    ";
+
+		if(!$mail->send()) {
+		   echo 'Erreur, message non envoyé.';
+		   echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+		   header("Location: MyBlog-Email-1.html");
+		   die();
+		}
+	}
+
 }

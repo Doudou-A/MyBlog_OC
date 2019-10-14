@@ -4,6 +4,7 @@ Options +FollowSymlinks
 # Activation du module de réécriture d'URL :
 RewriteEngine on
 
+RewriteRule ^MyBlog-Email-([0-9]+).html$ /index.php?alert=$1 [L]
 RewriteRule ^Tous-les-Articles.html$ /index.php?action=blogPostAllView [L]
 RewriteRule ^Tous-Les-Articles-Alert-([0-9]+).html$ /index.php?action=blogPostAllView&alert=$1 [L]
 RewriteRule ^Article-([0-9]+).html$ /index.php?action=blogPostFullView&idBlogPost=$1 [L]

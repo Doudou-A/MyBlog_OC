@@ -101,11 +101,6 @@ class BlogPost
 
 	public function setIdAdministrator($idAdministrator)
 	{
-		$idAdministrator = (int) $idAdministrator;
-
-		if ($idAdministrator >0)
-		{
 			$this->_idAdministrator = $idAdministrator;
-		}
 	}
 }

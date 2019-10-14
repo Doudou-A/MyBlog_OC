@@ -257,9 +257,8 @@ class Controller
 			}
 			$manager = new BlogPostManager();
 			$managerC = new CommentManager();
-			$managerA = new AdministratorManager();
 
-			$blogp = $manager->get($_GET['idBlogPost']);
+			$blogp = $manager->getFull($_GET['idBlogPost']);
 
 			$commentsBlogPost = $managerC->getCommentsBlogPost($blogp->idBlogPost());
 

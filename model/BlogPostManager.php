@@ -39,6 +39,22 @@ class BlogPostManager
 		return new BlogPost($data);
 	}
 
+	public function getFull($id)
+	{
+		$Administrator = new AdministratorManager();
+
+		$id = (int) $id;
+		$q = $this->_db->query('SELECT * FROM BlogPost WHERE idBlogPost='.$id);
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+
+		$blogp = new BlogPost($data);
+
+		$blogp->setIdAdministrator($Administrator->get($data["idAdministrator"]));
+
+		return $blogp;
+
+	}
+
 	public function getBlogPosts()
 	{
 		$postspublish=[];

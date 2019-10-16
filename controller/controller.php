@@ -520,8 +520,8 @@ class Controller
 	    $mail->IsHTML(true);
 
 	    //Authentication
-	    $mail->Username = "adeldoudou1996@gmail.com";
-	    $mail->Password = "mdm0071malik";
+	    $mail->Username = "myblog.oc@gmail.com";
+	    $mail->Password = "Password1.";
 
 	    //Set Params
 	    $mail->SetFrom("foo@gmail.com");

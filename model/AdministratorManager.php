@@ -69,7 +69,7 @@ class AdministratorManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT idAdministrator, email, name, firstName, password FROM Administrator WHERE idAdministrator = '.$id);
+		$q = $this->_db->query('SELECT * FROM Administrator WHERE idAdministrator = '.$id);
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);

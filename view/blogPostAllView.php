@@ -13,7 +13,9 @@ session_start();
 						<img src="upload/<?=$blogpost->image();?>" height="300" width="100%">
 					</div>
 					<div class="col-md-12 border border-green white p-2 text-center">
-						<?=$blogpost->title();?>
+						<div class=" font-weight-bold">
+							<?=$blogpost->title();?>
+						</div>
 						<?php if($blogpost->dateLastUpdate() == NULL) : ?>
 						<div class="text-success text-left">
 							Article réalisé le : 

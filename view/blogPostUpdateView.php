@@ -26,7 +26,6 @@ require('adminAccess.php');
 				  <option value="<?=$administrator->idAdministrator();?>"><?=$administrator->idAdministrator();?> - <?=$administrator->name();?>  <?=$administrator->firstName();?></option>
 				<?php endforeach ?>	
 				</select> 
-				<!--<input class="col-lg-12 p-2 border animated fadeInLeft" style=" resize:none;" type="text" name="chapo" value="<?= $admin->idAdministrator; ?> - <?= $admin->name;?> <?= $admin->firstName;?>"/>-->
 		    </div>
 		    <div class="row p-0 m-0 col-12">
 		    	<label class="col-lg-12 mt-4 animated fadeInRight">Contenu : </label> <textarea class="col-lg-12 p-2 border animated fadeInLeft text-justify" style=" resize:none;" type="text" name="content" rows="10"><?= $updateContent ?></textarea>

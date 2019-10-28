@@ -42,7 +42,7 @@ class AdministratorManager
 
 	public function delete(Administrator $admin)
 	{
-		$q = $this->_db->prepare('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
+		$q = $this->_db->prepare('DELETE FROM Administrator WHERE idAdministrator = :idAdministrator');
 		$q->bindvalue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_INT);
 		$q->execute();
 	}

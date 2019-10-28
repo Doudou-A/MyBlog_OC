@@ -1,4 +1,4 @@
-<?php $title = 'Gérer les Administrateurs'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 

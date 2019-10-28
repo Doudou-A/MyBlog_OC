@@ -1,4 +1,5 @@
 <?php
+
 class Administrator
 {
 	private $_idAdministrator;

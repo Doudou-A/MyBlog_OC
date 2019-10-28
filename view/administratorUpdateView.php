@@ -1,4 +1,4 @@
-<?php $title = 'Ajouter un Blog Post'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 

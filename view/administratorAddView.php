@@ -1,4 +1,4 @@
-<?php $title = 'Inscription'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php ob_start(); 
 session_start();

@@ -1,4 +1,5 @@
 <?php
+
 class BlogPost
 {
 	private $_idBlogPost;

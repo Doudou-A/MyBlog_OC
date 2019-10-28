@@ -1,4 +1,4 @@
-<?php $title = 'Page Connexion'; ?>
+<?php $title = 'Connexion'; ?>
 
 <?php ob_start(); ?>
 <div class="container-fluid row align-items-center h-75 m-0 p-0">
@@ -26,12 +26,12 @@
 		</div>
 	</div>
 </div>
-<?php if($_GET['error'] == 1) : ?>
+<?php if(isset($_GET['error']) && $_GET['error'] == 1) : ?>
 	<script type="text/javascript"> 
 		var errorEmail = document.getElementById('errorEmail');
 		errorEmail.style.display = "block";
 	</script>
-<?php elseif($_GET['error'] == 2) : ?>
+<?php elseif(isset($_GET['erro']) && $_GET['error'] == 2) : ?>
 	<script type="text/javascript">
 		var errorPassword = document.getElementById('errorPassword');
 		errorPassword.style.display = "block";

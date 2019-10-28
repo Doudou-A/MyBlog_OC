@@ -1,4 +1,4 @@
-<?php $title = 'My Blog'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start();
@@ -37,8 +37,8 @@ session_start(); ?>
 		</div>
 		<div class="p-3 m-3 col-lg-3 text-index animated fadeIn delay-2s">
 			Retrouver moi sur : </br>
-			<a href="https://www.facebook.com/adeldoudou1996" class="offset-2"><img src="src/fb_icon_325x325.png" class="col-4 p-3"></a>
-			<a href="https://www.linkedin.com/in/adel-doudou-363580182/" class="offset-1"><img src="src/linkedin-logo-e1407144392549.png" class="col-4 p-3"></a>
+			<a href="https://www.facebook.com/adeldoudou1996" class="offset-2"><img src="public/upload/fb_icon_325x325.png" class="col-4 p-3"></a>
+			<a href="https://www.linkedin.com/in/adel-doudou-363580182/" class="offset-1"><img src="public/upload/linkedin-logo-e1407144392549.png" class="col-4 p-3"></a>
 		</div>
 	</div>
 </div>

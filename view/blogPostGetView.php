@@ -1,8 +1,10 @@
-<?php $title = 'Ajouter un Blog Post'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 
-session_start();
+session_start()
+//Vue gestion des articles
+;
 require('adminAccess.php');?>
 
 <div class="container-fluid h-100 p-5 grey lighten-3">

@@ -1,6 +1,7 @@
 <?php
 
 require_once('Config.php');
+require('Administrator.php');
 
 class AdministratorManager
 {
@@ -11,6 +12,7 @@ class AdministratorManager
     	$this->setDb(DbConfig::dbConnect());
  	}
 
+ 	//Ajouter un Utilisateur
 	public function add(Administrator $admin)
 	{
 		$q = $this->_db->prepare('INSERT INTO Administrator(email, name, firstName, password) VALUES(:email, :name, :firstName, :password)');
@@ -25,6 +27,7 @@ class AdministratorManager
 		$q->execute();
 	}
 
+	//Connecter un Utilisateur
 	public function connect($email)
 	{
 		$email = (string) $email;
@@ -42,6 +45,7 @@ class AdministratorManager
 		$this->_db->exec('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
 	}
 
+	//Vérifier l'existance d'un email
 	public function emailExist($email)
 	{
 		$email = (string) $email;
@@ -91,6 +95,7 @@ class AdministratorManager
 		return $adminspublish;
 	}
 
+	//Modifier un utilisateur avec un mot de passe différent
 	public function update(Administrator $admin)
 	{
 		$q = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName, password = :password WHERE idAdministrator = :idAdministrator');
@@ -106,6 +111,8 @@ class AdministratorManager
 		$q->execute();
 	}
 
+
+	//Modifier un utilisateur avec le même mot de passe
 	public function updateNoPassword(Administrator $admin)
 	{
 		$q = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName WHERE idAdministrator = :idAdministrator');

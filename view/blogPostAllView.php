@@ -1,16 +1,17 @@
-<?php $title = 'Affichage de tous les Articles'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 
 session_start();
-?>
+//Vue de tous les articles
+ ?>
 <div class="container-fluid min-h-100 p-5 grey lighten-3">
 	<h2 class="border-bottom col-12 animated fadeInLeft">Tous les Articles</h2>
 	<div  class="d-flex justify-content-around flex-wrap">
   <?php foreach ($blogposts as $key => $blogpost) :?>		
 				<div class="col-md-3 m-1 mt-5 animated fadeInDown">
 					<div class="col-md-12 border border-green white p-2">
-						<img src="upload/<?=$blogpost->image();?>" height="300" width="100%">
+						<img src="public/upload/<?=$blogpost->image();?>" height="300" width="100%">
 					</div>
 					<div class="col-md-12 border border-green white p-2 text-center">
 						<div class=" font-weight-bold">

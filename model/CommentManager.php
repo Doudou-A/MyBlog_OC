@@ -1,6 +1,9 @@
 <?php
 
+
 require_once('Config.php');
+require('Comment.php');
+//use App\Entity\Comment;
 
 class CommentManager
 {
@@ -44,6 +47,7 @@ class CommentManager
 		return new Comment($data);
 	}
 
+	//Récupérer les commentaires d'un article
 	public function getCommentsBlogPost($id)
 	{
 		$valid = true;
@@ -62,6 +66,7 @@ class CommentManager
 		return $commentspublish;
 	}
 
+	//Récupérer les commentaires valides
 	public function getComValid()
 	{
 		$comspublish=[];
@@ -81,6 +86,7 @@ class CommentManager
 		return $comspublish;
 	}
 
+	//Récupérer les commentaires à valider
 	public function getComToValid()
 	{
 		$comspublish = [];
@@ -99,7 +105,7 @@ class CommentManager
 		return $comspublish;
 	}
 	
-	public function getList()
+	/*public function getList()
 	{
 		$com = [];
 
@@ -113,10 +119,11 @@ class CommentManager
 		return $com;
 	}
 
+
 	public function update(Comment $com)
 	{
 		$this->_db->exec('UPDATE Comment SET valid = 1 WHERE idComment ='.$com->idComment());
-	}
+	}*/
 
 	public function setDb(PDO $db)
 	{

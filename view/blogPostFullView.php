@@ -1,8 +1,9 @@
-<?php $title = 'My Blog'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 
 session_start();
+//Vue d'un article
 ?>
 <div class="container-fluid white">
 	<div class="col-10 m-auto h-75 p-5 d-flex flex-column">

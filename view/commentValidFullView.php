@@ -1,4 +1,4 @@
-<?php $title = 'Valider un Commentaire'; ?>
+<?php $title = 'MyBlog'; ?>
 
 <?php 
 ob_start(); 

@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title><?= $title ?></title>
-		<link rel="stylesheet" href="public/bootstrap.css" />
-		<link rel="stylesheet" href="public/mdb.css" />
+		<link rel="stylesheet" href="public/css/bootstrap.css" />
+		<link rel="stylesheet" href="public/css/mdb.css" />
 		<script type="text/javascript" src="/public/style.js"></script>
 		<nav class="navbar navbar-expand-md navbar-dark green d-flex flex-wrap">
 			<div class="w-100 green p-2 text-white">

@@ -1,6 +1,8 @@
 <?php
 
 require_once('Config.php');
+require('BlogPost.php');
+//use App\Entity\BlogPost;
 
 class BlogPostManager
 {
@@ -25,11 +27,14 @@ class BlogPostManager
 
 	}
 
+	//Supprimer un article
 	public function delete(BlogPost $blogp)
 	{
 		$this->_db->exec('DELETE FROM BlogPost WHERE idBlogPost = '.$blogp->idBlogPost());
 	}
 
+
+	//Récupérer un article selon l'id
 	public function get($id)
 	{
 		$id = (int) $id;
@@ -71,14 +76,14 @@ class BlogPostManager
 		return $postspublish;
 	}
 
-	public function getList()
+	/*public function getList()
 	{
 		$blogp = [];
 
 		$q = $this->_db->query('SELECT * FROM BlogPost');
 
 		return $q;
-	}
+	}*/
 
 	public function update(BlogPost $blogp)
 	{

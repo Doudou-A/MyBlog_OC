@@ -30,7 +30,10 @@ class BlogPostManager
 	//Supprimer un article
 	public function delete(BlogPost $blogp)
 	{
-		$this->_db->exec('DELETE FROM BlogPost WHERE idBlogPost = '.$blogp->idBlogPost());
+		$q = $this->_db->prepare('DELETE FROM BlogPost WHERE idBlogPost = :idBlogPost');
+		$q->bindValue(':idBlogPost' , $blogp->idBlogPost(), PDO::PARAM_INT);
+		$q->execute();
+
 	}
 
 
@@ -38,7 +41,9 @@ class BlogPostManager
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT * FROM BlogPost WHERE idBlogPost='.$id);
+		$q = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
+		$q->bindValue(':id', $id, PDO::PARAM_INT);
+		$q->execute();
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);
@@ -49,7 +54,9 @@ class BlogPostManager
 		$Administrator = new AdministratorManager();
 
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT * FROM BlogPost WHERE idBlogPost='.$id);
+		$q = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
+		$q->bindValue(':id', $id, PDO::PARAM_INT);
+		$q->execute();
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		$blogp = new BlogPost($data);

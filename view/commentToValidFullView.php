@@ -29,7 +29,7 @@ require('adminAccess.php');
 				<a class="text-success animated fadeInLeft" href="index.php?action=commentValid&amp;id=<?=$comId?>" >&#x2705;   Valider</a>
 			</div>
 			<div class="col-md-4 offset-md-2 mt-4">
-				<a class="text-danger animated fadeInRight" href="index.php?action=commentDelete&amp;id=<?=$comId?>" >&#x274C;  Supprimer</a>
+				<a class="text-danger animated fadeInRight" href="index.php?action=commentDelete&amp;id=<?=$comId?>&amp;jeton=<?=$_SESSION['jeton']?>" >&#x274C;  Supprimer</a>
 			</div>
 		</div>
 	</div>

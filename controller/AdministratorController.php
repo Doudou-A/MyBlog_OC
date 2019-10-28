@@ -4,9 +4,6 @@ spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
 });
 
-//use App\Entity\Administrator;
-//use App\Manager\AdministratorManager;
-
 class AdministratorController
 {
 	public function administratorAddForm()

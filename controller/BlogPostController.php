@@ -4,20 +4,13 @@ spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
 });
 
-/*use App\Entity\Administrator;
-use App\Entity\BlogPost;
-use App\Entity\Comment;
-use App\Manager\AdministratorManager;
-use App\Manager\BlogPostManager;
-use App\Manager\CommentManager;*/
-
 class BlogPostController extends SecurityController
 {
 
 	public function blogPostAddForm()
 	{
 
-		$content_dir = 'upload/';
+		$content_dir = 'public/upload/';
 
 	    $tmp_file = $_FILES['image']['tmp_name'];
 

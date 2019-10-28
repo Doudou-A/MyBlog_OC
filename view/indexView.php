@@ -2,7 +2,7 @@
 
 <?php 
 ob_start();
-session_start(); ?>
+session_start();?>
 <div class="contrainer-fluid min-h-100 aqua-gradient">
 	<div class="h-25 d-flex p-3">
 		<img src="src/MyBlog.png" class="border rounded-circle shadow animated zoomIn" alt="MyBLog" height="200" width="auto">

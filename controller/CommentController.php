@@ -4,9 +4,6 @@ spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
 });
 
-//use App\Entity\Comment;
-//use App\Manager\CommentManager;
-
 class CommentController extends SecurityController
 {
 	public function commentAddForm()

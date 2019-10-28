@@ -26,7 +26,7 @@ require('adminAccess.php');
 				</div>
 			</div>
 			<div class="col-md-12 mt-4 text-center">
-				<a class="text-danger animated fadeIn" href="index.php?action=commentDelete&amp;id=<?=$comId?>" >&#x274C;  Supprimer</a>
+				<a class="text-danger animated fadeIn" href="index.php?action=commentDelete&amp;id=<?=$comId?>&amp;jeton=<?=$_SESSION['jeton']?>" >&#x274C;  Supprimer</a>
 			</div>
 		</div>
 	</div>

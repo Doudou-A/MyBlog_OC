@@ -29,19 +29,27 @@ class CommentManager
 
 	public function delete(Comment $com)
 	{
-		$this->_db->exec('DELETE FROM Comment WHERE idComment = '.$com->idComment());
+		$q = $this->_db->prepare('DELETE FROM Comment WHERE idComment = :idComment');
+
+		$q->bindValue(':idComment', $com->idComment(), PDO::PARAM_INT);
+
+		$q->execute();
+
 	}
 
 	
-	public function deleteIdBlogPost(Comment $com)
+	/*public function deleteIdBlogPost(Comment $com)
 	{
 		$this->_db->exec('DELETE FROM Comment WHERE idBlogPost = '.$com);
-	}
+	}*/
 
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->query('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment ='.$id);
+		$q = $this->_db->prepare('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment = :id');
+		$q->bindValue(':id', $id, PDO::PARAM_INT);
+		$q->execute();
+
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
@@ -54,7 +62,9 @@ class CommentManager
 
 		$commentspublish=[];
 
-		$q = $this->_db->query('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = '.$id);
+		$q = $this->_db->prepare('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = :id ');
+		$q->bindValue(':id', $id, PDO::PARAM_INT);
+		$q->execute();
 		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 

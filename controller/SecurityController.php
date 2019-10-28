@@ -4,9 +4,6 @@ spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
 });
 
-//use App\Entity\Administrator;
-//use App\Manager\AdministratorManager;
-
 require('PHPMailer-master/src/PHPMailer.php');
 require("PHPMailer-master/src/SMTP.php");
 require("PHPMailer-master/src/Exception.php");
@@ -50,9 +47,11 @@ class SecurityController
 			if ($isPasswordCorrect) {
 				unset($_SESSION['jeton']);
 				session_start();
+				
 				$_SESSION['name'] = htmlspecialchars($administrator->name());
 				$_SESSION['firstName'] = htmlspecialchars($administrator->firstName());	
 				$_SESSION['id'] = $administrator->idAdministrator();
+				//Faille CRSF
    				$_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(6));
 
 				require('view/adminView.php');

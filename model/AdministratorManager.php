@@ -42,7 +42,9 @@ class AdministratorManager
 
 	public function delete(Administrator $admin)
 	{
-		$this->_db->exec('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
+		$q = $this->_db->prepare('DELETE FROM Administrator WHERE idAdministrator = '.$admin->idAdministrator());
+		$q->bindvalue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_INT);
+		$q->execute();
 	}
 
 	//Vérifier l'existance d'un email
@@ -73,7 +75,9 @@ class AdministratorManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->query('SELECT * FROM Administrator WHERE idAdministrator = '.$id);
+		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE idAdministrator = :id');
+		$q->bindValue(':id', $id, PDO::PARAM_INT);
+		$q->execute();
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);

@@ -18,22 +18,22 @@ class CommentManager
 	{
 		$valid = false;
 
-		$q = $this->_db->prepare('INSERT INTO Comment(pseudo, dateCreated, content, valid, idBlogPost) VALUES (:pseudo, NOW(), :content, '.((int) $valid).' , :idBlogPost)');
+		$query = $this->_db->prepare('INSERT INTO Comment(pseudo, dateCreated, content, valid, idBlogPost) VALUES (:pseudo, NOW(), :content, '.((int) $valid).' , :idBlogPost)');
 		
-		$q->bindValue(':pseudo', $com->pseudo(), PDO::PARAM_STR);
-		$q->bindValue(':content', $com->content(), PDO::PARAM_STR);
-		$q->bindValue(':idBlogPost', $com->idBlogPost(), PDO::PARAM_INT);
+		$query->bindValue(':pseudo', $com->pseudo(), PDO::PARAM_STR);
+		$query->bindValue(':content', $com->content(), PDO::PARAM_STR);
+		$query->bindValue(':idBlogPost', $com->idBlogPost(), PDO::PARAM_INT);
 
-		$q->execute();
+		$query->execute();
 	}
 
 	public function delete(Comment $com)
 	{
-		$q = $this->_db->prepare('DELETE FROM Comment WHERE idComment = :idComment');
+		$query = $this->_db->prepare('DELETE FROM Comment WHERE idComment = :idComment');
 
-		$q->bindValue(':idComment', $com->idComment(), PDO::PARAM_INT);
+		$query->bindValue(':idComment', $com->idComment(), PDO::PARAM_INT);
 
-		$q->execute();
+		$query->execute();
 
 	}
 
@@ -46,11 +46,11 @@ class CommentManager
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->prepare('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment = :id');
-		$q->bindValue(':id', $id, PDO::PARAM_INT);
-		$q->execute();
+		$query = $this->_db->prepare('SELECT idComment, pseudo, content, valid FROM Comment WHERE idComment = :id');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
 
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($data);
 	}
@@ -62,10 +62,10 @@ class CommentManager
 
 		$commentspublish=[];
 
-		$q = $this->_db->prepare('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = :id ');
-		$q->bindValue(':id', $id, PDO::PARAM_INT);
-		$q->execute();
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$query = $this->_db->prepare('SELECT * FROM Comment WHERE valid ='.((int) $valid).' AND idBlogPost = :id ');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
@@ -82,8 +82,8 @@ class CommentManager
 		$comspublish=[];
 		$BlogPost = new BlogPostManager;
 
-		$q = $this->_db->query('SELECT * FROM Comment WHERE valid = 1');
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$query = $this->_db->query('SELECT * FROM Comment WHERE valid = 1');
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
@@ -102,8 +102,8 @@ class CommentManager
 		$comspublish = [];
 		$BlogPost = new BlogPostManager;
 
-		$q = $this->_db->query('SELECT * FROM Comment WHERE valid = 0');
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$query = $this->_db->query('SELECT * FROM Comment WHERE valid = 0');
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
@@ -119,9 +119,9 @@ class CommentManager
 	{
 		$com = [];
 
-		$q = $this->_db->query('SELECT id, pseudo, date, content, valid FROM comment ORDER BY pseudo');
+		$query = $this->_db->query('SELECT id, pseudo, date, content, valid FROM comment ORDER BY pseudo');
 
-		while ($data = $q->fetch(PDO::FETCH_ASSOC))
+		while ($data = $query->fetch(PDO::FETCH_ASSOC))
 		{
 			$com[] = new Comment($data);
 		}

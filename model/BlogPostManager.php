@@ -15,24 +15,24 @@ class BlogPostManager
 
 	public function add(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image, idAdministrator) VALUES (:title, :chapo, :content, NOW(), :image, :idAdministrator)');
+		$query = $this->_db->prepare('INSERT INTO BlogPost(title, chapo, content, dateCreated, image, idAdministrator) VALUES (:title, :chapo, :content, NOW(), :image, :idAdministrator)');
 
-		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
-		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
-		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
-		$q->bindValue(':image', $blogp->image(), PDO::PARAM_STR);
-		$q->bindValue(':idAdministrator', $blogp->idAdministrator(), PDO::PARAM_STR);
+		$query->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
+		$query->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
+		$query->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
+		$query->bindValue(':image', $blogp->image(), PDO::PARAM_STR);
+		$query->bindValue(':idAdministrator', $blogp->idAdministrator(), PDO::PARAM_STR);
 
-		$q->execute();
+		$query->execute();
 
 	}
 
 	//Supprimer un article
 	public function delete(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('DELETE FROM BlogPost WHERE idBlogPost = :idBlogPost');
-		$q->bindValue(':idBlogPost' , $blogp->idBlogPost(), PDO::PARAM_INT);
-		$q->execute();
+		$query = $this->_db->prepare('DELETE FROM BlogPost WHERE idBlogPost = :idBlogPost');
+		$query->bindValue(':idBlogPost' , $blogp->idBlogPost(), PDO::PARAM_INT);
+		$query->execute();
 
 	}
 
@@ -41,10 +41,10 @@ class BlogPostManager
 	public function get($id)
 	{
 		$id = (int) $id;
-		$q = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
-		$q->bindValue(':id', $id, PDO::PARAM_INT);
-		$q->execute();
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$query = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		return new BlogPost($data);
 	}
@@ -54,10 +54,10 @@ class BlogPostManager
 		$Administrator = new AdministratorManager();
 
 		$id = (int) $id;
-		$q = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
-		$q->bindValue(':id', $id, PDO::PARAM_INT);
-		$q->execute();
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$query = $this->_db->prepare('SELECT * FROM BlogPost WHERE idBlogPost= :id');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		$blogp = new BlogPost($data);
 
@@ -71,8 +71,8 @@ class BlogPostManager
 	{
 		$postspublish=[];
 
-		$q = $this->_db->query('SELECT * FROM BlogPost');
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$query = $this->_db->query('SELECT * FROM BlogPost');
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
@@ -87,22 +87,22 @@ class BlogPostManager
 	{
 		$blogp = [];
 
-		$q = $this->_db->query('SELECT * FROM BlogPost');
+		$query = $this->_db->query('SELECT * FROM BlogPost');
 
-		return $q;
+		return $query;
 	}*/
 
 	public function update(BlogPost $blogp)
 	{
-		$q = $this->_db->prepare('UPDATE BlogPost SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = NOW(), idAdministrator = :idAdministrator WHERE idBlogPost = :idBlogPost');
+		$query = $this->_db->prepare('UPDATE BlogPost SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = NOW(), idAdministrator = :idAdministrator WHERE idBlogPost = :idBlogPost');
 
-		$q->bindValue(':idBlogPost', $blogp->idBlogPost(), PDO::PARAM_INT);
-		$q->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
-		$q->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
-		$q->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
-		$q->bindValue(':idAdministrator', $blogp->idAdministrator(), PDO::PARAM_INT);
+		$query->bindValue(':idBlogPost', $blogp->idBlogPost(), PDO::PARAM_INT);
+		$query->bindValue(':title', $blogp->title(), PDO::PARAM_STR);
+		$query->bindValue(':chapo', $blogp->chapo(), PDO::PARAM_STR);
+		$query->bindValue(':content', $blogp->content(), PDO::PARAM_STR);
+		$query->bindValue(':idAdministrator', $blogp->idAdministrator(), PDO::PARAM_INT);
 
-		$q->execute();
+		$query->execute();
 	}
 
 	public function setDb(PDO $db)

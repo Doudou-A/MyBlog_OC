@@ -15,16 +15,16 @@ class AdministratorManager
  	//Ajouter un Utilisateur
 	public function add(Administrator $admin)
 	{
-		$q = $this->_db->prepare('INSERT INTO Administrator(email, name, firstName, password) VALUES(:email, :name, :firstName, :password)');
+		$query = $this->_db->prepare('INSERT INTO Administrator(email, name, firstName, password) VALUES(:email, :name, :firstName, :password)');
 
 		$pass_hash = password_hash($admin->password(), PASSWORD_DEFAULT);
 
-		$q->bindValue(':email', $admin->email(), PDO::PARAM_STR);
-		$q->bindValue(':name', $admin->name(), PDO::PARAM_STR);
-		$q->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
-		$q->bindValue(':password', $pass_hash);
+		$query->bindValue(':email', $admin->email(), PDO::PARAM_STR);
+		$query->bindValue(':name', $admin->name(), PDO::PARAM_STR);
+		$query->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
+		$query->bindValue(':password', $pass_hash);
 
-		$q->execute();
+		$query->execute();
 	}
 
 	//Connecter un Utilisateur
@@ -32,9 +32,9 @@ class AdministratorManager
 	{
 		$email = (string) $email;
 
-		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
-		$q->execute(array(':email' => $email));
-		$data = $q->fetch();
+		$query = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
+		$query->execute(array(':email' => $email));
+		$data = $query->fetch();
 
 		return new Administrator($data);
 
@@ -42,9 +42,9 @@ class AdministratorManager
 
 	public function delete(Administrator $admin)
 	{
-		$q = $this->_db->prepare('DELETE FROM Administrator WHERE idAdministrator = :idAdministrator');
-		$q->bindvalue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_INT);
-		$q->execute();
+		$query = $this->_db->prepare('DELETE FROM Administrator WHERE idAdministrator = :idAdministrator');
+		$query->bindvalue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_INT);
+		$query->execute();
 	}
 
 	//Vérifier l'existance d'un email
@@ -52,9 +52,9 @@ class AdministratorManager
 	{
 		$email = (string) $email;
 
-		$q = $this->_db->prepare('SELECT idAdministrator FROM Administrator WHERE email = :email');
-		$q->execute(array(':email' => $email));
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$query = $this->_db->prepare('SELECT idAdministrator FROM Administrator WHERE email = :email');
+		$query->execute(array(':email' => $email));
+		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		return $data;
 	}
@@ -63,9 +63,9 @@ class AdministratorManager
 	{
 		$email = (string) $email;
 
-		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
-		$q->execute(array(':email' => $email));
-		$data = $q->fetch();
+		$query = $this->_db->prepare('SELECT * FROM Administrator WHERE email = :email');
+		$query->execute(array(':email' => $email));
+		$data = $query->fetch();
 
 		return $data;
 
@@ -75,10 +75,10 @@ class AdministratorManager
 	{
 		$id = (int) $id;
 
-		$q = $this->_db->prepare('SELECT * FROM Administrator WHERE idAdministrator = :id');
-		$q->bindValue(':id', $id, PDO::PARAM_INT);
-		$q->execute();
-		$data = $q->fetch(PDO::FETCH_ASSOC);
+		$query = $this->_db->prepare('SELECT * FROM Administrator WHERE idAdministrator = :id');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		return new Administrator($data);
 	}
@@ -87,8 +87,8 @@ class AdministratorManager
 	{
 		$adminspublish=[];
 
-		$q = $this->_db->query('SELECT * FROM Administrator');
-		$data = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$query = $this->_db->query('SELECT * FROM Administrator');
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 
 		{ 
@@ -102,31 +102,31 @@ class AdministratorManager
 	//Modifier un utilisateur avec un mot de passe différent
 	public function update(Administrator $admin)
 	{
-		$q = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName, password = :password WHERE idAdministrator = :idAdministrator');
+		$query = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName, password = :password WHERE idAdministrator = :idAdministrator');
 
 		$pass_hash = password_hash($admin->password(), PASSWORD_DEFAULT);
 
-		$q->bindValue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_STR);
-		$q->bindValue(':email', $admin->email(), PDO::PARAM_STR);
-		$q->bindValue(':name', $admin->name(), PDO::PARAM_STR);
-		$q->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
-		$q->bindValue(':password', $pass_hash, PDO::PARAM_STR);
+		$query->bindValue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_STR);
+		$query->bindValue(':email', $admin->email(), PDO::PARAM_STR);
+		$query->bindValue(':name', $admin->name(), PDO::PARAM_STR);
+		$query->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
+		$query->bindValue(':password', $pass_hash, PDO::PARAM_STR);
 
-		$q->execute();
+		$query->execute();
 	}
 
 
 	//Modifier un utilisateur avec le même mot de passe
 	public function updateNoPassword(Administrator $admin)
 	{
-		$q = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName WHERE idAdministrator = :idAdministrator');
+		$query = $this->_db->prepare('UPDATE Administrator SET email = :email, name = :name, firstName = :firstName WHERE idAdministrator = :idAdministrator');
 
-		$q->bindValue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_STR);
-		$q->bindValue(':email', $admin->email(), PDO::PARAM_STR);
-		$q->bindValue(':name', $admin->name(), PDO::PARAM_STR);
-		$q->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
+		$query->bindValue(':idAdministrator', $admin->idAdministrator(), PDO::PARAM_STR);
+		$query->bindValue(':email', $admin->email(), PDO::PARAM_STR);
+		$query->bindValue(':name', $admin->name(), PDO::PARAM_STR);
+		$query->bindValue(':firstName', $admin->firstName(), PDO::PARAM_STR);
 
-		$q->execute();
+		$query->execute();
 	}
 
 	public function setDb(PDO $db)

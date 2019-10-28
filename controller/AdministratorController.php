@@ -15,7 +15,7 @@ class AdministratorController
 		if ($emailExist != 0) //Vérification si le pseudo existe
 		{
 			header("Location: Ajouter-un-Utilisateur-Error-1.html");
-			die();
+			exit;
 		}
 		elseif($_POST['password'] == $_POST['passwordConfirm'])
 		{
@@ -30,12 +30,12 @@ class AdministratorController
 			$manager->add($admin);
 
 			header("Location: Gérer-les-Utilisateurs.html");
-			die();
+			exit;
 		}
 		else
 		{
 			header("Location: Ajouter-un-Utilisateur-Error-2.html");
-			die();
+			exit;
 		}
 	}
 
@@ -57,12 +57,12 @@ class AdministratorController
 			$manager->delete($admin);
 
 			header("Location: index.php?action=administratorGetView");
-			die();
+			exit;
 		}
 		else
 		{
 			header("Location: Gérer-les-Utilisateurs-Protection-1.html");
-			die();
+			exit;
 		}
 	}
 
@@ -90,7 +90,7 @@ class AdministratorController
 			if ($emailExist != 0) //Vérification si le mail existe
 			{
 				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-1.html");
-				die();
+				exit;
 			}
 		}
 		if(!empty($_POST['password']))
@@ -110,12 +110,12 @@ class AdministratorController
 				$manager->update($admin);
 
 				header("Location: Gérer-les-Utilisateurs-Alert-1.html");
-				die();
+				exit;
 			}
 			else
 			{
 				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-2.html");
-				die();
+				exit;
 			}
 		}
 		else
@@ -130,7 +130,7 @@ class AdministratorController
 			$manager->updateNoPassword($admin);
 
 			header("Location: Gérer-les-Utilisateurs-Alert-2.html");
-			die();
+			exit;
 
 		}
 	}

@@ -45,7 +45,7 @@ class BlogPostController extends SecurityController
 		$manager->add($blogp);
 
 		header("Location: Gérer-les-Articles.html");
-		die();
+		exit;
 
 	}
 	
@@ -76,12 +76,12 @@ class BlogPostController extends SecurityController
 			$manager->delete($blogp);
 
 			header("Location: Gérer-les-Articles.html");
-			die();
+			exit;
 		}
 		else
 		{
 			header("Location: Gérer-les-Articles-Protection-1.html");
-			die();
+			exit;
 		}
 	}
 
@@ -138,7 +138,7 @@ class BlogPostController extends SecurityController
 		$manager->update($blogp);
 		
 		header("Location: Gérer-les-Articles.html");
-		die();
+		exit;
 	}
 
 	public function blogPostUpdateView()

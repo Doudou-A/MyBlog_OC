@@ -21,7 +21,7 @@ class CommentController extends SecurityController
 			$manager->add($com);
 
 			header("Location: Tous-Les-Articles-Alert-1.html");
-			die();
+			exit;
 
 		}
 		else
@@ -43,12 +43,12 @@ class CommentController extends SecurityController
 			$manager->delete($com);
 
 			header("Location: Gérer-les-Commentaires.html");
-			die();
+			exit;
 		}
 		else
 		{
 			header("Location: Gérer-les-Commentaires-Protection-1.html");
-			die();
+			exit;
 		}
 	}
 
@@ -117,7 +117,7 @@ class CommentController extends SecurityController
 			$manager->update($com);
 
 			header("Location: Gérer-les-Commentaires.html");
-			die();
+			exit;
 		}
 		else
 		{

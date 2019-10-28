@@ -36,6 +36,7 @@ class SecurityController
 		if (!$getEmail) 
 		{
 			header("Location: Connexion-Error-1.html");
+			exit;
 		}
 		else
 		{
@@ -47,7 +48,7 @@ class SecurityController
 			if ($isPasswordCorrect) {
 				unset($_SESSION['jeton']);
 				session_start();
-				
+
 				$_SESSION['name'] = htmlspecialchars($administrator->name());
 				$_SESSION['firstName'] = htmlspecialchars($administrator->firstName());	
 				$_SESSION['id'] = $administrator->idAdministrator();
@@ -62,6 +63,7 @@ class SecurityController
 			else 
 			{
 				header("Location: Connexion-Error-2.html");
+				exit;
 			}
 		}
 	}
@@ -107,7 +109,7 @@ class SecurityController
 		   echo 'Mailer Error: ' . $mail->ErrorInfo;
 		} else {
 		   header("Location: MyBlog-Email-1.html");
-		   die();
+		   exit;
 		}
 	}
 

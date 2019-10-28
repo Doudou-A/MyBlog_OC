@@ -2,7 +2,6 @@
 
 require_once('Config.php');
 require('BlogPost.php');
-//use App\Entity\BlogPost;
 
 class BlogPostManager
 {

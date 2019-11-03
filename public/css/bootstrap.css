@@ -4126,7 +4126,21 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
+  /*Adel*/
+  width: 24.9999999%;
+  text-align: center;
 }
+
+@media (min-width: 768px){
+  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+    /*Adel*/
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
 
 .nav-tabs .nav-link {
   border: 1px solid transparent;
@@ -4236,6 +4250,8 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  /*Adel*/
+  width: 83.333333333% !important;
 }
 
 .navbar-nav .nav-link {
@@ -4346,6 +4362,8 @@ input[type="button"].btn-block {
   .navbar-expand-md .navbar-nav {
     -ms-flex-direction: row;
     flex-direction: row;
+    /*Adel*/
+    width: 100%;
   }
   .navbar-expand-md .navbar-nav .dropdown-menu {
     position: absolute;

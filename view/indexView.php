@@ -5,7 +5,7 @@ ob_start();
 session_start();?>
 <div class="contrainer-fluid min-h-100 aqua-gradient">
 	<div class="h-25 d-flex p-3">
-		<img src="src/MyBlog.png" class="border rounded-circle shadow animated zoomIn" alt="MyBLog" height="200" width="auto">
+		<img src="public/upload/MyBlog.png" class="border rounded-circle shadow animated zoomIn" alt="MyBLog" height="200" width="auto">
 		<div class="text-center w-100 h3 p-5 text-index animated slideInDown faster">
 			Doudou Adel, le développeur passioné &#128513;
 		</div>
@@ -33,7 +33,7 @@ session_start();?>
 		</div>
 		<div class="white border p-3 m-3 rounded col-lg-3 text-index animated fadeIn delay-1s">
 			Mon CV au format PDF :
-			<embed src=src/CV.pdf class="col-12 h-75 mt-3 border" type='application/pdf'/>
+			<embed src=public/upload/CV.pdf class="col-12 h-75 mt-3 border" type='application/pdf'/>
 		</div>
 		<div class="p-3 m-3 col-lg-3 text-index animated fadeIn delay-2s">
 			Retrouver moi sur : </br>

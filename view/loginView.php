@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <div class="container-fluid row align-items-center h-75 m-0 p-0">
 	<div class="col-md-8 m-auto h-50 aqua-gradient shadow d-flex pr-5">
-		<img src="src/MyBlog.png" class=" h-50  m-auto d-none d-xl-block">
+		<img src="public/upload/MyBlog.png" class=" h-50  m-auto d-none d-xl-block">
 		<div class="col-xl-4 shadow h-110 p-4 mt-n3 white">
 			<div class="text-center">
 				<h2>Connexion</h2>

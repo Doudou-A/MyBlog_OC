@@ -2419,25 +2419,8 @@ textarea.form-control {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.admin-btn {
-  display: inline-block;
-  font-weight: 400;
-  color: white;
+.admin-btn{
   cursor: pointer;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.admin-btn:hover{
-  background-color: rgba(61, 157, 155, 0.3);
 }
 
 @media (prefers-reduced-motion: reduce) {

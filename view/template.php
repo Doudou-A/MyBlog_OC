@@ -5,7 +5,7 @@
 		<title><?= $title ?></title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/public/style.js"></script>
+		<script type="text/javascript" src="public/js/style.js"></script>
 		<link rel="stylesheet" href="public/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="public/css/mdb.css" />
@@ -27,7 +27,7 @@
 		        <a class="nav-link" href="Tous-les-Articles.html">Tous les Articles</a>
 		      </li>
 		      <?php if(isset($_SESSION['firstName'])) : ?>
-		       <li class="nav-item admin-btn col-4 mt-3">
+		       <li class="nav-item col-4 mt-3">
 		        <div class="nav-link" id="Administration">Administration</div>
 				  <div class="d-flex flex-column aqua-gradient">
 					<btn style="display: none;" class="admin-btn p-3 font-weight-bold animated bounceIn" id="BlogsPosts" >Articles
@@ -62,13 +62,17 @@
 		  	<?php endif ?>
 		    </ul>
 		      <?php if(isset($_SESSION['firstName'])) :?>
-					  <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
+		      	<div class="mt-3">
+					<a class="btn btn-outline-success my-2 my-sm-0 text-white" href="index.php?action=destroy">
 				      	Déconnexion
-				      </a>
+				    </a>
+				</div>
 		  	<?php 	else : ?>
-		      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="Connexion.html">
-		      	Connexion
-		      </a>
+		  		<div class="mt-3">
+			      <a class="btn btn-outline-success my-2 my-sm-0 text-white" href="Connexion.html">
+			      	Connexion
+			      </a>
+			    </div>
 		    <?php endif?>
 		  </div>
 		</nav>

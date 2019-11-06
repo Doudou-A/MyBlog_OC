@@ -4,9 +4,11 @@
 ob_start();
 session_start();?>
 <div class="contrainer-fluid min-h-100 aqua-gradient">
-	<div class="h-25 d-flex p-3">
-		<img src="public/upload/MyBlog.png" class="border rounded-circle shadow animated zoomIn" alt="MyBLog" height="200" width="auto">
-		<div class="text-center w-100 h3 p-5 text-index animated slideInDown faster">
+	<div class="h-25 d-flex flex-wrap p-3">
+		<div class="col-lg-4">
+			<img src="public/upload/MyBlog.png" class="border rounded-circle shadow animated zoomIn" alt="MyBLog" height="200" width="auto">
+		</div>
+		<div class="text-center h3 p-5 text-index animated slideInDown faster col-lg-8">
 			Doudou Adel, le développeur passioné &#128513;
 		</div>
 	</div>

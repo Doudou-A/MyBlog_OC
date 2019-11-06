@@ -10,7 +10,9 @@ class AdministratorController
 	{
 		$manager = new AdministratorManager();
 
-		$emailExist = $manager->emailExist($_POST['email']);
+		$postEmail = $_POST['email'];
+
+		$emailExist = $manager->emailExist($postEmail);
 
 		if ($emailExist != 0) //Vérification si le pseudo existe
 		{
@@ -52,7 +54,9 @@ class AdministratorController
 		{
 			$manager = new AdministratorManager();
 
-			$admin = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$admin = $manager->get($id);
 
 			$manager->delete($admin);
 
@@ -81,15 +85,18 @@ class AdministratorController
 	{	
 		
 		$manager = new AdministratorManager();
-		$administrator = $manager->get($_GET['id']);
+		$id = $_GET['id'];
+		$administrator = $manager->get($id);
 
 		if ($administrator->email() != $_POST['email']) {
 
-			$emailExist = $manager->emailExist($_POST['email']);
+			$postEmail = $_POST['email'];
+
+			$emailExist = $manager->emailExist($postEmail);
 
 			if ($emailExist != 0) //Vérification si le mail existe
 			{
-				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-1.html");
+				header("Location: Modifier-Utilisateur-".$id."-Error-1.html");
 				exit;
 			}
 		}
@@ -114,7 +121,7 @@ class AdministratorController
 			}
 			else
 			{
-				header("Location: Modifier-Utilisateur-".$_GET['id']."-Error-2.html");
+				header("Location: Modifier-Utilisateur-".$id."-Error-2.html");
 				exit;
 			}
 		}
@@ -142,8 +149,9 @@ class AdministratorController
 		if (!empty($_GET['id'])) 
 		{
 			$manager = new AdministratorManager();
+			$id = $GET_['id'];
 
-			$admin = $manager->get($_GET['id']);
+			$admin = $manager->get($id);
 
 			$updateId = $admin->idAdministrator();
 			$updateEmail = $admin->email();

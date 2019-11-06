@@ -71,7 +71,9 @@ class BlogPostController extends SecurityController
 		{
 			$manager = new BlogPostManager();
 
-			$blogp = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$blogp = $manager->get($id);
 
 			$manager->delete($blogp);
 

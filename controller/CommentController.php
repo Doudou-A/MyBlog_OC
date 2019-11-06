@@ -38,7 +38,9 @@ class CommentController extends SecurityController
 		{
 			$manager = new CommentManager();
 
-			$com = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$com = $manager->get($id);
 
 			$manager->delete($com);
 
@@ -59,7 +61,9 @@ class CommentController extends SecurityController
 		{
 			$manager = new CommentManager();
 
-			$com = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$com = $manager->get($id);
 
 			$comId = $com->idComment();
 			$comPseudo = $com->pseudo();
@@ -80,7 +84,9 @@ class CommentController extends SecurityController
 		{
 			$manager = new CommentManager();
 
-			$com = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$com = $manager->get($id);
 
 			$comId = $com->idComment();
 			$comPseudo = $com->pseudo();
@@ -113,7 +119,9 @@ class CommentController extends SecurityController
 		{
 			$manager = new CommentManager();
 
-			$com = $manager->get($_GET['id']);
+			$id = $_GET['id'];
+
+			$com = $manager->get($id);
 			$manager->update($com);
 
 			header("Location: Gérer-les-Commentaires.html");

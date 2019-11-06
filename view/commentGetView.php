@@ -41,7 +41,7 @@ require('adminAccess.php');
 		</div>
 	</div>
 <?php endforeach ?>
-	<h3 class="mt-5 font-weight-normal animated slideInLeft">Commentaire Valider</h3>
+	<h3 class="mt-5 font-weight-normal animated slideInLeft">Commentaire(s) Validé(s)</h3>
 	<div class="col-lg-12 d-flex green text-white mt-3 animated slideInRight">
 		<div class="col-lg-1 border border-white text-center font-weight-bold ">Article N°</div>
 		<div class="col-lg-2 border border-white text-center font-weight-bold ">Titre Article</div>
@@ -60,10 +60,10 @@ require('adminAccess.php');
 			<?=$commentValid->idBlogPost()->title();?>	
 		</div>
 		<div class="col-lg-1 border border-white text-truncate pl-2 animated slideInRight">
-			<?=$commentValid->pseudo();?>
+			<?=htmlspecialchars($commentValid->pseudo());?>
 		</div>
 		<div class="col-lg-5 border border-white text-truncate pl-2 animated slideInRight">
-			<?=$commentValid->content();?>
+			<?=htmlspecialchars($commentValid->content());?>
 		</div>
 		<div class="col-lg-1-5 border border-white text-center animated zoomIn delay-1s">
 			<a href="Commentaire-Valide-<?=$commentValid->idComment();?>.html" >Afficher</a>

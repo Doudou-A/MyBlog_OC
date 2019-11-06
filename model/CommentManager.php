@@ -114,26 +114,11 @@ class CommentManager
 
 		return $comspublish;
 	}
-	
-	/*public function getList()
-	{
-		$com = [];
-
-		$query = $this->_db->query('SELECT id, pseudo, date, content, valid FROM comment ORDER BY pseudo');
-
-		while ($data = $query->fetch(PDO::FETCH_ASSOC))
-		{
-			$com[] = new Comment($data);
-		}
-
-		return $com;
-	}
-
 
 	public function update(Comment $com)
 	{
 		$this->_db->exec('UPDATE Comment SET valid = 1 WHERE idComment ='.$com->idComment());
-	}*/
+	}
 
 	public function setDb(PDO $db)
 	{

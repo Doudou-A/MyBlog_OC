@@ -82,15 +82,6 @@ class BlogPostManager
 		return $postspublish;
 	}
 
-	/*public function getList()
-	{
-		$blogp = [];
-
-		$query = $this->_db->query('SELECT * FROM BlogPost');
-
-		return $query;
-	}*/
-
 	public function update(BlogPost $blogp)
 	{
 		$query = $this->_db->prepare('UPDATE BlogPost SET title = :title, chapo = :chapo, content = :content, dateLastUpdate = NOW(), idAdministrator = :idAdministrator WHERE idBlogPost = :idBlogPost');

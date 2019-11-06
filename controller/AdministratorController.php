@@ -80,7 +80,7 @@ class AdministratorController
 		require('view/administratorGetView.php');
 	}
 
-	//Tratier le formulaire de modification
+	//Traiter le formulaire de modification
 	public function administratorUpdateForm()
 	{	
 		
@@ -142,14 +142,14 @@ class AdministratorController
 		}
 	}
 
-	//Afficher les formulaires de modification d'un Utilisateur
+	//Afficher le formulaire de modification d'un Utilisateur
 	public function administratorUpdateView()
 	{
 
 		if (!empty($_GET['id'])) 
 		{
 			$manager = new AdministratorManager();
-			$id = $GET_['id'];
+			$id = $_GET['id'];
 
 			$admin = $manager->get($id);
 
@@ -158,7 +158,7 @@ class AdministratorController
 			$updateName = $admin->name();
 			$updateFirstName = $admin->firstName();
 
-			require('view/AdministratorUpdateView.php');
+			require('view/administratorUpdateView.php');
 
 		}
 		else
